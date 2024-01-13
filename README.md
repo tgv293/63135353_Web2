@@ -1,6 +1,4 @@
-# 63135353_Web2
- Place for Web Projects using Java
-# 63CNTT-Web2: PHÁT TRIỂN ỨNG DỤNG WEB 2
+# 63CNTT-CLC-Web2: PHÁT TRIỂN ỨNG DỤNG WEB 2
 > Sinh viên: Giáp Văn Tài 63135353 63.CNTT-CLC
  ## Install:
  - Eclipse EE
