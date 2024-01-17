@@ -14,3 +14,6 @@
  ![image](https://media.discordapp.net/attachments/1163815783118422048/1197032472177811567/image.png?)
  ![image](https://media.discordapp.net/attachments/1163815783118422048/1197032527622311986/image.png?)
  ![image](https://media.discordapp.net/attachments/1163815783118422048/1197032579992387714/image.png?)
+ ### Bài 1.3 - About Me
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/AboutMe)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1197043298393653248/image.png?)
