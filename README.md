@@ -1,4 +1,4 @@
-![image](https://github.com/tgv293/63135353_Web2/assets/102977775/d0e197f2-c657-4fd2-abcd-8289dca077c2)# 63CNTT-CLC-Web2: PHÁT TRIỂN ỨNG DỤNG WEB 2
+# 63CNTT-CLC-Web2: PHÁT TRIỂN ỨNG DỤNG WEB 2
 > Sinh viên: Giáp Văn Tài 63135353 63.CNTT-CLC
  ## Install:
  - Eclipse EE
