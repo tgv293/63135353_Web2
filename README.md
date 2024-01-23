@@ -33,3 +33,10 @@
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/LoginForm)
  ![image](https://media.discordapp.net/attachments/1163815783118422048/1199290705999306772/image.png?)
  ![image](https://media.discordapp.net/attachments/1163815783118422048/1199290853315846214/image.png?)
+ ### Bài 2.3 - Login2
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/LoginForm2)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199290705999306772/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199290853315846214/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199360255381995550/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199360303809437796/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199360167024795799/image.png?)
