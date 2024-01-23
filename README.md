@@ -18,3 +18,8 @@
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/AboutMe)
  ![image](https://media.discordapp.net/attachments/1163815783118422048/1197051217466118274/image.png?)
  ![image](https://media.discordapp.net/attachments/1163815783118422048/1197043298393653248/image.png?)
+ ### Bài 1.4 - BMI
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/BMI)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1197171360192016547/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1197171416974503966/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1197171460708503762/image.png?)
