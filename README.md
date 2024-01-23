@@ -26,3 +26,6 @@
  ### Bài 2.1 - VD1
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/HelloJSP)
  ![image](https://media.discordapp.net/attachments/1163815783118422048/1199276296291753994/image.png?)
+ ### Bài 2.2 - VD2
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/HelloDeclare)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199280016572297266/image.png?)
