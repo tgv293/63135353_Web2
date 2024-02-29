@@ -8,7 +8,7 @@
  ***Quá trình thực hiện bài tập***
  ### Bài 1 - Hello World (BT 1.1 và 1.2)
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/GVTHelloWorld)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1197032251775537222/image.png?)
+ ![image](blob:https://www.facebook.com/59b2413f-fb8e-4d25-8423-c369244625ef)
  ![image](https://media.discordapp.net/attachments/1163815783118422048/1197032302115565649/image.png?)
  ![image](https://media.discordapp.net/attachments/1163815783118422048/1197032379815055481/image.png?)
  ![image](https://media.discordapp.net/attachments/1163815783118422048/1197032472177811567/image.png?)
