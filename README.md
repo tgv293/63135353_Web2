@@ -18,29 +18,37 @@
 
  ### Bài 1.3 - About Me
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/AboutMe)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1197051217466118274/image.png?)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1197043298393653248/image.png?)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/d2bd3f13-bf84-4961-b462-9844c988216e" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/88c27bc6-a278-48b9-b094-c5607e67ecfc" width="800" />
+
  ### Bài 1.4 - BMI
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/BMI)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1197171360192016547/image.png?)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1197171416974503966/image.png?)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1197171460708503762/image.png?)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+
  ### Bài 2.1 - VD1
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/HelloJSP)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1199276296291753994/image.png?)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ 
  ### Bài 2.2 - VD2
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/HelloDeclare)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1199280016572297266/image.png?)
+
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ 
  ### Bài 2.3 - Login
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/LoginForm)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1199290705999306772/image.png?)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1199290853315846214/image.png?)
+
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ 
  ### Bài 2.3 - Login2
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/LoginForm2)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1199290705999306772/image.png?)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1199360255381995550/image.png?)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1199360303809437796/image.png?)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1199360167024795799/image.png?)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ 
  ### SpringMVC Bài 1 Maven
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/MVCBai1Maven)
- ![image](https://media.discordapp.net/attachments/1163815783118422048/1212733969070686208/image.png?)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
