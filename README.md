@@ -1,31 +1,46 @@
-# 63CNTT: PHÁT TRIỂN ỨNG DỤNG WEB 2
-> Sinh viên: Nguyễn Đức Thắng 63 CNTT-CLC
+# 63CNTT-CLC-Web2: PHÁT TRIỂN ỨNG DỤNG WEB 2
+> Sinh viên: Giáp Văn Tài 63135353 63.CNTT-CLC
  ## Install:
- - Intellij hoặc Eclipse
- - Tomcat Apace
- - MySQL
- - Java SE Development Kit (JDK)
-
-[Cách Setup để thực hiện Servlet trên Intellij](https://github.com/Mrk4tsu/63135414_Web-2/wiki/Servlet)
-
-#### BMI:
-<img src="https://github.com/Mrk4tsu/63135414_Web-2/assets/120944583/f06886ac-0769-4b70-afdc-d0aa6000d6b9" width="800" />
-
-#### About Me:
-<img src="https://github.com/Mrk4tsu/63135414_Web-2/assets/120944583/70d97706-867a-4262-9788-f4609aa8b331" width="800" />
-
-#### doPost:
-![prv](https://github.com/Mrk4tsu/63135414_Web-2/assets/120944583/3e574576-fd9a-4441-aed4-d92099a887c1)
-
-#### Subpage (doGet):
-<img src="https://github.com/Mrk4tsu/63135414_Web-2/assets/120944583/9a14b7b2-deec-45a2-8d3c-0a5663e22315" width="800" />
-
-#### Hello World:
-<img src="https://github.com/Mrk4tsu/63135414_Web-2/assets/120944583/9d6dc8b5-5bec-4071-9150-03c5ac9abf89" width="800" />
-
-
-
-
-
-
+ - Eclipse EE
+ - Java SE Development Kit (8u77)
+ - Tomcat Apache 10.0.27
+ <img src="blob:https://www.facebook.com/59b2413f-fb8e-4d25-8423-c369244625ef">
  
+***Quá trình thực hiện bài tập***
+ ### Bài 1 - Hello World (BT 1.1 và 1.2)
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/GVTHelloWorld)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/bd25a970-e148-4e4a-ad7f-1570c023d89a" width="800" />
+ <img src="https://github.com/Mrk4tsu/63135414_Web-2/assets/120944583/f06886ac-0769-4b70-afdc-d0aa6000d6b9" width="800" />
+ <img src="https://github.com/Mrk4tsu/63135414_Web-2/assets/120944583/f06886ac-0769-4b70-afdc-d0aa6000d6b9" width="800" />
+ <img src="https://github.com/Mrk4tsu/63135414_Web-2/assets/120944583/f06886ac-0769-4b70-afdc-d0aa6000d6b9" width="800" />
+ <img src="https://github.com/Mrk4tsu/63135414_Web-2/assets/120944583/f06886ac-0769-4b70-afdc-d0aa6000d6b9" width="800" />
+ <img src="https://github.com/Mrk4tsu/63135414_Web-2/assets/120944583/f06886ac-0769-4b70-afdc-d0aa6000d6b9" width="800" />
+
+ ### Bài 1.3 - About Me
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/AboutMe)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1197051217466118274/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1197043298393653248/image.png?)
+ ### Bài 1.4 - BMI
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/BMI)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1197171360192016547/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1197171416974503966/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1197171460708503762/image.png?)
+ ### Bài 2.1 - VD1
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/HelloJSP)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199276296291753994/image.png?)
+ ### Bài 2.2 - VD2
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/HelloDeclare)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199280016572297266/image.png?)
+ ### Bài 2.3 - Login
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/LoginForm)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199290705999306772/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199290853315846214/image.png?)
+ ### Bài 2.3 - Login2
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/LoginForm2)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199290705999306772/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199360255381995550/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199360303809437796/image.png?)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1199360167024795799/image.png?)
+ ### SpringMVC Bài 1 Maven
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/MVCBai1Maven)
+ ![image](https://media.discordapp.net/attachments/1163815783118422048/1212733969070686208/image.png?)
