@@ -33,14 +33,12 @@
  
  ### Bài 2.2 - VD2
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/HelloDeclare)
-
- <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/d562a0ed-9fa6-485a-95d2-8b771c587072" width="800" />
  
  ### Bài 2.3 - Login
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/LoginForm)
-
- <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
- <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/937bed53-e0a9-4829-a103-59c0f32317f5" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/998f60e2-0133-4615-ac1c-c3805c0ddf5d" width="800" />
  
  ### Bài 2.3 - Login2
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/LoginForm2)
