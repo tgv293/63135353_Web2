@@ -18,18 +18,18 @@
 
  ### Bài 1.3 - About Me
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/AboutMe)
- <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/d2bd3f13-bf84-4961-b462-9844c988216e" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/765b3e6c-90cb-41c3-a7b9-974fc0f3c91e" width="800" />
  <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/88c27bc6-a278-48b9-b094-c5607e67ecfc" width="800" />
-
+ 
  ### Bài 1.4 - BMI
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/BMI)
- <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
- <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
- <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e4d5316e-9d7a-4335-90c5-e3120498c25b" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/6b78c436-e902-4b4f-8044-f1667bfbe910" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/729f2ad2-a5ec-4d4d-98bc-7ec2a11b3f2c" width="800" />
 
  ### Bài 2.1 - VD1
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/HelloJSP)
- <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e6bf855c-01f6-4b74-8cfe-0bcffdc93713" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e1b0ceb2-c56c-4039-8084-b998d72c5680" width="800" />
  
  ### Bài 2.2 - VD2
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/HelloDeclare)
