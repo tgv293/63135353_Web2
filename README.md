@@ -51,3 +51,13 @@
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/MVCBai1Maven)
  <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/8793d5fe-4153-4da6-9c47-5b3b43bae3c7" width="800" />
 
+ ### Ví dụ 3.2.1
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/VD321)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/872e2660-ecb3-4c2e-a836-f2d75abfb75b" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/b37d56e9-6978-4a3f-828b-645474f0a912" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/9a97de55-cafd-423d-8e9a-bfa05eb78a60" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/0d4d0f22-1f0d-4683-8d13-572228cc35d4" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/beb00cc2-b1a9-4037-bf69-bff9521815a8" width="800" />
+
+
+
