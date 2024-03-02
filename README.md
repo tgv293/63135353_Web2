@@ -59,5 +59,11 @@
  <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/0d4d0f22-1f0d-4683-8d13-572228cc35d4" width="800" />
  <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/beb00cc2-b1a9-4037-bf69-bff9521815a8" width="800" />
 
+ ### Ví dụ 3.2.2
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/VD322)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/f2593a98-ba31-455c-8082-9332f2e17556" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/41cb7f80-d783-4901-8268-2ce2edddc141" width="800" />
+
+
 
 
