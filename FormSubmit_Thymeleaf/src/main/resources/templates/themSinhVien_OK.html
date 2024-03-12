@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<title>Thêm mới Sinh viên thành công</title>
+<style type="text/css">
+    .details {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .details span {
+        margin-right: 10px;
+        color: white;
+    }
+</style>
+</head>
+<body>
+<div class="login-box">
+    <h2>Thêm Thành công!</h2>
+    <div class="details">
+        <span>Mã Số SV:</span>
+        <span th:text="${svDTO.maSoSV}"></span>
+    </div>
+    <div class="details">
+        <span>Họ Và Tên:</span>
+        <span th:text="${svDTO.hoVaTen}"></span>
+    </div>
+</div>
+</body>
+</html>

@@ -108,3 +108,38 @@ h2 a {
 .container td:nth-child(4),
 .container th:nth-child(4) { display: none; }
 }
+
+.container2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:-100px;
+}
+.container2 .pagination {
+  position: relative;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+  border-radius: 2px;
+  padding-left: 0;
+}
+.container2 .pagination li {
+  list-style-type: none;
+  display: inline-block;
+}
+.container2 .pagination li a {
+  position: relative;
+  padding: 20px 25px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+}
+.container2 .pagination li a:hover,
+.container2 .pagination li.active a {
+  background: rgba(255, 255, 255, 0.2);
+}
