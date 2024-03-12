@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Danh sách sinh viên</title>
+<link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+</head>
+<body>
+	<h1>
+		<span class="blue">&lt;</span>Table<span class="blue">&gt;</span> <span
+			class="yellow">Responsive</span>
+	</h1>
+	<h2>
+		Created with love by <a href="https://github.com/tgv293"
+			target="_blank">GVT</a>
+	</h2>
+	<table class="container">
+		<thead>
+			<tr>
+				<th>Mã số sinh viên</th>
+				<th>Họ và Tên</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="sv : ${dsSV}">
+				<td th:text="${sv.maSoSV}" />
+				<td th:text="${sv.hoVaTen}" />
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
