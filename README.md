@@ -64,6 +64,20 @@
  <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/f2593a98-ba31-455c-8082-9332f2e17556" width="800" />
  <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/41cb7f80-d783-4901-8268-2ce2edddc141" width="800" />
 
+ ### DisplayListObject
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/DisplayListObject)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/e83dc2cf-e1d7-4c5a-b08c-6f3c730d5107" width="800" />
 
+ ### DisplayListObjectPagination
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/DisplayListObjectPagination)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/a50281cc-b3ad-43fd-838b-a3779845f1b9" width="800" />
 
+ ### FormSubmit_Thymeleaf
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/FormSubmit_Thymeleaf)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/7071e5af-bc2f-4250-836b-d9e1085d3a90" width="800" />
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/440c1dc8-22dd-4ab4-8ae7-293d6a841fbd" width="800" />
+
+ ### CSS_JS_IMAGE_Bootrap
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/CSS_JS_IMAGE_Bootrap)
+ <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/339a14dd-c07f-454c-9f7f-bd8755e92da5" width="800" />
 
