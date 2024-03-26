@@ -86,12 +86,14 @@
  Giáp Văn Tài_63135353
  Trang index:
  ![image](https://github.com/tgv293/63135353_Web2/assets/102977775/f6e70aaf-d6cb-432c-8382-15a358caeaf2)
-![image](https://github.com/tgv293/63135353_Web2/assets/102977775/075965f2-9de7-4aca-973d-42762d5e53f3)
-![image](https://github.com/tgv293/63135353_Web2/assets/102977775/178769fc-7e67-4b7f-aca4-c9e2eaff1c4a)
-
- 
- 
+ ![image](https://github.com/tgv293/63135353_Web2/assets/102977775/075965f2-9de7-4aca-973d-42762d5e53f3)
+ ![image](https://github.com/tgv293/63135353_Web2/assets/102977775/178769fc-7e67-4b7f-aca4-c9e2eaff1c4a) 
  Hiển thị danh sách sinh viên
- ![image](https://github.com/tgv293/63135353_Web2/assets/102977775/78db1c69-c789-4452-bc04-6879b1466d4b)
+ ![image](https://github.com/tgv293/63135353_Web2/assets/102977775/3349d52e-4555-4330-81ee-da70ac39a71a)
+ ![image](https://github.com/tgv293/63135353_Web2/assets/102977775/6f3b3272-2902-44b5-81ce-a4a4165aa0a6)
+ ![image](https://github.com/tgv293/63135353_Web2/assets/102977775/cf80b265-b196-4b8d-a520-8f936b15b443)
+
+
+
 
 
