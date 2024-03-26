@@ -1,27 +1,37 @@
 package vn.gvt.DisplayListObjectPagination.models;
 
 public class SinhVien {
-	private String maSoSV;
-	private String hoVaTen;
+    private String maSoSV;
+    private String hoVaTen;
+    private int diemTichLuy;
 
-	public String getMaSoSV() {
-		return maSoSV;
-	}
+    public SinhVien(String maSoSV, String hoVaTen, int diemTichLuy) {
+        this.maSoSV = maSoSV;
+        this.hoVaTen = hoVaTen;
+        this.diemTichLuy = diemTichLuy;
+    }
 
-	public void setMaSoSV(String maSoSV) {
-		this.maSoSV = maSoSV;
-	}
+    public String getMaSoSV() {
+        return maSoSV;
+    }
 
-	public String getHoVaTen() {
-		return hoVaTen;
-	}
+    public void setMaSoSV(String maSoSV) {
+        this.maSoSV = maSoSV;
+    }
 
-	public void setHoVaTen(String hoVaTen) {
-		this.hoVaTen = hoVaTen;
-	}
+    public String getHoVaTen() {
+        return hoVaTen;
+    }
 
-	public SinhVien(String maSoSV, String hoVaTen) {
-		this.maSoSV = maSoSV;
-		this.hoVaTen = hoVaTen;
-	}
+    public void setHoVaTen(String hoVaTen) {
+        this.hoVaTen = hoVaTen;
+    }
+
+    public int getDiemTichLuy() {
+        return diemTichLuy;
+    }
+
+    public void setDiemTichLuy(int diemTichLuy) {
+        this.diemTichLuy = diemTichLuy;
+    }
 }
