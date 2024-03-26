@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import thiGK.ntu63135353.giapvantai_QLSinhVien.models.SinhVien;
 
@@ -41,5 +45,19 @@ public class SinhVienController {
 		mm.addAttribute("dsSV", dsSinhViens);
 		return "QLSV";
 	}
+	
+	@GetMapping("/them")
+    public String showAddForm(ModelMap mm) {
+        mm.addAttribute("newStudent", new SinhVien(null, null, 0));
+        return "Them";
+    }
+	
+	@PostMapping("/them")
+    public String Them(@ModelAttribute SinhVien newStudent, ModelMap mm) {
+        // Thêm sinh viên mới vào danh sách
+        dsSinhViens.add(newStudent);
+        mm.addAttribute("dsSV", dsSinhViens);
+        return "redirect:/danhsachSV"; // Redirect về danh sách sinh viên sau khi thêm thành công
+    }
 
 }
