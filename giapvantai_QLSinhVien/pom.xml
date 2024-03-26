@@ -41,7 +41,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>vn.gvt</groupId>
+			<artifactId>DisplayListObjectPagination</artifactId>
+			<version>1</version>
+		</dependency>
+		<dependency>
+			<groupId>vn.gvt</groupId>
+			<artifactId>DisplayListObject</artifactId>
+			<version>1</version>
+		</dependency>
+		</dependencies>
 
 	<build>
 		<plugins>
