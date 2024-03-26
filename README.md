@@ -81,3 +81,13 @@
  ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/CSS_JS_IMAGE_Bootrap)
  <img src="https://github.com/tgv293/63135353_Web2/assets/102977775/339a14dd-c07f-454c-9f7f-bd8755e92da5" width="800" />
 
+ ### Kiểm tra giữa kỳ
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/giapvantai_QLSinhVien)
+ Giáp Văn Tài_63135353
+Trang index:
+ 
+ 
+ 
+Hiển thị danh sách sinh viên
+ 
+
