@@ -93,6 +93,12 @@
  ![image](https://github.com/tgv293/63135353_Web2/assets/102977775/6f3b3272-2902-44b5-81ce-a4a4165aa0a6)
  ![image](https://github.com/tgv293/63135353_Web2/assets/102977775/cf80b265-b196-4b8d-a520-8f936b15b443)
 
+ ### Ví dụ QLBH với Spring Boot, JPA, MySQL, Thymeleaf Layout
+ ### [Chi tiết bài tập](https://github.com/tgv293/63135353_Web2/tree/main/giapvantai_QLSinhVien)
+ ![image](https://github.com/tgv293/63135353_Web2/assets/102977775/2c711ad9-9538-48c6-ad6f-7d7d190e3f72)
+ ![image](https://github.com/tgv293/63135353_Web2/assets/102977775/6ef0d023-f213-4e96-a8d5-84e0e96401b7)
+
+
 
 
 
