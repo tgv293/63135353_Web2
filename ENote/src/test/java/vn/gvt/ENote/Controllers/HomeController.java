@@ -1,4 +1,4 @@
-package vn.gvt.ENote.Controller;
+package vn.gvt.ENote.Controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
