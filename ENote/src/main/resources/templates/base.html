@@ -3,22 +3,44 @@
 	th:fragment="Layout(title,content)">
 <head>
 <meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title th:replace="${title}"></title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 	integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" th:href="@{/assets/css/style.css}">
+
+<style type="text/css">
+.paint-card {
+	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+}
+.custom-button {
+    width: fit-content;
+}
+@media (max-width: 992px) {
+    .custom-button {
+        width: 100%;
+    }
+}
+</style>
+
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+	<!-- Start Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-custom">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/"><i class="fa-solid fa-book"></i>Enote</a>
+			<a class="navbar-brand" th:href="@{/}"><span
+				style="color: #18ffff;"><i class="fa-solid fa-book"></i>
+					Enotes</span></a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -28,26 +50,42 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="/"><i class="fa-solid fa-house"></i> Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="addNotes"><i class="fa-solid fa-plus"></i> Add</a></li>
-					<li class="nav-item"><a class="nav-link" href="viewNotes"><i class="fa-solid fa-list"></i> View</a></li>
+						aria-current="page" th:href="@{/}"><i class="fa-solid fa-home"></i>
+							Trang chủ</a></li>
 				</ul>
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a href="register"
-						class="btn btn-sm btn-primary"><i class="fa-solid fa-user-plus"></i> Register</a></li>
-					<li class="nav-item"><a href="login"
-						class="btn btn-sm btn-primary ms-2"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+					<li class="nav-item"><a th:href="@{about}"
+						class="btn btn-light custom-button ms-1 me-1"
+						style="background-color: #2e7d32; border-color: #07302c;"><span
+							style="color: white"><i class="fa-solid fa-id-card-alt"></i>
+								Giới Thiệu</span></a></li>
+					<li class="nav-item"><a th:href="@{contact}"
+						class="btn btn-light custom-button ms-1 me-1"
+						style="background-color: #827717; border-color: #07302c;"><span
+							style="color: white"><i class="fa-solid fa-address-card"></i>
+								Liên Hệ</span></a></li>
+					<li class="nav-item"><a th:href="@{login}"
+						class="btn btn-light custom-button ms-1 me-1"
+						style="background-color: #d81b60; border-color: #07302c;"><span
+							style="color: white"><i
+								class="fa-solid fa-right-to-bracket"></i> Đăng Nhập</span></a></li>
+					<li class="nav-item"><a th:href="@{register}"
+						class="btn btn-light custom-button ms-1 me-1"
+						style="background-color: #00897b; border-color: #07302c;"><span
+							style="color: white"><i class="fa-solid fa-user-plus"></i>
+								Đăng ký</span></a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
+	<!-- End Navbar -->
 	<div th:replace="${content}"></div>
-
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
+
 </body>
 </html>
