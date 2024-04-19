@@ -3,64 +3,72 @@
 	th:replace="~{base::Layout(~{::title}, ~{::section})}">
 <head>
 <meta charset="UTF-8">
-<title>Register</title>
-<link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
-	rel="stylesheet" media="screen" />
-
-<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
-
-<link th:href="@{/assets/css/main.css}" rel="stylesheet" media="screen" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ</title>
 </head>
-<body class="bg-light">
+<body>
 	<section>
-		<div class="container">
-			<div class="mt-5 text-center">
-				<form>
-					<div class="col-5 mx-auto">
-						<img class="mt-3" th:src="@{/assets/img/raccoon.svg}" alt="enotes"
-							th:height="96" th:width="96">
-						<h4 class="my-2">Fill the registration form</h4>
-						<div class="form-row">
-							<label for="email">Email:</label> <input
-								type="email" name="email" id="email" class="form-control"
-								required />
-						</div>
-						<div class="form-row">
-							<label for="password">Password:</label> <input
-								 type="password" name="password"
-								id="password" class="form-control" required />
-						</div>
-						<div class="form-row">
-							<label for="firstName">First name:</label> <input
-								 type="text" name="firstName"
-								id="firstName" class="form-control" required />
-						</div>
-						<div class="form-row">
-							<label for="lastName">Last name:</label> <input
-								 type="text" name="lastName" id="lastName"
-								class="form-control" required />
-						</div>
-						<div class="form-row">
-							<label for="country">Country:</label> <input
-								 type="text" name="country" id="country"
-								class="form-control" required />
-						</div>
-						<div class="form-row">
-							<label for="age">Age:</label> <input
-								type="text" name="age" id="age" class="form-control" required />
-						</div>
-						<div class="form-row mt-3">
-							<button type="submit" class="btn btn-info">Sign Up</button>
-							<p class="ml-5">
-								Already have account?<a > Sign In</a>
-							</p>
-						</div>
-						<div class="text-danger" >User with
-							such email already exists.</div>
+		<div class="container d-flex flex-column justify-content-center"
+			style="min-height: 91.3vh">
+			<div class="text-center" id="contact">
+				<h1 class="text-center font-weight-bold"
+					style="font-family: 'Fleur De Leah'; color: #EE1D29; font-size: calc(2rem + 1.5vw)">Liên
+					Hệ</h1>
+				<div class="row mt-5">
+					<div class="col-lg-3 col-sm-6 mydivstyle">
+						<h4>
+							<i class="fas fa-phone-square"></i> Điện Thoại
+						</h4>
+						<p class="mt-3 text-danger font-weight-bold">
+							<a class="contactlink" href="tel:+84 773753848">+84 773753848</a>
+						</p>
 					</div>
-				</form>
+					<div class="col-lg-3 col-sm-6 mydivstyle">
+						<h4>
+							<i class="fas fa-envelope"></i> Email
+						</h4>
+						<p class="mt-3 text-danger font-weight-bold">
+							<a class="contactlink" href="mailto:tai.gv.63cntt@ntu.edu.vn">tai.gv.63cntt@ntu.edu.vn</a>
+						</p>
+					</div>
+					<div class="col-lg-3 col-sm-6 mydivstyle">
+						<h4>
+							<i class="fas fa-address-card"></i> Địa Chỉ
+						</h4>
+						<p class="mt-3 text-danger font-weight-bold">
+							<a class="contactlink"
+								href="https://maps.app.goo.gl/UoFYP1m13LHQXH5S6">152 Lê Hồng
+								Phong, Nha Trang</a>
+						</p>
+					</div>
+					<div class="col-lg-3 col-sm-6 mydivstyle">
+						<h4>
+							<i class="far fa-clock"> </i> Thời Gian Làm Việc
+						</h4>
+						<p class="mt-3 text-danger font-weight-bold">7 giờ sáng - 4
+							giờ chiều</p>
+					</div>
+				</div>
 			</div>
+
+
+			<footer class="mt-5 text-center"
+				style="background-color: #f8f9fa; padding: 20px;">
+				<p style="font-size: 20pt; color: #343a40;">
+					&copy;
+					<script>
+            		document.write(new Date().getFullYear());
+        			</script>
+					Giáp Văn Tài. Tất cả các quyền được bảo lưu.
+				</p>
+				<p style="color: #6c757d;">
+					<span>Website được thiết kế và phát triển bởi </span> <a
+						th:href="@{contact}" style="text-decoration: none;" class="glow">Giáp
+						Văn Tài</a>
+				</p>
+			</footer>
 		</div>
 	</section>
 </body>
+
 </html>

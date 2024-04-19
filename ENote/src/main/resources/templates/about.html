@@ -5,67 +5,78 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Giới Thiệu</title>
+<style>
+</style>
 </head>
 <body>
 	<section>
-		<div class="container mt-5">
-			<h1 class=text-center
-				style="font-family: 'Montserrat'; color: #E6120E">Giới Thiệu</h1>
-			<div class="row">
-				<div class="col-sm-4 text-center">
-					<img src="/assets/img/about.jpg" width=300 height=300
+		<div class="container d-flex flex-column justify-content-center"
+			style="min-height: calc(100vh - 242px);">
+			<h1 class="text-center"
+				style="font-family: 'Fleur De Leah'; color: #E6120E; font-size: calc(2rem + 1.5vw)">Giới Thiệu</h1>
+			<div class="row align-items-center">
+				<div class="about_img col-sm-4 text-center  align-items-center">
+					<img src="/assets/img/about.jpg"
+						style="max-width: 100%; height: auto; min-height: 200px;"
 						class="img-responsive">
 				</div>
-				<div class="col-sm-8 mt-5" style="font-weight: bold;">Hello
-					Friends , This is Simple Enotes Management Project Developed By ABC
-					, XYZ and PQR using HTML , CSS , Javascript , Bootstrap, Spring
-					Boot and MySQL. In This project used lombok for generates code for
-					minimizing boilerplate code, spring web for allows us to access and
-					persist data between Java object/ class and relational database,
-					thymeleaf for provides full integration with Spring Framework. It
-					applies a set of transformations to template files in order to
-					display data or text produced by the application, spring security
-					for Spring Boot automatically secures all HTTP endpoints with
-					âbasicâ authentication, mysql for database connectivity and last
-					one is Spring web.</div>
+				<div class="about_txt col-sm-8" style="font-weight: bold;">
+					<p>Chào mừng bạn đến với dự án Quản lý Enotes. Dự án này được
+						phát triển bởi Giáp Văn Tài, sinh viên lớp 63.CNTT-CLC, Trường Đại
+						học Nha Trang. Dự án sử dụng nhiều công nghệ và ngôn ngữ lập trình
+						khác nhau như HTML, CSS, Javascript, Bootstrap, Spring Boot, JPA
+						và MySQL.</p>
+					<p>Trong dự án này, tôi đã sử dụng Spring Web, một module của
+						Spring Framework, để xây dựng và quản lý các yêu cầu HTTP giữa ứng
+						dụng Java và cơ sở dữ liệu quan hệ. Thymeleaf, một công nghệ View,
+						được sử dụng để tích hợp với Spring Framework, nó chuyển đổi các
+						tệp mẫu thành dữ liệu hoặc văn bản được hiển thị bởi ứng dụng.</p>
+					<p>Spring Security được sử dụng để bảo mật ứng dụng, nó tự động
+						bảo vệ tất cả các điểm cuối HTTP với xác thực "cơ bản". MySQL được
+						sử dụng để kết nối và quản lý cơ sở dữ liệu.</p>
+					<p>Cuối cùng, tất cả các thành phần này được tích hợp và quản
+						lý bởi Spring Boot, giúp tôi xây dựng và triển khai ứng dụng một
+						cách nhanh chóng và dễ dàng.</p>
+				</div>
 			</div>
 		</div>
 
-		<div class="mt-3"
+		<div class="about_bt bottom"
 			style="background-color: #456e97; width: 100%; height: 180px">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 mt-2">
 						<h3 class="text-white">Enotes Management</h3>
 						<p style="color: yellow; font-size: 16px">
-							<i class="fa fa-map-marker text-danger"></i> Sector C Indrapuri
-							Bhopal, 462020 (MP)
+							<i class="fa fa-map-marker text-danger"></i> 152 Lê Hồng Phong,
+							Nha Trang
 						</p>
 						<p style="color: yellow; font-size: 16px">
-							<i class="fa fa-envelope text-danger"></i> abc123@gmail.com
+							<i class="fa fa-envelope text-danger"></i>
+							tai.gv.63cntt@ntu.edu.vn
 						</p>
 						<p style="color: yellow; font-size: 16px">
-							<i class="fas fa-phone-volume text-danger"></i> +91 1234567890
+							<i class="fas fa-phone-volume text-danger"></i> +84 773753848
 						</p>
 
 					</div>
 
 					<div class="col-md-4 mt-2">
-
-						<h3 class="text-white">* Useful Links :-</h3>
-						<a href="#"><p style="color: yellow; font-size: 16px">Home</p></a>
-						<a href="#"><p style="color: yellow; font-size: 16px">About
-								us</p></a> <a href="#"><p style="color: yellow; font-size: 16px">Contact</p></a>
-
-
+						<h3 class="text-white">Liên Kết</h3>
+						<a th:href="@{/}" style="text-decoration: none;"><p
+								style="color: yellow; font-size: 16px">Trang chủ</p></a> <a
+							th:href="@{about}" style="text-decoration: none;"><p
+								style="color: yellow; font-size: 16px">Giới thiệu</p></a> <a
+							th:href="@{contact}" style="text-decoration: none;"><p
+								style="color: yellow; font-size: 16px">Liên hệ</p></a>
 					</div>
 
 					<div class="col-md-4 mt-2">
-						<h3 class="text-white">Meeting Time :-</h3>
-						<p style="color: yellow; font-size: 16px">Monday to Saturday
-							:- 10:00AM to 06:00PM</p>
-						<p style="color: yellow; font-size: 16px">Sunday :- 08:00 AM
-							to 05:00PM</p>
+						<h3 class="text-white">Thời Gian Làm Việc</h3>
+						<p style="color: yellow; font-size: 16px">Thứ 2 - Thứ 7: 7 giờ
+							sáng - 5 giờ chiều</p>
+						<p style="color: yellow; font-size: 16px">Chủ nhật: 8 giờ sáng
+							- 4 giờ chiều</p>
 					</div>
 
 				</div>

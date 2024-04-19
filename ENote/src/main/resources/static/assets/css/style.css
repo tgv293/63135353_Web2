@@ -72,6 +72,7 @@ transform:translateY(-20px);
 
 .contactlink {
 	color: #EE1D29;
+	text-decoration: none;
 }
 
 
@@ -92,21 +93,40 @@ h2, h4 {
 	transform: translateY(-10px)
 }
 
-.glow {
-	font-size: 80px;
-	color: #fff;
-	text-align: center;
-	-webkit-animation: glow 1s ease-in-out infinite alternate;
+@media ( max-width : 992px) {
+	.about_bt {
+		height: auto !important;
+	}
 }
+
+@media (max-width: 991.5px) {
+    .about_img, .about_txt {
+        flex: 1 0 100%;
+    }
+}
+
+.glow {
+  font-size: 20pt;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+} 
 
 @-webkit-keyframes glow {
   from { 
-  text-shadow :0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073,
-	0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px #0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF;
   }
-
   to {
-	text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px
-		#ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    text-shadow: 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px #0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF, 0 0 80px #0000FF;
+  }
+}
+
+@keyframes glow {
+  from { 
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px #0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px #0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF, 0 0 80px #0000FF;
   }
 }
