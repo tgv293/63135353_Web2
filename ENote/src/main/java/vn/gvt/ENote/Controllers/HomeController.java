@@ -1,6 +1,11 @@
 package vn.gvt.ENote.Controllers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -21,9 +26,11 @@ public class HomeController {
 	}
 
 	@GetMapping("/register")
-	public String register() {
-		return "register";
-	}
+    public String showRegisterForm(Model model) {
+        List<Integer> ages = IntStream.rangeClosed(7, 100).boxed().collect(Collectors.toList());
+        model.addAttribute("ages", ages);
+        return "register";
+    }
 
 	@GetMapping("/login")
 	public String login() {

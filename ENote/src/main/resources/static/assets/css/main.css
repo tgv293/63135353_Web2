@@ -1,19 +1,279 @@
 .hidden {
-    display: none;
+	display: none;
 }
 
-.checkbox-xl .custom-control-label::before,
-.checkbox-xl .custom-control-label::after {
-    top: 1.2rem;
-    width: 1.85rem;
-    height: 1.85rem;
+.checkbox-xl .custom-control-label::before, .checkbox-xl .custom-control-label::after
+	{
+	top: 1.2rem;
+	width: 1.85rem;
+	height: 1.85rem;
 }
 
 .checkbox-xl .custom-control-label {
-    padding-top: 23px;
-    padding-left: 10px;
+	padding-top: 23px;
+	padding-left: 10px;
 }
 
 .border-3 {
-    border-width: 3px !important;
+	border-width: 3px !important;
 }
+
+.signup {
+	background: url("../img/signup-bg.jpg");
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	position: fixed;
+	background-size: cover;
+	background-position: center center;
+}
+
+.signup .container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.signup .container .form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	max-width: 500px;
+	min-width: 400px;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 20px;
+	position: relative;
+}
+
+.signup .container .form .title {
+	font-size: 28px;
+	color: royalblue;
+	font-weight: 600;
+	letter-spacing: -1px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding-left: 30px;
+}
+
+.signup .container .form .title::before, .title::after {
+	position: absolute;
+	content: "";
+	height: 16px;
+	width: 16px;
+	border-radius: 50%;
+	left: 0px;
+	background-color: royalblue;
+}
+
+.signup .container .form .title::before {
+	width: 18px;
+	height: 18px;
+	background-color: royalblue;
+}
+
+.signup .container .form .title::after {
+	width: 18px;
+	height: 18px;
+	animation: pulse 1s linear infinite;
+}
+
+.signup .container .form .message, .signin {
+	color: rgba(88, 87, 87, 0.822);
+	font-size: 14px;
+}
+
+.signup .container .form .signin {
+	text-align: center;
+}
+
+.signup .container .form .signin a {
+	color: royalblue;
+}
+
+.signup .container .form .signin a:hover {
+	text-decoration: underline royalblue;
+}
+
+.signup .container .form .flex {
+	display: flex;
+	width: 100%;
+	gap: 10px;
+}
+
+.signup .container .form label {
+	flex: 1;
+	position: relative;
+}
+
+.toggle-password {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+.signup .container .form label .input {
+	width: 100%;
+	padding: 10px 10px 20px 10px;
+	outline: 0;
+	border: 1px solid rgba(105, 105, 105, 0.397);
+	border-radius: 10px;
+}
+
+.signup .container .form label .input+span {
+	position: absolute;
+	left: 10px;
+	top: 15px;
+	color: grey;
+	font-size: 0.9em;
+	cursor: text;
+	transition: 0.3s ease;
+}
+
+.signup .container .form label .input:placeholder-shown+span {
+	top: 15px;
+	font-size: 0.9em;
+}
+
+.signup .container .form label .input[type="text"]:focus+span, 
+.signup .container .form label .input[type="text"]:valid+span,
+.signup .container .form label .input[type="email"]:focus+span, 
+.signup .container .form label .input[type="email"]:valid+span,
+.signup .container .form label .input[type="password"]:focus+span, 
+.signup .container .form label .input[type="password"]:valid+span {
+    top: 30px !important;
+    font-size: 0.7em !important;
+    font-weight: 600 !important;
+}
+
+.signup .container .form label .input:valid+span {
+	color: green;
+}
+
+.signup .container .form label .input.has-input:invalid+span {
+    color: red;
+	top: 30px !important;
+    font-size: 0.7em !important;
+    font-weight: 600 !important;
+}
+
+.signup .container .submit {
+	border: none;
+	outline: none;
+	background-color: royalblue;
+	padding: 10px;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 16px;
+	transform: .3s ease;
+}
+
+.signup .container .submit:hover {
+	background-color: rgb(56, 90, 194);
+}
+
+@keyframes pulse {from { transform:scale(0.9);
+	opacity: 1;
+}
+
+to {
+	transform: scale(1.8);
+	opacity: 0;
+}
+
+}
+.signup .container .form button {
+	--primary-color: #645bff;
+	--secondary-color: #fff;
+	--hover-color: #111;
+	--arrow-width: 10px;
+	--arrow-stroke: 2px;
+	box-sizing: border-box;
+	border: 0;
+	border-radius: 20px;
+	color: var(--secondary-color);
+	padding: 1em 1.8em;
+	background: var(--primary-color);
+	display: flex;
+	transition: 0.2s background;
+	align-items: center;
+	gap: 0.6em;
+	font-weight: bold;
+	text-align: center;
+	justify-content: center;
+}
+
+.signup .container .form button .arrow-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.signup .container .form button .arrow {
+	margin-top: 1px;
+	width: var(--arrow-width);
+	background: var(--primary-color);
+	height: var(--arrow-stroke);
+	position: relative;
+	transition: 0.2s;
+}
+
+.signup .container .form button .arrow::before {
+	content: "";
+	box-sizing: border-box;
+	position: absolute;
+	border: solid var(--secondary-color);
+	border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+	display: inline-block;
+	top: -3px;
+	right: 3px;
+	transition: 0.2s;
+	padding: 3px;
+	transform: rotate(-45deg);
+}
+
+.signup .container .form button:hover {
+	background-color: var(--hover-color);
+}
+
+.signup .container .form button:hover .arrow {
+	background: var(--secondary-color);
+}
+
+.signup .container .form button:hover .arrow:before {
+	right: 0;
+}
+
+.select2 {
+	position: absolute !important;
+	top: 1% !important;
+	left: 0 !important;
+}
+
+.select2-selection__rendered {
+	padding-top: 13px !important;
+	padding-bottom: 17px !important;
+}
+
+.select2-container--default .select2-selection--single {
+	background-color: #fff;
+    border: 1px solid rgba(105, 105, 105, 0.397) !important;
+    border-radius: 10px !important;
+    height: 100% !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+	line-height: 1.6 !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+	height: 0% !important;
+	position: absolute !important;
+	top: 48% !important;
+	right: 4% !important;
+}
+

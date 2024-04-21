@@ -5,15 +5,20 @@
 	background-repeat: no-repeat;
 	position: fixed;
 	background-size: cover;
+	background-position: center center;
 }
 
-.card{
+.card {
 	background-color: #bbb0b0;
 }
 
 .bg-custom {
 	background-color: #1a5b7e;
 	width: 100%;
+	top: 0;
+	z-index: 1030;
+	position: fixed;
+	height: fit-content;
 }
 
 .transparentbox {
@@ -24,7 +29,7 @@
 	opacity: 0.6;
 }
 
-.transparentbox p{
+.transparentbox p {
 	margin-top: 15%;
 	font-weight: bold;
 	font-size: 60px;
@@ -33,13 +38,12 @@
 	text-align: center;
 }
 
-.transparentbox h2{
-	margin-top: 15%;
+.transparentbox h2 {
 	font-weight: bold;
 	font-size: 60px;
 	font-family: 'Monotype Corsiva';
 	color: red;
-  	text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+	text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
 
 .navbar .nav-item .nav-link {
@@ -53,28 +57,26 @@
 	border-radius: 10px;
 }
 
-.mydivstyle:hover{
-box-shadow:0 0 20px 0 rgba(0,0,0,0.3);
-transform:translateY(-20px);
+.mydivstyle:hover {
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+	transform: translateY(-20px);
 }
 
-.mydivstyleone:hover{
-box-shadow:0 0 20px 0 rgba(0,0,0,0.3);
-transform:translateY(-20px);
+.mydivstyleone:hover {
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+	transform: translateY(-20px);
 }
 
 .zoom:hover {
-  -ms-transform: scale(1.5); /* IE 9 */
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5); 
+	-ms-transform: scale(1.5); /* IE 9 */
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5);
 }
-
 
 .contactlink {
 	color: #EE1D29;
 	text-decoration: none;
 }
-
 
 .contactlink:hover {
 	color: red;
@@ -89,6 +91,10 @@ h2, h4 {
 	padding: 10px;
 }
 
+section {
+	padding-top: 62px;
+}
+
 .mydiv:hover {
 	transform: translateY(-10px)
 }
@@ -99,34 +105,38 @@ h2, h4 {
 	}
 }
 
-@media (max-width: 991.5px) {
-    .about_img, .about_txt {
-        flex: 1 0 100%;
-    }
+@media ( max-width : 991.5px) {
+	.about_img, .about_txt {
+		flex: 1 0 100%;
+	}
 }
 
 .glow {
-  font-size: 20pt;
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
-  -webkit-animation: glow 1s ease-in-out infinite alternate;
-} 
-
-@-webkit-keyframes glow {
-  from { 
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px #0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF;
-  }
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px #0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF, 0 0 80px #0000FF;
-  }
+	font-size: 20pt;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	-webkit-animation: glow 3s ease-in-out infinite alternate;
 }
 
-@keyframes glow {
-  from { 
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px #0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF;
-  }
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px #0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF, 0 0 80px #0000FF;
-  }
+@-webkit-keyframes glow {from { text-shadow:0010px#fff, 0020px#fff,
+	0030px#0000FF, 0040px#0000FF, 0050px#0000FF, 0060px#0000FF, 0070px#0000FF;
+	
+}
+
+to {
+	text-shadow: 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px
+		#0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF, 0 0 80px #0000FF;
+}
+
+}
+@keyframes glow {from { text-shadow:0010px#fff, 0020px#fff, 0030px#0000FF,
+	0040px#0000FF, 0050px#0000FF, 0060px#0000FF, 0070px#0000FF;
+	
+}
+
+to {
+	text-shadow: 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px
+		#0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF, 0 0 80px #0000FF;
+}
 }

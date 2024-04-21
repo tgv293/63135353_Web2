@@ -2,17 +2,33 @@
 <html lang="en" xmlns:th="www.thymeleaf.org"
 	th:replace="~{base::Layout(~{::title}, ~{::section})}">
 <head>
-<meta charset="UTF-8">
-<title>Login</title>
+<meta charset="UTF-8" />
+<title>Đăng Nhập</title>
 </head>
 <body>
-	<section>
-		<h1>Login Page</h1>
-		<form action="/login" method="post">
-			<input type="text" name="username" placeholder="Username" required>
-			<input type="password" name="password" placeholder="Password" required>
-			<button type="submit">Login</button>
-		</form>
+	<section class="signup">
+		<div class="container">
+			<form class="form">
+				<p class="title">Đăng Nhập</p>
+				<label> <input required="" placeholder="" type="email"
+					class="input" /> <span>Email</span>
+				</label> 
+				<label> <input required="" placeholder="" type="password"
+					class="input password" /> <span>Mật khẩu</span> <i
+					class="fa fa-eye toggle-password"></i>
+				</label> 
+				<button>
+					Đăng Nhập
+					<div class="arrow-wrapper">
+						<div class="arrow"></div>
+					</div>
+				</button>
+				<p class="signin">
+					Chưa có tài khoản ? <a th:href="@{register}"
+						style="text-decoration: none">Đăng ký</a>
+				</p>
+			</form>
+		</div>
 	</section>
 </body>
 </html>
