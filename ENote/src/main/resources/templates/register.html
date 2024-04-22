@@ -3,60 +3,85 @@
 	th:replace="~{base::Layout(~{::title}, ~{::section})}">
 <head>
 <meta charset="UTF-8" />
-<title>Đăng Ký</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng Ký</title>'
+<th:block th:replace="${login_regis_css}"></th:block>
 </head>
 <body>
-	<section class="signup">
-		<div class="container">
-			<form class="form">
-				<p class="title">Đăng Ký</p>
-				<p class="message">Đăng ký ngay và nhận quyền truy cập đầy đủ
-					vào website của chúng tôi.</p>
-				<div class="flex">
-					<label> <input required="" placeholder="" type="text"
-						class="input" /> <span>Họ</span>
-					</label> 
-					<label> <input required="" placeholder="" type="text"
-						class="input" /> <span>Tên</span>
-					</label>
+	<section class="signup page-wrapper font-poppins">
+		<div class="wrapper wrapper--w680">
+			<div class="container signup_card sucard-4">
+				<div class="card-body">
+					<h2 class="title">Đăng Ký</h2>
+					<form method="POST">
+						<div class="row row-space">
+							<div class="col-2">
+								<div class="input-group">
+									<label class="label">Họ</label> 
+									<input class="input--style-4" required="required" type="text" name="first_name">
+								</div>
+							</div>
+							<div class="col-2">
+								<div class="input-group">
+									<label class="label">Tên</label> 
+									<input class="input--style-4" required="required" type="text" name="last_name">
+								</div>
+							</div>
+						</div>
+					
+						<div class="row row-space">
+							<div class="col-2">
+								<div class="input-group">
+									<label class="label">Email</label> 
+									<input class="input--style-4" required="required" type="email" name="email">
+								</div>
+							</div>
+							<div class="col-2">
+								<div class="input-group">
+									<label class="label col-12">Tuổi</label>
+									<div class="rs-select2 col-12">
+										<select required="required" class="select input--style-4">
+											<option 
+												th:each="age : ${ages}" 
+												th:value="${age}" 
+												th:text="${age}">
+											</option>
+										</select>
+										<div class="select-dropdown"></div>	
+									</div>			
+								</div>
+							</div>
+						</div>
+						<div class="input-group">
+                            <label class="label">Địa chỉ</label>
+                            <input class="input--style-4" required="required" type="text" name="address">
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Mật khẩu</label>
+                            <input class="input--style-4" required="required" type="password" name="password">
+                        	<i class="fa fa-eye toggle-password" style="position: absolute; top: 70%; right: 13px; transform: translateY(-50%);"></i>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Xác nhận mật khẩu</label>
+                            <input class="input--style-4" required="required" type="password" name="repassword">
+                        </div>
+						<button class="btn_signup">
+							Đăng Ký
+							<div class="arrow-wrapper">
+								<div class="arrow"></div>
+							</div>
+						</button>
+						<p class="signin">
+							Đã có tài khoản ? <a th:href="@{login}"
+								style="text-decoration: none">Đăng nhập</a>
+						</p>
+					</form>
 				</div>
-				<div class="flex">
-					<label> <input required="" placeholder="" type="email"
-						class="input" /> <span>Email</span>
-					</label>
-					<label>
-						<select required="" class="input select">
-							<option value="">Tuổi</option>
-							<option 
-								th:each="age : ${ages}" 
-								th:value="${age}" 
-								th:text="${age}">
-							</option>
-						</select>
-					</label>
-				</div>
-				<label> <input required="" placeholder="" type="text"
-					class="input" /> <span>Địa chỉ</span>
-				</label> 
-				<label> <input required="" placeholder="" type="password"
-					class="input password" /> <span>Mật khẩu</span> <i
-					class="fa fa-eye toggle-password"></i>
-				</label> 
-				<label> <input required="" placeholder="" type="password"
-					class="input" /> <span>Xác nhận mật khẩu</span>
-				</label>
-				<button>
-					Đăng Ký
-					<div class="arrow-wrapper">
-						<div class="arrow"></div>
-					</div>
-				</button>
-				<p class="signin">
-					Đã có tài khoản ? <a th:href="@{login}"
-						style="text-decoration: none">Đăng nhập</a>
-				</p>
-			</form>
+			</div>
 		</div>
+
+
+
 	</section>
 </body>
 </html>
