@@ -9,8 +9,12 @@
 }
 
 .card {
-	background-color: #bbb0b0;
-}
+ 	background-color: white;
+ }
+
+.row>* {
+ 	padding: 0 !important;
+ }
 
 .bg-custom {
 	background-color: #1a5b7e;
@@ -95,6 +99,19 @@ section {
 	padding-top: 62px;
 }
 
+.custom_section {
+	background: url("../img/signup-bg.jpg");
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	position: fixed;
+	background-size: cover;
+	background-position: center center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .mydiv:hover {
 	transform: translateY(-10px)
 }
@@ -139,4 +156,81 @@ to {
 	text-shadow: 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px
 		#0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF, 0 0 80px #0000FF;
 }
+}
+
+.success_button {
+ width: fit-content;
+ height : 2em !important;
+ background: royalblue;
+ color: white;
+ border: none;
+ border-radius: 0.625em;
+ font-size: 20px;
+ font-weight: bold;
+ cursor: pointer;
+ position: relative;
+ z-index: 1;
+ overflow: hidden;
+}
+
+.success_button:hover {
+ color: royalblue;
+}
+
+.success_button:after {
+ content: "";
+ background: white;
+ position: absolute;
+ z-index: -1;
+ left: -20%;
+ right: -20%;
+ top: 0;
+ bottom: 0;
+ transform: skewX(-45deg) scale(0, 1);
+ transition: all 0.5s;
+}
+
+.success_button:hover:after {
+ transform: skewX(-45deg) scale(1, 1);
+ -webkit-transition: all 0.5s;
+ transition: all 0.5s;
+}
+
+.cancel_button {
+	width: fit-content;
+	height : 2em !important;
+	background: red;
+	color: white;
+	border: none;
+	border-radius: 0.625em;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	height: 2em;
+}
+
+.cancel_button:hover {
+ color: red;
+}
+
+.cancel_button:after {
+ content: "";
+ background: white;
+ position: absolute;
+ z-index: -1;
+ left: -20%;
+ right: -20%;
+ top: 0;
+ bottom: 0;
+ transform: skewX(-45deg) scale(0, 1);
+ transition: all 0.5s;
+}
+
+.cancel_button:hover:after {
+ transform: skewX(-45deg) scale(1, 1);
+ -webkit-transition: all 0.5s;
+ transition: all 0.5s;
 }

@@ -1,23 +1,166 @@
-.hidden {
-	display: none;
+
+/* ==========================================================================
+   #FONT
+   ========================================================================== */
+.font-robo {
+  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
 }
 
-.checkbox-xl .custom-control-label::before, .checkbox-xl .custom-control-label::after
-	{
-	top: 1.2rem;
-	width: 1.85rem;
-	height: 1.85rem;
+.font-poppins {
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
 }
 
-.checkbox-xl .custom-control-label {
-	padding-top: 23px;
-	padding-left: 10px;
+/* ==========================================================================
+   #GRID
+   ========================================================================== */
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
-.border-3 {
-	border-width: 3px !important;
+.row-space {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
+.col-2 {
+  width: -webkit-calc((100% - 30px) / 2);
+  width: -moz-calc((100% - 30px) / 2);
+  width: calc((100% - 30px) / 2);
+}
+
+@media (max-width: 767px) {
+  .col-2 {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   #BOX-SIZING
+   ========================================================================== */
+/**
+ * More sensible default box-sizing:
+ * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+ */
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+/* ==========================================================================
+   #RESET
+   ========================================================================== */
+/**
+ * A very simple reset that sits on top of Normalize.css.
+ */
+body,
+h1, h2, h3, h4, h5, h6,
+blockquote, p, pre,
+dl, dd, ol, ul,
+figure,
+hr,
+fieldset, legend {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Remove trailing margins from nested lists.
+ */
+li > ol,
+li > ul {
+  margin-bottom: 0;
+}
+
+/**
+ * Remove default table spacing.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/**
+ * 1. Reset Chrome and Firefox behaviour which sets a `min-width: min-content;`
+ *    on fieldsets.
+ */
+fieldset {
+  min-width: 0;
+  /* [1] */
+  border: 0;
+}
+
+button {
+  outline: none;
+  background: none;
+  border: none;
+}
+
+/* ==========================================================================
+   #PAGE WRAPPER
+   ========================================================================== */
+.page-wrapper {
+  min-height: 100vh;
+}
+
+body {
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 15px;
+}
+
+h6 {
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   #BACKGROUND
+   ========================================================================== */
 .signup {
 	background: url("../img/signup-bg.jpg");
 	height: 100%;
@@ -26,168 +169,75 @@
 	position: fixed;
 	background-size: cover;
 	background-position: center center;
-}
-
-.signup .container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100%;
 }
 
-.signup .container .form {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	max-width: 500px;
-	min-width: 400px;
-	background-color: #fff;
-	padding: 20px;
-	border-radius: 20px;
-	position: relative;
+
+/* ==========================================================================
+   #SPACING
+   ========================================================================== */
+.p-t-100 {
+  padding-top: 100px;
 }
 
-.signup .container .form .title {
-	font-size: 28px;
-	color: royalblue;
-	font-weight: 600;
-	letter-spacing: -1px;
-	position: relative;
-	display: flex;
-	align-items: center;
-	padding-left: 30px;
+.p-t-130 {
+  padding-top: 130px;
 }
 
-.signup .container .form .title::before, .title::after {
-	position: absolute;
-	content: "";
-	height: 16px;
-	width: 16px;
-	border-radius: 50%;
-	left: 0px;
-	background-color: royalblue;
+.p-t-180 {
+  padding-top: 180px;
 }
 
-.signup .container .form .title::before {
-	width: 18px;
-	height: 18px;
-	background-color: royalblue;
+.p-t-20 {
+  padding-top: 20px;
 }
 
-.signup .container .form .title::after {
-	width: 18px;
-	height: 18px;
-	animation: pulse 1s linear infinite;
+.p-t-15 {
+  padding-top: 15px;
 }
 
-.signup .container .form .message, .signin {
-	color: rgba(88, 87, 87, 0.822);
-	font-size: 14px;
+.p-t-10 {
+  padding-top: 10px;
 }
 
-.signup .container .form .signin {
-	text-align: center;
+.p-t-30 {
+  padding-top: 30px;
 }
 
-.signup .container .form .signin a {
-	color: royalblue;
+.p-b-100 {
+  padding-bottom: 100px;
 }
 
-.signup .container .form .signin a:hover {
-	text-decoration: underline royalblue;
+.m-r-45 {
+  margin-right: 45px;
 }
 
-.signup .container .form .flex {
-	display: flex;
-	width: 100%;
-	gap: 10px;
+/* ==========================================================================
+   #WRAPPER
+   ========================================================================== */
+.wrapper {
+  margin: 0 auto;
 }
 
-.signup .container .form label {
-	flex: 1;
-	position: relative;
+.wrapper--w960 {
+  max-width: 960px;
 }
 
-.toggle-password {
-	position: absolute;
-	top: 50%;
-	right: 10px;
-	transform: translateY(-50%);
-	cursor: pointer;
+.wrapper--w780 {
+  max-width: 780px;
 }
 
-.signup .container .form label .input {
-	width: 100%;
-	padding: 10px 10px 20px 10px;
-	outline: 0;
-	border: 1px solid rgba(105, 105, 105, 0.397);
-	border-radius: 10px;
+.wrapper--w680 {
+  max-width: 680px;
 }
 
-.signup .container .form label .input+span {
-	position: absolute;
-	left: 10px;
-	top: 15px;
-	color: grey;
-	font-size: 0.9em;
-	cursor: text;
-	transition: 0.3s ease;
-}
-
-.signup .container .form label .input:placeholder-shown+span {
-	top: 15px;
-	font-size: 0.9em;
-}
-
-.signup .container .form label .input[type="text"]:focus+span, 
-.signup .container .form label .input[type="text"]:valid+span,
-.signup .container .form label .input[type="email"]:focus+span, 
-.signup .container .form label .input[type="email"]:valid+span,
-.signup .container .form label .input[type="password"]:focus+span, 
-.signup .container .form label .input[type="password"]:valid+span {
-    top: 30px !important;
-    font-size: 0.7em !important;
-    font-weight: 600 !important;
-}
-
-.signup .container .form label .input:valid+span {
-	color: green;
-}
-
-.signup .container .form label .input.has-input:invalid+span {
-    color: red;
-	top: 30px !important;
-    font-size: 0.7em !important;
-    font-weight: 600 !important;
-}
-
-.signup .container .submit {
-	border: none;
-	outline: none;
-	background-color: royalblue;
-	padding: 10px;
-	border-radius: 10px;
-	color: #fff;
-	font-size: 16px;
-	transform: .3s ease;
-}
-
-.signup .container .submit:hover {
-	background-color: rgb(56, 90, 194);
-}
-
-@keyframes pulse {from { transform:scale(0.9);
-	opacity: 1;
-}
-
-to {
-	transform: scale(1.8);
-	opacity: 0;
-}
-
-}
-.signup .container .form button {
-	--primary-color: #645bff;
+/* ==========================================================================
+   #BUTTON
+   ========================================================================== */
+.btn_signup {
+	--primary-color: royalblue;
 	--secondary-color: #fff;
 	--hover-color: #111;
 	--arrow-width: 10px;
@@ -205,15 +255,20 @@ to {
 	font-weight: bold;
 	text-align: center;
 	justify-content: center;
+	position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    margin-top: 10px;
 }
 
-.signup .container .form button .arrow-wrapper {
+.btn_signup .arrow-wrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.signup .container .form button .arrow {
+.btn_signup .arrow {
 	margin-top: 1px;
 	width: var(--arrow-width);
 	background: var(--primary-color);
@@ -222,7 +277,7 @@ to {
 	transition: 0.2s;
 }
 
-.signup .container .form button .arrow::before {
+.btn_signup .arrow::before {
 	content: "";
 	box-sizing: border-box;
 	position: absolute;
@@ -236,34 +291,293 @@ to {
 	transform: rotate(-45deg);
 }
 
-.signup .container .form button:hover {
+.btn_signup:hover {
 	background-color: var(--hover-color);
 }
 
-.signup .container .form button:hover .arrow {
+.btn_signup:hover .arrow {
 	background: var(--secondary-color);
 }
 
-.signup .container .form button:hover .arrow:before {
+.btn_signup:hover .arrow:before {
 	right: 0;
 }
 
-.select2 {
-	position: absolute !important;
-	top: 1% !important;
-	left: 0 !important;
+/* ==========================================================================
+   #FORM
+   ========================================================================== */
+input, .select {
+  outline: none;
+  margin: 0;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  width: 100%;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.input--style-4 {
+  line-height: 50px !important;
+  background: #fafafa !important;
+  -webkit-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08) !important;
+  -moz-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08) !important;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
+  padding: 0 20px !important;
+  font-size: 16px !important;
+  color: #666 !important;
+  -webkit-transition: all 0.4s ease !important;
+  -o-transition: all 0.4s ease !important;
+  -moz-transition: all 0.4s ease !important;
+  transition: all 0.4s ease !important;
+}
+
+.input--style-4::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #666 !important;
+}
+
+.input--style-4:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #666;
+  opacity: 1;
+}
+
+.input--style-4::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #666;
+  opacity: 1;
+}
+
+.input--style-4:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #666;
+}
+
+.input--style-4:-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #666 !important;
+}
+
+.label {
+  font-size: 16px;
+  color: #555;
+  text-transform: capitalize;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.radio-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.radio-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radio-container input:checked ~ .checkmark {
+  background-color: #e5e5e5;
+}
+
+.radio-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.radio-container .checkmark:after {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background: #57b846;
+}
+
+.checkmark {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #e5e5e5;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 10px;
+  height: fit-content;
+}
+
+.input-group-icon {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  font-size: 18px;
+  color: #999;
+  right: 18px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.signin {
+	color: rgba(88, 87, 87, 0.822);
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.signin {
+	text-align: center;
+}
+
+.signin a {
+	color: royalblue;
+	font-weight: 500;
+}
+
+.signin a:hover {
+	text-decoration: underline royalblue;
+}
+
+/* ==========================================================================
+   #SELECT2
+   ========================================================================== */
+.rs-select2 .select2-container {
+  width: 100% !important;
+  outline: none;
+  background: #fafafa;
+  -webkit-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.rs-select2 .select2-container .select2-selection--single {
+  outline: none;
+  border: none;
+  height: 50px;
+  background: transparent;
+}
+
+.rs-select2 .select2-container .select2-selection--single .select2-selection__rendered {
+  line-height: 50px;
+  padding-left: 0;
+  color: #555;
+  font-size: 16px;
+  font-family: inherit;
+  padding-left: 22px;
+  padding-right: 50px;
+}
+
+.rs-select2 .select2-container .select2-selection--single .select2-selection__arrow {
+  height: 50px;
+  right: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.rs-select2 .select2-container .select2-selection--single .select2-selection__arrow b {
+  display: none;
+}
+
+.rs-select2 .select2-container .select2-selection--single .select2-selection__arrow:after {
+  font-family: "Material-Design-Iconic-Font";
+  content: '\f2f9';
+  font-size: 24px;
+  color: #999;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.rs-select2 .select2-container.select2-container--open .select2-selection--single .select2-selection__arrow::after {
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+}
+
+.select2-container--open .select2-dropdown--below {
+  border: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e0e0e0;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.select2-container--default .select2-results__option {
+  padding-left: 22px;
 }
 
 .select2-selection__rendered {
 	padding-top: 13px !important;
 	padding-bottom: 17px !important;
-}
-
-.select2-container--default .select2-selection--single {
-	background-color: #fff;
-    border: 1px solid rgba(105, 105, 105, 0.397) !important;
-    border-radius: 10px !important;
-    height: 100% !important;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -277,3 +591,88 @@ to {
 	right: 4% !important;
 }
 
+/* ==========================================================================
+   #TITLE
+   ========================================================================== */
+.title {
+	font-size: 24px;
+	color: #525252;
+	font-weight: 400;
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+.title {
+	font-size: 28px;
+	color: royalblue;
+	font-weight: 600;
+	letter-spacing: -1px;
+	position: relative; display : flex; align-items : center;
+	padding-left: 30px;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.title::before, .title::after {
+	position: absolute;
+	content: "";
+	height: 16px;
+	width: 16px;
+	border-radius: 50%;
+	left: 0px;
+	background-color: royalblue;
+}
+
+.title::before {
+	width: 18px;
+	height: 18px;
+	background-color: royalblue;
+}
+
+.title::after {
+	width: 18px;
+	height: 18px;
+	animation: pulse 1s linear infinite;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+/* ==========================================================================
+   #CARD
+   ========================================================================== */
+.signup_card {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: #fff;
+}
+
+.sucard-4 {
+  background: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+}
+
+.sucard-4 .card-body {
+  padding: 20px;
+}
+
+@media (max-width: 767px) {
+  .sucard-4 .card-body {
+    padding: 20px;
+  }
+}
