@@ -22,6 +22,8 @@
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .row-space {
@@ -675,4 +677,7 @@ input, .select {
   .sucard-4 .card-body {
     padding: 20px;
   }
+  .input-group {
+        height: auto; /* chiều cao sẽ tự động điều chỉnh dựa trên nội dung */
+    }
 }
