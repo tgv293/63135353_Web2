@@ -2,9 +2,9 @@ package vn.gvt.ENote.Models;
 
 
 public enum NoteState {
-    HIGH("High"),
-    MIDDLE("Middle"),
-    LOW("Low");
+    HIGH("Cao"),
+    MIDDLE("Trung bình"),
+    LOW("Thấp");
 
     private String stateAsString;
 
