@@ -597,14 +597,6 @@ input, .select {
    #TITLE
    ========================================================================== */
 .title {
-	font-size: 24px;
-	color: #525252;
-	font-weight: 400;
-	margin-bottom: 20px;
-	padding: 0;
-}
-
-.title {
 	font-size: 28px;
 	color: royalblue;
 	font-weight: 600;
@@ -677,7 +669,23 @@ input, .select {
   .sucard-4 .card-body {
     padding: 20px;
   }
-  .input-group {
-        height: auto; /* chiều cao sẽ tự động điều chỉnh dựa trên nội dung */
-    }
+  .input--style-4 {
+  line-height: 40px !important;
+  padding: 0 10px !important;
+  font-size: 13px !important;
+  }
+  .btn_signup {
+	padding: 0.5em 1em;
+    width: 40%;
+    margin-top: 10px;
+  }
+  .select2-container .select2-selection--single {
+	  height: 40px !important;
+  }
+  .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 0.9 !important;
+  }
+  .title {
+	font-size: 24px;
+  }
 }
