@@ -27,7 +27,7 @@ public class HomeController {
 
 	@GetMapping("/register")
     public String showRegisterForm(Model model) {
-        List<Integer> ages = IntStream.rangeClosed(4, 99).boxed().collect(Collectors.toList());
+        List<Integer> ages = IntStream.rangeClosed(3, 100).boxed().collect(Collectors.toList());
         model.addAttribute("ages", ages);
         return "register";
     }

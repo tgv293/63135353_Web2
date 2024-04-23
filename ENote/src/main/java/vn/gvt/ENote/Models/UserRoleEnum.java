@@ -12,7 +12,7 @@ public enum UserRoleEnum {
         this.roleId = id;
     }
 
-    public long getRoleId() {
+    public int getRoleId() {
         return roleId;
     }
 
@@ -21,7 +21,7 @@ public enum UserRoleEnum {
     }
 
     public static UserRoleEnum getRoleByName(String roleName) {
-    	if (roleName.equals("Admin")) {
+        if ("Admin".equals(roleName)) {
             return ADMIN;
         } else {
             return USER;

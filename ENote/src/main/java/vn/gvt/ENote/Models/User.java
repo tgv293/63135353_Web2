@@ -23,6 +23,7 @@ import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,14 +32,15 @@ import lombok.ToString;
 @Entity
 @Table(name = "users")
 @Getter @Setter
+@EqualsAndHashCode(exclude = {"password", "decryptedPassword"})
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"password", "decryptedPassword"})
 @Builder
 public class User implements Serializable {
     @Id
-    @Positive
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Version
     private int version;
@@ -59,14 +61,17 @@ public class User implements Serializable {
     @NotBlank
     @Size(max = 2000)
     private String password;
+    
+    @Transient
+    private String decryptedPassword;
 
     @Min(3)
     @Max(100)
     private int age;
 
     @NotBlank
-    @Size(max = 25)
-    private String country;
+    @Size(max = 255)
+    private String address;
 
     @PastOrPresent
     @NotNull
