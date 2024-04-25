@@ -25,13 +25,6 @@ public class HomeController {
 		return "contact";
 	}
 
-	@GetMapping("/register")
-    public String showRegisterForm(Model model) {
-        List<Integer> ages = IntStream.rangeClosed(3, 100).boxed().collect(Collectors.toList());
-        model.addAttribute("ages", ages);
-        return "register";
-    }
-
 	@GetMapping("/login")
 	public String login() {
 		return "login";

@@ -12,18 +12,18 @@
 			<div class="container signup_card sucard-4">
 				<div class="card-body">
 					<h2 class="title">Đăng Ký</h2>
-					<form method="POST">
+					<form th:object="${user}" th:action="@{/register}" method="post">
 						<div class="row row-space">
 							<div class="col-2">
 								<div class="input-group">
 									<label class="label">Họ</label> 
-									<input class="input--style-4" required="required" type="text" name="first_name">
+									<input th:field="*{lastName}" class="input--style-4" required="required" type="text" name="first_name">
 								</div>
 							</div>
 							<div class="col-2">
 								<div class="input-group">
 									<label class="label">Tên</label> 
-									<input class="input--style-4" required="required" type="text" name="last_name">
+									<input th:field="*{firstName}" class="input--style-4" required="required" type="text" name="last_name">
 								</div>
 							</div>
 						</div>
@@ -32,14 +32,14 @@
 							<div class="col-2">
 								<div class="input-group">
 									<label class="label">Email</label> 
-									<input class="input--style-4" required="required" type="email" name="email">
+									<input th:field="*{email}" class="input--style-4" required="required" type="email" name="email">
 								</div>
 							</div>
 							<div class="col-2">
 								<div class="input-group">
 									<label class="label col-12">Tuổi</label>
 									<div class="rs-select2 col-12">
-										<select required="required" class="select input--style-4">
+										<select th:field="*{age}" required="required" class="select input--style-4">
 											<option 
 												th:each="age : ${ages}" 
 												th:value="${age}" 
@@ -53,11 +53,11 @@
 						</div>
 						<div class="input-group">
                             <label class="label">Địa chỉ</label>
-                            <input class="input--style-4" required="required" type="text" name="address">
+                            <input th:field="*{address}" class="input--style-4" required="required" type="text" name="address">
                         </div>
                         <div class="input-group">
                             <label class="label">Mật khẩu</label>
-                            <input class="input--style-4" required="required" type="password" name="password">
+                            <input th:field="*{decryptedPassword}" class="input--style-4" required="required" type="password" name="password">
                         	<i class="fa fa-eye-slash toggle-password" style="position: absolute; top: 70%; right: 13px; transform: translateY(-50%);"></i>
                         </div>
                         <div class="input-group">
@@ -71,7 +71,7 @@
 							</div>
 						</button>
 						<p class="signin">
-							Đã có tài khoản ? <a th:href="@{login}"
+							Đã có tài khoản ? <a th:href="@{/login}"
 								style="text-decoration: none">Đăng nhập</a>
 						</p>
 					</form>
