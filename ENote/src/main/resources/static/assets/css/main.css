@@ -603,7 +603,6 @@ input, .select {
 	letter-spacing: -1px;
 	position: relative; display : flex; align-items : center;
 	padding-left: 30px;
-	margin-bottom: 20px;
 	display: flex;
 	align-items: center;
 }

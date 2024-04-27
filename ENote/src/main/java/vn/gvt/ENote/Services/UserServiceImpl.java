@@ -8,6 +8,10 @@ import vn.gvt.ENote.Repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import jakarta.servlet.http.HttpSession;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -110,4 +114,11 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findByEmail(email);
     }
+    
+    public void removeSessionMessage() {
+		HttpSession session = ((ServletRequestAttributes) (RequestContextHolder.getRequestAttributes())).getRequest()
+				.getSession();
+
+		session.removeAttribute("msg");
+	}
 }

@@ -12,6 +12,10 @@
 			<div class="container signup_card sucard-4">
 				<div class="card-body">
 					<h2 class="title">Đăng Ký</h2>
+					<th:block th:if="${session.msg}">
+						<p class="text-center text-danger" style="font-weight: bold;">[[${session.msg}]]</p>
+						<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>
+					</th:block>
 					<form th:object="${user}" th:action="@{/register}" method="post">
 						<div class="row row-space">
 							<div class="col-2">
@@ -71,7 +75,7 @@
 							</div>
 						</button>
 						<p class="signin">
-							Đã có tài khoản ? <a th:href="@{/login}"
+							Bạn đã có tài khoản? <a th:href="@{/signin}"
 								style="text-decoration: none">Đăng nhập</a>
 						</p>
 					</form>

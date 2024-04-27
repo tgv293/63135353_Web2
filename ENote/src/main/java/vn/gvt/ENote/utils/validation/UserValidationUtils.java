@@ -27,7 +27,7 @@ public class UserValidationUtils {
             LOGGER.error("User has invalid password (null, empty, or less than 8 characters)");
             return false;
         } else if (isEmpty(user.getAddress())) {
-            LOGGER.error("User has invalid country. Country = {}", user.getAddress());
+            LOGGER.error("User has invalid Address. Address = {}", user.getAddress());
             return false;
         } else if (user.getRegistration() == null) {
             LOGGER.error("User has registration date as null.");

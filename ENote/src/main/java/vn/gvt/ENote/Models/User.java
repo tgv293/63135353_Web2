@@ -41,9 +41,6 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Version
-    private int version;
-
     @NotBlank
     @Size(max = 25)
     private String firstName;
