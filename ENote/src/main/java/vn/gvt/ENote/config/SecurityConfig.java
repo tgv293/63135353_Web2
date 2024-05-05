@@ -29,16 +29,25 @@ public class SecurityConfig {
 		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
 		return daoAuthenticationProvider;
 	}
-
+	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		// htttp://localhost:8080/register ,signin
-		// htttp://localhost:8080/user/addNotes , viewNotes
-		http.csrf().disable().authorizeHttpRequests().requestMatchers("/user/**").hasRole("USER").requestMatchers("/**")
-				.permitAll().and().formLogin().loginPage("/signin").loginProcessingUrl("/userLogin")
-				.defaultSuccessUrl("/user/addNotes").permitAll();
-		return http.build();
-
+	    http.csrf().disable()
+	        .authorizeRequests()
+	            .requestMatchers("/user/addNotes").hasAuthority("User") // Chỉ yêu cầu này cần có vai trò USER
+	            .requestMatchers("/user/**").authenticated() // Các yêu cầu khác đều cần được xác thực (đã đăng nhập)
+	            .requestMatchers("/**").permitAll()
+	            .and()
+	        .formLogin()
+	            .loginPage("/signin")
+	            .loginProcessingUrl("/userLogin")
+	            .defaultSuccessUrl("/user/addNotes").permitAll()
+	            .and()
+            .logout()
+                .logoutUrl("/userLogout")
+                .logoutSuccessUrl("/signin")
+                .permitAll();
+	    return http.build();
 	}
 
 }

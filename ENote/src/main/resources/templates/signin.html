@@ -13,10 +13,8 @@
 			<div class="container signup_card sucard-4" style="min-width:200px;">
 				<div class="card-body">
 					<h2 class="title">Đăng Nhập</h2>
-					<div class="text-danger" th:if="${param.error}">Invalid
-						username and password.</div>
-					<div class="text-danger" th:if="${param.logout}">You have
-						been logged out.</div>
+					<div class="text-danger" th:if="${param.error}">Tên đăng nhập hoặc mật khẩu không chính xác.</div>
+					<div class="text-danger" th:if="${param.logout}">Bạn đã đăng xuất.</div>
 					<form th:action="@{/userLogin}" method="post">
 						<div class="input-group">
 							<label class="label">Email</label> <input class="input--style-4"
