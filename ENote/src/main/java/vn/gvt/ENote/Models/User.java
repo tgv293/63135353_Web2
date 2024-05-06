@@ -9,6 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import jakarta.persistence.Entity;
@@ -38,6 +39,7 @@ import lombok.ToString;
 @Builder
 public class User implements Serializable {
     @Id
+    @Positive
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

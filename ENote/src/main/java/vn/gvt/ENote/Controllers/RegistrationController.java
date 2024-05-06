@@ -56,7 +56,7 @@ public class RegistrationController {
 
 	    user.setPassword(passwordEncoder.encode(user.getDecryptedPassword()));
 	    userService.defaultSave(user);
-	    return "redirect:/signin";
+	    return "redirect:/login";
 	}
 	
 }
