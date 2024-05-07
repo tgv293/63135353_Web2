@@ -114,4 +114,10 @@ public class NoteServiceImpl implements NoteService {
         }
         return noteRepository.findAllByUserAndIsArchivedAndCreated(user, false, created);
     }
+    
+    @Override
+    public List<Note> getNotesByUser(User user) {
+        return noteRepository.findAllByUser(user);
+    }
+
 }

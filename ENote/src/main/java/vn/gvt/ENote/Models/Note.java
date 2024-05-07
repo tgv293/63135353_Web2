@@ -2,7 +2,9 @@ package vn.gvt.ENote.Models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -63,8 +65,8 @@ public class Note implements Serializable {
 	private LocalDate lastModified;
 	@PastOrPresent
 	private LocalDate archivedAt;
-	@PastOrPresent
-	private LocalDate reminderTime;
+	@Future
+	private LocalDateTime reminderTime;
 
 	@NotNull
 	@ManyToOne

@@ -28,4 +28,6 @@ public interface NoteService {
     List<Note> getAllArchivedNotes(User user);
 
     List<Note> getAllUnarchivedByCreated(User user, LocalDate created);
+   
+    List<Note> getNotesByUser(User user);
 }
