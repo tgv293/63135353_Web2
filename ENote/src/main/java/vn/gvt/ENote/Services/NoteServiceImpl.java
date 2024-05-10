@@ -33,7 +33,7 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public long delete(Note note) {
+    public int delete(Note note) {
         if (note == null) {
             throw new IllegalArgumentException();
         }
@@ -43,7 +43,7 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public long delete(int id) {
+    public int delete(int id) {
         if (id < 1) {
             throw new IllegalArgumentException(String.format("Can't delete note with id less than 1. Id = %d", id));
         }

@@ -9,9 +9,9 @@ public interface UserService {
 
     void save(User user);
 
-    long delete(User user);
+    int delete(User user);
 
-    long delete(int id);
+    int delete(int id);
 
     Optional<User> get(int id);
 

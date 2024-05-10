@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public long delete(User user) {
+    public int delete(User user) {
         if (user == null) {
             throw new IllegalArgumentException();
         }
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public long delete(int id) {
+    public int delete(int id) {
         if (id < 1) {
             throw new IllegalArgumentException();
         }

@@ -11,9 +11,9 @@ public interface NoteService {
 
     void save(Note note);
 
-    long delete(Note note);
+    int delete(Note note);
 
-    long delete(int id);
+    int delete(int id);
 
     Optional<Note> get(int id);
 
