@@ -115,43 +115,4 @@ public class NoteServiceImpl implements NoteService {
         return noteRepository.findAllByUserAndIsArchivedAndCreated(user, false, created);
     }
 
-	@Override
-	public void saveNew(Note note, User user) {
-        note.setUser(user);
-        note.setCreated(LocalDate.now());
-        noteRepository.save(note);
-		
-	}
-
-	@Override
-	public Optional<Note> getById(int id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
-
-	@Override
-	public void update(Note note, User user) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void archive(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void unarchive(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }
