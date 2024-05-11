@@ -15,7 +15,7 @@
 					<h2 class="title">Đăng Nhập</h2>
 					<div class="text-danger h5" th:if="${param.error}">Tên đăng nhập hoặc mật khẩu không chính xác.</div>
 					<div class="text-success h5" th:if="${param.logout}">Bạn đã đăng xuất.</div>
-					<form th:action="@{userLogin}" method="post">
+					<form th:action="@{/login}" method="post">
 						<div class="input-group">
 							<label class="label">Email</label> <input class="input--style-4"
 								required="required" type="email" name="username">

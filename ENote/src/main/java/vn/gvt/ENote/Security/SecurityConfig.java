@@ -9,10 +9,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig{
 
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -32,16 +35,35 @@ public class SecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-	    http.csrf().disable()
+	    RequestMatcher matcher = new OrRequestMatcher(
+	        new AntPathRequestMatcher("/login"),
+	        new AntPathRequestMatcher("/register"),
+	        new AntPathRequestMatcher("/"),
+	        new AntPathRequestMatcher("/about"),
+	        new AntPathRequestMatcher("/contact"),
+	        new AntPathRequestMatcher("/assets/**"),
+	        new AntPathRequestMatcher("/static/**"),
+	        new AntPathRequestMatcher("/webjars/**")
+	    );
+	    
+	    RequestMatcher protectedUrls = new OrRequestMatcher(
+	    	new AntPathRequestMatcher("/user/**")
+	    );
+	    
+	    http
+	        .csrf().disable()
 	        .authorizeRequests()
-	            .requestMatchers("/user/addNotes").hasAuthority("User") // Chỉ yêu cầu này cần có vai trò USER
-	            .requestMatchers("/user/**").authenticated() // Các yêu cầu khác đều cần được xác thực (đã đăng nhập)
-	            .requestMatchers("/**").permitAll()
+	            .requestMatchers(matcher).permitAll()
+	            .requestMatchers(protectedUrls).hasAuthority("User")
+	            .anyRequest().authenticated()
 	            .and()
 	        .formLogin()
 	            .loginPage("/login")
-	            .loginProcessingUrl("/userLogin")
-	            .defaultSuccessUrl("/user/viewNotes").permitAll();
+	            .defaultSuccessUrl("/user/viewNotes", true)
+	            .permitAll()
+	            .and()
+	        .logout()
+	            .permitAll();
 	    return http.build();
 	}
 

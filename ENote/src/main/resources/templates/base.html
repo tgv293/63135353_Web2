@@ -66,9 +66,17 @@
 	<!-- Start Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-custom">
 		<div class="container-fluid">
-			<a class="navbar-brand" th:href="@{/}"><span
+			
+			<th:block th:if="${user==NULL}">
+				<a class="navbar-brand" th:href="@{/}"><span
 				style="color: #18ffff;"><i class="fa-solid fa-book"></i>
 					Enotes</span></a>
+			</th:block>
+			<th:block th:if="${user!=NULL}">
+				<a class="navbar-brand" th:href="@{viewNotes}"><span
+				style="color: #18ffff;"><i class="fa-solid fa-book"></i>
+					Enotes</span></a>
+			</th:block>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -77,9 +85,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/}"><i
-							class="fa-solid fa-home custom_i"></i> Trang chủ</a></li>
+					<th:block th:if="${user==NULL}">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" th:href="@{/}"><i
+								class="fa-solid fa-home custom_i"></i> Trang chủ</a></li>
+					</th:block>
 					<th:block th:if="${user!=NULL}">
 						<li class="nav-item"><a class="nav-link" href="addNotes"><i
 								class="fa-solid fa-plus custom_i"></i> Add </a></li>
@@ -88,18 +98,18 @@
 					</th:block>
 				</ul>
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a th:href="@{about}"
-						class="btn btn-light custom-button ms-1 me-1"
-						style="background-color: #2e7d32; border-color: #07302c;"><span
-							style="color: white"><i class="fa-solid fa-id-card-alt"></i>
-								Giới Thiệu</span></a></li>
-					<li class="nav-item"><a th:href="@{contact}"
-						class="btn btn-light custom-button ms-1 me-1"
-						style="background-color: #827717; border-color: #07302c;"><span
-							style="color: white"><i class="fa-solid fa-address-card"></i>
-								Liên Hệ</span></a></li>
 
 					<th:block th:if="${user==NULL}">
+						<li class="nav-item"><a th:href="@{about}"
+							class="btn btn-light custom-button ms-1 me-1"
+							style="background-color: #2e7d32; border-color: #07302c;"><span
+								style="color: white"><i class="fa-solid fa-id-card-alt"></i>
+									Giới Thiệu</span></a></li>
+						<li class="nav-item"><a th:href="@{contact}"
+							class="btn btn-light custom-button ms-1 me-1"
+							style="background-color: #827717; border-color: #07302c;"><span
+								style="color: white"><i class="fa-solid fa-address-card"></i>
+									Liên Hệ</span></a></li>
 						<li class="nav-item"><a th:href="@{login}"
 							class="btn btn-light custom-button ms-1 me-1"
 							style="background-color: #d81b60; border-color: #07302c;"><span
@@ -125,7 +135,7 @@
 							th:href="@{/logout}"><i class="fa-solid fa-sign-out"></i>
 								Đăng xuất</a></li>
 					</th:block>
-					
+
 				</ul>
 			</div>
 		</div>
