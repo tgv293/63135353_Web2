@@ -1,6 +1,7 @@
 package vn.gvt.ENote.Controllers;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,20 +11,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.gvt.ENote.Models.User;
-import vn.gvt.ENote.Repositories.UserRepository;
+import vn.gvt.ENote.Services.UserService;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
+	private UserService userService;
+
 	@Autowired
-	private UserRepository userRepo;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
 	@ModelAttribute
 	public void getUser(Principal p, Model m) {
-		String email = p.getName();
-		User user = userRepo.findUserByEmail(email);
-		m.addAttribute("user", user);
+	    String email = p.getName();
+	    Optional<User> user = userService.getByEmail(email);
+	    if (user.isPresent()) {
+	        m.addAttribute("user", user.get());
+	        m.addAttribute("firstName", user.get().getFirstName());
+	    }
 	}
 
 	@GetMapping("/addNotes")

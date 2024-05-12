@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException();
         }
 
-        return userRepository.findByEmail(email);
+        return userRepository.findUserByEmail(email);
     }
     
     public void removeSessionMessage() {

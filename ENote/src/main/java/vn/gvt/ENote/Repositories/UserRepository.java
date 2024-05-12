@@ -10,6 +10,5 @@ import vn.gvt.ENote.Models.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-    Optional<User> findByEmail(String email);
-    User findUserByEmail(String email);
+    Optional<User> findUserByEmail(String email);
 }
