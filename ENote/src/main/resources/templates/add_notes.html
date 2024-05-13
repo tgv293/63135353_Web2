@@ -18,8 +18,7 @@
 							chú mới</h3>
 					</div>
 					<div class="card-body">
-						<form th:object="${note}" method="post"
-							th:action="@{/saveNote}">
+						<form th:object="${note}" method="post" th:action="@{/saveNote}">
 							<div class="form-group mt-1">
 								<input class="input--style-4 form-control rounded-2 border-0"
 									id="note-header-ta" type="text" name="note-header"
@@ -30,9 +29,8 @@
 								<div class="rs-select2 col-12">
 									<select name="state" id="noteStateSelect"
 										class="select input--style-4">
-										<option
-											th:each="state : ${T(vn.gvt.Enote.Models.NoteState).values()}"
-											th:value="${state}" th:text="${state.stateAsString}"></option>
+										<option th:each="state : ${states}" th:value="${state}"
+											th:text="${state.stateAsString}"></option>
 									</select>
 									<div class="select-dropdown"></div>
 								</div>

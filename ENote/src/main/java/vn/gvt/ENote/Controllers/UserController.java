@@ -33,10 +33,6 @@ public class UserController {
 	    }
 	}
 
-	@GetMapping("/addNotes")
-	public String addNotes() {
-		return "add_notes";
-	}
 
 	@GetMapping("/viewNotes")
 	public String viewNotes() {
