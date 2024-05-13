@@ -24,23 +24,14 @@ public class UserController {
     }
 
 	@ModelAttribute
-	public void getUser(Principal p, Model m) {
-	    String email = p.getName();
-	    Optional<User> user = userService.getByEmail(email);
-	    if (user.isPresent()) {
-	        m.addAttribute("user", user.get());
-	        m.addAttribute("firstName", user.get().getFirstName());
-	    }
-	}
-
-
-	@GetMapping("/viewNotes")
-	public String viewNotes() {
-		return "view_notes";
-	}
-
-	@GetMapping("/editNotes")
-	public String editNotes() {
-		return "edit_notes";
-	}
+    public void getUser(Principal p, Model m) {
+        if (p != null) {
+            String email = p.getName();
+            Optional<User> user = userService.getByEmail(email);
+            if (user.isPresent()) {
+                m.addAttribute("user", user.get());
+                m.addAttribute("firstName", user.get().getFirstName());
+            }
+        }
+    }
 }

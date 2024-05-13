@@ -9,6 +9,7 @@ import vn.gvt.ENote.Services.NoteManagement;
 import vn.gvt.ENote.Services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Log4j2
@@ -33,15 +37,17 @@ public class NotesManagementController {
         this.noteManagement = noteManagement;
     }
     
-	@ModelAttribute
-	public void getUser(Principal p, Model m) {
-	    String email = p.getName();
-	    Optional<User> user = userService.getByEmail(email);
-	    if (user.isPresent()) {
-	        m.addAttribute("user", user.get());
-	        m.addAttribute("firstName", user.get().getFirstName());
-	    }
-	}
+    @ModelAttribute
+    public void getUser(Principal p, Model m) {
+        if (p != null) {
+            String email = p.getName();
+            Optional<User> user = userService.getByEmail(email);
+            if (user.isPresent()) {
+                m.addAttribute("user", user.get());
+                m.addAttribute("firstName", user.get().getFirstName());
+            }
+        }
+    }
 
 	@GetMapping(value = "/new")
 	public String createNewNote(Model model) {
@@ -94,5 +100,44 @@ public class NotesManagementController {
     public String unarchiveNote(@PathVariable Integer id) {
         noteManagement.unarchive(id);
         return "redirect:/note/" + id;
+    }
+    
+    @GetMapping("/viewNotes")
+    public String viewUnarchivedNotes(Model model, Principal principal,
+                                      @RequestParam(required = false, name = "filterDone") Boolean filterDone,
+                                      @RequestParam(required = false, name = "filterToday") Boolean filterToday,
+                                      @RequestParam(required = false, name = "filterYesterday") Boolean filterYesterday) {
+        Optional<User> user = userService.getByEmail(principal.getName());
+        if (!user.isPresent()) {
+            throw new UsernameNotFoundException(String.format("Username '%s' not found in DB.", principal.getName()));
+        }
+
+        List<Note> notes;
+        if (filterDone != null && filterDone) {
+            notes = noteManagement.getAllDoneUnarchived(user.get());
+
+        } else if (filterDone != null) {
+            notes = noteManagement.getAllNotDoneUnarchived(user.get());
+        } else if (filterToday != null && filterToday) {
+            notes = noteManagement.getAllUnarchivedByCreated(user.get(), LocalDate.now());
+        } else if (filterYesterday != null && filterYesterday) {
+            notes = noteManagement.getAllUnarchivedByCreated(user.get(), LocalDate.now().minusDays(1));
+        } else {
+            notes = noteManagement.getAllUnarchived(user.get());
+        }
+
+        model.addAttribute("notes", notes);
+        model.addAttribute("states", NoteState.values());
+        return "view_notes";
+    }
+
+    @GetMapping("/viewArchivedNotes")
+    public String viewArchivedNotes(Model model, Principal principal) {
+        Optional<User> user = userService.getByEmail(principal.getName());
+        if (!user.isPresent()) {
+            throw new UsernameNotFoundException(String.format("Username '%s' not found in DB.", principal.getName()));
+        }
+        model.addAttribute("notes", noteManagement.getAllArchived(user.get()));
+        return "viewArchivedNotes";
     }
 }
