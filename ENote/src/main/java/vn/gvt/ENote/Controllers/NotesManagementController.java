@@ -73,33 +73,33 @@ public class NotesManagementController {
         LOGGER.info("Updating a note with id = {}", note.getId());
         Optional<User> user = userService.getByEmail(principal.getName());
         user.ifPresent(value -> noteManagement.update(note, value));
-        return "redirect:/note/" + note.getId();
+        return "redirect:/" + note.getId();
     }
 
     @GetMapping(value = "/delete/{id}")
     public String deleteNote(@PathVariable Integer id) {
         LOGGER.info("Deleting note with id = {}", id);
         noteManagement.deleteById(id);
-        return "redirect:/notesGalleryView";
+        return "redirect:/viewNotes";
     }
 
 
     @GetMapping("/{id}")
     public String viewNote(@PathVariable Integer id, Model model) {
         noteManagement.getById(id).ifPresent(n -> model.addAttribute("note", n));
-        return "viewNotes";
+        return "redirect:/viewNotes";
     }
 
     @GetMapping(value = "/archive/{id}")
     public String archiveNote(@PathVariable Integer id) {
         noteManagement.archive(id);
-        return "redirect:/note/" + id;
+        return "redirect:/" + id;
     }
 
     @GetMapping(value = "/unarchive/{id}")
     public String unarchiveNote(@PathVariable Integer id) {
         noteManagement.unarchive(id);
-        return "redirect:/note/" + id;
+        return "redirect:/" + id;
     }
     
     @GetMapping("/viewNotes")

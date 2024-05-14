@@ -7,62 +7,69 @@
 </head>
 <body>
 	<section>
-		<div class="container">
+		<div class="page-content container note-has-grid">
 
 			<ul
 				class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">
 				<li class="nav-item"><a th:href="@{/viewNotes}"
 					class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active"
 					id="all-notes"> <i class="icon-layers mr-1"></i><span
-						class="d-none d-md-block">Tất cả ghi chú</span>
+						class="d-sm-block filter">Tất cả ghi chú</span>
 				</a></li>
 				<li class="nav-item"><a
 					th:href="@{/viewNotes(filterDone=true)}"
 					class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
 					id="note-done"> <i class="icon-briefcase mr-1"></i><span
-						class="d-none d-md-block">Hoàn thành</span></a></li>
+						class="d-sm-block filter">Hoàn thành</span></a></li>
 				<li class="nav-item"><a
 					th:href="@{/viewNotes(filterDone=false)}"
 					class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
 					id="note-undone"> <i class="icon-share-alt mr-1"></i><span
-						class="d-none d-md-block">Chưa hoàn thành</span></a></li>
+						class="d-sm-block filter">Chưa hoàn thành</span></a></li>
 				<li class="nav-item"><a
 					th:href="@{/viewNotes(filterToday=true)}"
 					class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
 					id="note-today"> <i class="icon-tag mr-1"></i><span
-						class="d-none d-md-block">Tạo hôm nay</span></a></li>
+						class="d-sm-block filter">Tạo hôm nay</span></a></li>
 				<li class="nav-item"><a
 					th:href="@{/viewNotes(filterYesterday=true)}"
 					class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
 					id="note-yesterday"> <i class="icon-tag mr-1"></i><span
-						class="d-none d-md-block">Tạo hôm qua</span></a></li>
+						class="d-sm-block filter">Tạo hôm qua</span></a></li>
 			</ul>
 
-			<div class="row text-center text-lg-left" id="gallery">
-				<th:block th:if="${not #lists.isEmpty(notes)}"
-					th:each="note : ${notes}">
-					<div class="border-left  col-lg-3 col-md-4 col-6 m-3"
-						th:classappend="${note.isDone()} ? 'border-success border-3' : ''">
-						<div class="panel-heading d-inline" th:text="${note.header}"></div>
-						<th:block th:switch="${note.state.stateAsString}">
-							<div th:case="'Cao'" class="panel-heading d-inline text-danger "
-								th:text="${note.state.stateAsString}"></div>
-							<div th:case="'Trung bình'"
-								class="panel-heading d-inline text-warning"
-								th:text="${note.state.stateAsString}"></div>
-							<div th:case="'Thấp'" class="panel-heading d-inline text-success"
-								th:text="${note.state.stateAsString}"></div>
-						</th:block>
-						<div class="panel-body bg-light" th:text="${note.body}"></div>
-						<div class="panel-body bg-light">
-							<a th:href="${'/note/' + note.id}">View</a>
-						</div>
-					</div>
-				</th:block>
 
-				<p th:if="${#lists.isEmpty(notes)}">Nothing to show:)</p>
+			<div class="tab-content bg-transparent">
+				<div id="note-full-container" class="note-has-grid row">
+					<th:block th:if="${not #lists.isEmpty(notes)}"
+						th:each="note : ${notes}">
+						<div class="col-md-4 single-note-item all-category"
+							th:classappend="${note.isDone()} ? 'border-success border-3' : ''">
+							<div class="card card-body card_note">
+								<div class="panel-heading d-inline" th:text="${note.header}"></div>
+								<th:block th:switch="${note.state.stateAsString}">
+									<div th:case="'Cao'"
+										class="panel-heading d-inline text-danger "
+										th:text="${note.state.stateAsString}"></div>
+									<div th:case="'Trung bình'"
+										class="panel-heading d-inline text-warning"
+										th:text="${note.state.stateAsString}"></div>
+									<div th:case="'Thấp'"
+										class="panel-heading d-inline text-success"
+										th:text="${note.state.stateAsString}"></div>
+								</th:block>
+								<div class="panel-body bg-light" th:text="${note.body}"></div>
+								<div class="panel-body bg-light">
+									<a th:href="${'/note/' + note.id}">View</a>
+								</div>
+							</div>
+						</div>
+					</th:block>
+
+					<p th:if="${#lists.isEmpty(notes)}">Nothing to show:)</p>
+
+				</div>
 			</div>
-		</div>
 		</div>
 
 	</section>
