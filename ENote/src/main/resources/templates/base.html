@@ -63,7 +63,7 @@
 </head>
 <body>
 	<!-- Start Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-custom">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-custom nav_bar">
 		<div class="container-fluid">
 			<th:block sec:authorize="isAnonymous()">
 				<a class="navbar-brand" th:href="@{/}"><span
@@ -90,10 +90,14 @@
 								class="fa-solid fa-home custom_i"></i> Trang chủ</a></li>
 					</th:block>
 					<th:block sec:authorize="isAuthenticated()">
+						<li class="nav-item"><a class="nav-link" href="viewNotes">
+								<i class="fa-regular fa-lightbulb custom_i"></i> Ghi chú
+						</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="viewArchivedNotes"><i class="fa-solid fa-box-archive custom_i"></i>
+								Lưu trữ</a></li>
 						<li class="nav-item"><a class="nav-link" href="new"><i
-								class="fa-solid fa-plus custom_i"></i> Add </a></li>
-						<li class="nav-item"><a class="nav-link" href="viewNotes"><i
-								class="fa-solid fa-list custom_i"></i> View</a></li>
+								class="fa-solid fa-plus custom_i"></i> Thêm mới </a></li>		
 					</th:block>
 				</ul>
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">

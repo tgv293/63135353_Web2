@@ -3,43 +3,13 @@
 	th:replace="~{base::Layout(~{::title}, ~{::section})}">
 <head>
 <meta charset="UTF-8">
-<title>View Notes</title>
+<title>View Archived Notes</title>
 </head>
 <body>
 	<section class="section_custom">
 		<div class="page-content container note-has-grid">
 
-			<ul
-				class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center justify-content-center mt-3">
-				<li class="nav-item"><a th:href="@{/viewNotes}"
-					class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active"
-					id="all-notes"> <i class="icon-layers mr-1"></i><span
-						class="d-sm-block filter">Tất cả</span>
-				</a></li>
-				<li class="nav-item"><a
-					th:href="@{/viewNotes(filterDone=true)}"
-					class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
-					id="note-done"> <i class="icon-briefcase mr-1"></i><span
-						class="d-sm-block filter">Hoàn thành</span></a></li>
-				<li class="nav-item"><a
-					th:href="@{/viewNotes(filterDone=false)}"
-					class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
-					id="note-undone"> <i class="icon-share-alt mr-1"></i><span
-						class="d-sm-block filter">Chưa hoàn thành</span></a></li>
-				<li class="nav-item"><a
-					th:href="@{/viewNotes(filterToday=true)}"
-					class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
-					id="note-today"> <i class="icon-tag mr-1"></i><span
-						class="d-sm-block filter">Mới</span></a></li>
-				<li class="nav-item"><a
-					th:href="@{/viewNotes(filterLastDays=true)}"
-					class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
-					id="note-last-days"> <i class="icon-tag mr-1"></i><span
-						class="d-sm-block filter">Cũ</span></a></li>
-			</ul>
-
-
-			<div class="tab-content bg-transparent">
+			<div class="tab-content bg-transparent mt-4">
 				<div id="note-full-container" class="grid-container">
 					<th:block th:if="${not #lists.isEmpty(notes)}"
 						th:each="note : ${notes}">
@@ -81,10 +51,10 @@
 
 					<div th:if="${#lists.isEmpty(notes)}"
 						class="text-center center-item">
-						<i class="fa-regular fa-lightbulb fa-10x mb-3" style="color:#c7bcc9;"></i>
-						<p style="font-size: 1.2rem; font-weight: 400;">Bản ghi chú mà bạn thêm sẽ xuất hiện tại đây.</p>
+						<i class="fa-solid fa-box-archive fa-10x mb-3" style="color:#c7bcc9;"></i>
+						<p style="font-size: 1.2rem; font-weight: 400;">Lưu trữ của bạn đang trống.</p>
 					</div>
-
+	
 				</div>
 			</div>
 		</div>

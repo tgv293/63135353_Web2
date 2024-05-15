@@ -9,12 +9,12 @@
 }
 
 .card {
- 	background-color: white;
- }
+	background-color: white;
+}
 
 .row>* {
- 	padding: 0 !important;
- }
+	padding: 0 !important;
+}
 
 .bg-custom {
 	background-color: #1a5b7e;
@@ -96,7 +96,7 @@ h2, h4 {
 }
 
 section {
-	padding-top: 63px;
+	height: 100vh;
 }
 
 .custom_section {
@@ -122,9 +122,23 @@ section {
 	}
 }
 
+@media
+(
+min-width
+:
+991.6px)
+{
+.about_txt {
+	padding-left: 1rem !important;
+}
+
+}
 @media ( max-width : 991.5px) {
 	.about_img, .about_txt {
 		flex: 1 0 100%;
+	}
+	.about_txt {
+		margin-bottom: 1rem;
 	}
 }
 
@@ -156,49 +170,127 @@ to {
 	text-shadow: 0 0 20px #fff, 0 0 30px #0000FF, 0 0 40px #0000FF, 0 0 50px
 		#0000FF, 0 0 60px #0000FF, 0 0 70px #0000FF, 0 0 80px #0000FF;
 }
-}
 
+}
 .success_button {
- width: fit-content;
- height : 2em !important;
- background: royalblue;
- color: white;
- border: none;
- border-radius: 0.625em;
- font-size: 20px;
- font-weight: bold;
- cursor: pointer;
- position: relative;
- z-index: 1;
- overflow: hidden;
+	width: fit-content;
+	height: 2em !important;
+	background: #32CD32;
+	color: white;
+	border: none;
+	border-radius: 0.625em;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
 }
 
 .success_button:hover {
- color: royalblue;
+	color: #32CD32;
 }
 
 .success_button:after {
- content: "";
- background: white;
- position: absolute;
- z-index: -1;
- left: -20%;
- right: -20%;
- top: 0;
- bottom: 0;
- transform: skewX(-45deg) scale(0, 1);
- transition: all 0.5s;
+	content: "";
+	background: white;
+	position: absolute;
+	z-index: -1;
+	left: -20%;
+	right: -20%;
+	top: 0;
+	bottom: 0;
+	transform: skewX(-45deg) scale(0, 1);
+	transition: all 0.5s;
 }
 
 .success_button:hover:after {
- transform: skewX(-45deg) scale(1, 1);
- -webkit-transition: all 0.5s;
- transition: all 0.5s;
+	transform: skewX(-45deg) scale(1, 1);
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
 }
 
 .cancel_button {
 	width: fit-content;
-	height : 2em !important;
+	height: 2em !important;
+	background: #d3d3d3;
+	color: black;
+	border: none;
+	border-radius: 0.625em;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	height: 2em;
+}
+
+.cancel_button:hover {
+	color: #d3d3d3;
+}
+
+.cancel_button:after {
+	content: "";
+	background: black;
+	position: absolute;
+	z-index: -1;
+	left: -20%;
+	right: -20%;
+	top: 0;
+	bottom: 0;
+	transform: skewX(-45deg) scale(0, 1);
+	transition: all 0.5s;
+}
+
+.cancel_button:hover:after {
+	transform: skewX(-45deg) scale(1, 1);
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.archive_button {
+	width: fit-content;
+	height: 2em !important;
+	background: #ffc107;
+	color: black;
+	border: none;
+	border-radius: 0.625em;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	height: 2em;
+}
+
+.archive_button:hover {
+	color: #ffc107;
+}
+
+.archive_button:after {
+	content: "";
+	background: black;
+	position: absolute;
+	z-index: -1;
+	left: -20%;
+	right: -20%;
+	top: 0;
+	bottom: 0;
+	transform: skewX(-45deg) scale(0, 1);
+	transition: all 0.5s;
+}
+
+.archive_button:hover:after {
+	transform: skewX(-45deg) scale(1, 1);
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.delete_button {
+	width: fit-content;
+	height: 2em !important;
 	background: red;
 	color: white;
 	border: none;
@@ -212,25 +304,29 @@ to {
 	height: 2em;
 }
 
-.cancel_button:hover {
- color: red;
+.delete_button:hover {
+	color: red;
 }
 
-.cancel_button:after {
- content: "";
- background: white;
- position: absolute;
- z-index: -1;
- left: -20%;
- right: -20%;
- top: 0;
- bottom: 0;
- transform: skewX(-45deg) scale(0, 1);
- transition: all 0.5s;
+.delete_button:after {
+	content: "";
+	background: white;
+	position: absolute;
+	z-index: -1;
+	left: -20%;
+	right: -20%;
+	top: 0;
+	bottom: 0;
+	transform: skewX(-45deg) scale(0, 1);
+	transition: all 0.5s;
 }
 
-.cancel_button:hover:after {
- transform: skewX(-45deg) scale(1, 1);
- -webkit-transition: all 0.5s;
- transition: all 0.5s;
+.delete_button:hover:after {
+	transform: skewX(-45deg) scale(1, 1);
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.detail_note a{
+	text-decoration: none;
 }

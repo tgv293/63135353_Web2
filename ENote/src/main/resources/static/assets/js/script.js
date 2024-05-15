@@ -10,34 +10,51 @@ $(document).ready(function() {
         }
     });
 });
+
 $(document).ready(function() {
     $('.select').select2({
 		
 	});
 });
 
-$(document).ready(function(){
-    // Get the current state from localStorage
-    var currentState = localStorage.getItem('activeLink');
+$(document).ready(function() {
+    var navbarHeight = $('.nav_bar').outerHeight(); // Thay '.navbar' bằng class hoặc id của navbar của bạn
+    console.log(navbarHeight);
+    $('.section_custom').css('padding-top', navbarHeight + 'px'); // Thay '.section' bằng class hoặc id của section của bạn
+});
 
-    // If there is a current state, remove 'active' from all links and add it to the current link
-    if (currentState) {
+$(document).ready(function(){
+    var url = window.location.pathname;
+    var filename = url.substring(url.lastIndexOf('/')+1);
+    var referrer = document.referrer;
+    var hasQueryParams = window.location.search.length > 0;
+
+    // If the referrer is not 'viewNotes' and the current page is 'viewNotes', or if the current page is 'viewNotes' without query parameters, reset everything
+    if((filename == 'viewNotes' && !referrer.includes('viewNotes')) || (filename == 'viewNotes' && !hasQueryParams)) {
         $('.note-link').removeClass('active');
-        $('#' + currentState).addClass('active');
+        $('#all-notes').addClass('active');
+        sessionStorage.removeItem('activeLink');
+    } else {
+        var currentState = sessionStorage.getItem('activeLink');
+
+        if (currentState) {
+            $('.note-link').removeClass('active');
+            $('#' + currentState).addClass('active');
+        }
     }
 
     $('.note-link').click(function(event){
-        // Prevent the default action (the page reload)
         event.preventDefault();
-
-        // When a link is clicked, remove 'active' from all links and add it to the clicked link
         $('.note-link').removeClass('active');
         $(this).addClass('active');
-
-        // Save the id of the clicked link to localStorage
-        localStorage.setItem('activeLink', $(this).attr('id'));
-
-        // Navigate to the link's href manually
+        sessionStorage.setItem('activeLink', $(this).attr('id'));
         window.location.href = $(this).attr('href');
+    });
+});
+
+$(document).ready(function() {
+    $('.single-note-item').click(function() {
+        var noteId = $(this).data('note-id');
+        window.location.href = '/' + noteId;
     });
 });

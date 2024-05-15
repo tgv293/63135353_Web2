@@ -7,7 +7,7 @@
 <title>Add Note</title>
 </head>
 <body>
-	<section class="custom_section page-wrapper"
+	<section class="custom_section section_custom"
 		style="font-family: 'Montserrat'">
 		<div class="container" style="max-width: 50%;">
 			<div class="row">
@@ -21,7 +21,7 @@
 						<form th:object="${note}" method="post" th:action="@{/saveNote}">
 							<div class="form-group mt-1">
 								<input class="input--style-4 form-control rounded-2 border-0"
-									id="note-header-ta" type="text" name="note-header"
+									id="note-header-ta" rows="1" type="text" name="note-header"
 									th:field="*{header}" placeholder="Tiêu đề" required>
 							</div>
 
@@ -37,13 +37,13 @@
 							</div>
 
 							<div class="form-group mt-3">
-								<textarea class="input--style-4 form-control rounded-2 border-0"
+								<textarea class="input--style-5 form-control rounded-2 border-0"
 									id="note-body-ta" rows="5" th:field="*{body}"
 									placeholder="Tạo ghi chú..."></textarea>
 							</div>
 
-							<button class="btn success_button mt-3">Lưu</button>
-							<button class="btn cancel_button mt-3">Quay lại</button>
+							<button type="submit" class="btn success_button mt-3">Lưu</button>
+							<button type="button" onclick="window.location.href='/viewNotes'" class="btn cancel_button mt-3">Hủy</button>
 						</form>
 					</div>
 				</div>

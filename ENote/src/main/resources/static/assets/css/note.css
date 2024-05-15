@@ -1,3 +1,83 @@
 .nav-link {
 	transition: all 0.3s ease;
 }
+
+body {
+	background: #edf1f5;
+}
+
+.card_note {
+	position: relative;
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	border: 0 solid transparent;
+	border-radius: 0;
+}
+
+.card-body {
+	padding: 1.57rem;
+}
+
+.note-has-grid .nav-link {
+	padding: .5rem
+}
+
+.note-has-grid .single-note-item .card {
+	border-radius: 10px;
+}
+
+.note-has-grid .single-note-item,
+.note-has-grid .single-note-item .fa-download,
+.note-has-grid .single-note-item .fa-trash,
+.note-has-grid .single-note-item .fa-circle-info {
+    cursor: pointer;
+}
+
+.center-item {
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-self: center;
+    padding-top:10rem;
+    padding-bottom:10rem;
+}
+
+.note-has-grid .single-note-item .side-stick {
+	position: absolute;
+	width: 3.5px;
+	height: 35px;
+	left: 0;
+	background-color: rgba(82, 95, 127, .5)
+}
+
+.note-title {
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+
+.level {
+	font-weight: 600;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 1rem;
+}
+
+.done {
+	background-color: lime !important; /* Thay đổi màu này theo ý muốn */
+}
+
+.undone {
+	background-color: gray !important; /* Thay đổi màu này theo ý muốn */
+}
+
+.notefooter {
+	position: relative;
+}
+
+.stateblock {
+	position: absolute;
+	right: 0;
+}
