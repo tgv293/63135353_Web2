@@ -3,11 +3,11 @@
    #FONT
    ========================================================================== */
 .font-robo {
-  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+  font-family: "Roboto", "Arial", "Helvetica Neue", "Montserrat", sans-serif;
 }
 
 .font-poppins {
-  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* ==========================================================================
@@ -127,8 +127,8 @@ button {
 }
 
 body {
-  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
-  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
   font-size: 14px;
 }
 
@@ -339,7 +339,8 @@ input, .select {
 }
 
 .input--style-5 {
-	line-height: 40px !important;
+	line-height: 1.5rem !important;
+	padding: 20px !important;
 }
 
 .input--style-4::-webkit-input-placeholder, .input--style-5::-webkit-input-placeholder {
@@ -666,6 +667,12 @@ input, .select {
 
 .sucard-4 .card-body {
   padding: 20px;
+}
+
+@media (min-width: 576px) {
+	.custom-width-content {
+		width: 500px;
+	}
 }
 
 @media (max-width: 767px) {

@@ -3,11 +3,8 @@ package vn.gvt.ENote.Services;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import vn.gvt.ENote.Models.Note;
 import vn.gvt.ENote.Models.User;
 
@@ -97,5 +94,20 @@ public class NoteManagementImpl implements NoteManagement {
     public List<Note> getAllNotDoneUnarchived(User user) {
         return noteService.getAllNotDoneUnarchivedNotes(user);
     }
-	
+    
+    @Override
+    public void deleteAllByUserId(Integer userId) {
+        noteService.deleteAllByUserId(userId);
+    }
+    
+    @Override
+    public List<Note> searchNotes(User user, String query) {
+        return noteService.searchNotes(user, query);
+    }
+
+    @Override
+    public List<Note> getReminders(User user) {
+        return noteService.getReminders(user);
+    }
+    
 }

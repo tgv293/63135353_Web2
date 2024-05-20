@@ -1,88 +1,162 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org"
-	th:replace="~{base::Layout(~{::title}, ~{::section})}">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng Ký</title>
-</head>
-<body>
-	<section class="section_custom signup page-wrapper font-poppins">
-		<div class="wrapper wrapper--w680">
-			<div class="container signup_card sucard-4">
-				<div class="card-body">
-					<h2 class="title">Đăng Ký</h2>
-					<th:block th:if="${session.msg}">
-						<p class="text-center text-danger" style="font-weight: bold;">[[${session.msg}]]</p>
-						<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>
-					</th:block>
-					<form th:object="${user}" th:action="@{/register}" method="post">
-						<div class="row row-space">
-							<div class="col-2">
-								<div class="input-group">
-									<label class="label">Họ</label> 
-									<input th:field="*{lastName}" class="input--style-4" required="required" type="text" name="first_name">
-								</div>
-							</div>
-							<div class="col-2">
-								<div class="input-group">
-									<label class="label">Tên</label> 
-									<input th:field="*{firstName}" class="input--style-4" required="required" type="text" name="last_name">
-								</div>
-							</div>
-						</div>
-					
-						<div class="row row-space">
-							<div class="col-2">
-								<div class="input-group">
-									<label class="label">Email</label> 
-									<input th:field="*{email}" class="input--style-4" required="required" type="email" name="email">
-								</div>
-							</div>
-							<div class="col-2">
-								<div class="input-group">
-									<label class="label col-12">Tuổi</label>
-									<div class="rs-select2 col-12">
-										<select th:field="*{age}" required="required" class="select input--style-4">
-											<option 
-												th:each="age : ${ages}" 
-												th:value="${age}" 
-												th:text="${age}">
-											</option>
-										</select>
-										<div class="select-dropdown"></div>	
-									</div>			
-								</div>
-							</div>
-						</div>
-						<div class="input-group">
-                            <label class="label">Địa chỉ</label>
-                            <input th:field="*{address}" class="input--style-4" required="required" type="text" name="address">
-                        </div>
-                        <div class="input-group">
-                            <label class="label">Mật khẩu</label>
-                            <input th:field="*{decryptedPassword}" class="input--style-4" required="required" type="password" name="password">
-                        	<i class="fa fa-eye-slash toggle-password" style="position: absolute; top: 70%; right: 13px; transform: translateY(-50%);"></i>
-                        </div>
-                        <div class="input-group">
-                            <label class="label">Xác nhận mật khẩu</label>
-                            <input class="input--style-4" required="required" type="password" name="repassword">
-                        </div>
-						<button class="btn_signup">
-							Đăng Ký
-							<div class="arrow-wrapper">
-								<div class="arrow"></div>
-							</div>
-						</button>
-						<p class="signin">
-							Bạn đã có tài khoản? <a th:href="@{/login}"
-								style="text-decoration: none">Đăng nhập</a>
-						</p>
-					</form>
-				</div>
-			</div>
-		</div>
+<html
+  lang="en"
+  xmlns:th="www.thymeleaf.org"
+  th:replace="~{base::Layout(~{::title}, ~{::section})}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Ký</title>
+  </head>
+  <body>
+    <section class="section_custom signup page-wrapper font-poppins">
+      <div class="wrapper wrapper--w680">
+        <div class="container signup_card sucard-4">
+          <div class="card-body">
+            <h2 class="title">Đăng Ký</h2>
+            <th:block th:if="${session.msg}">
+              <p class="text-center text-danger" style="font-weight: bold">
+                [[${session.msg}]]
+              </p>
+              <th:block
+                th:text="${@userServiceImpl.removeSessionMessage()}"
+              ></th:block>
+            </th:block>
+            <form th:object="${user}" th:action="@{/register}" method="post">
+              <div class="row row-space">
+                <div class="col-2">
+                  <div class="input-group">
+                    <label class="label"
+                      >Họ<span style="color: red">*</span></label
+                    >
+                    <span id="lastName-error" class="error-message"></span>
+                    <input
+                      th:field="*{lastName}"
+                      class="input--style-4 lastName"
+                      required="required"
+                      type="text"
+                      name="last_name"
+                    />
+                  </div>
+                </div>
+                <div class="col-2">
+                  <div class="input-group">
+                    <label class="label"
+                      >Tên<span style="color: red">*</span></label
+                    >
+                    <span id="firstName-error" class="error-message"></span>
+                    <input
+                      th:field="*{firstName}"
+                      class="input--style-4 firstName"
+                      required="required"
+                      type="text"
+                      name="first_name"
+                    />
+                  </div>
+                </div>
+              </div>
 
-	</section>
-</body>
+              <div class="row row-space">
+                <div class="col-2">
+                  <div class="input-group">
+                    <label class="label"
+                      >Email<span style="color: red">*</span></label
+                    >
+                    <span id="email-error" class="error-message"></span>
+                    <input
+                      th:field="*{email}"
+                      class="input--style-4 email"
+                      required="required"
+                      type="email"
+                      name="email"
+                    />
+                  </div>
+                </div>
+                <div class="col-2">
+                  <div class="input-group">
+                    <label class="label col-12"
+                      >Tuổi<span style="color: red">*</span></label
+                    >
+                    <div class="rs-select2 col-12">
+                      <select
+                        th:field="*{age}"
+                        required="required"
+                        class="select input--style-4"
+                      >
+                        <option
+                          th:each="age : ${ages}"
+                          th:value="${age}"
+                          th:text="${age}"
+                        ></option>
+                      </select>
+                      <div class="select-dropdown"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group">
+                <label class="label"
+                  >Địa chỉ<span style="color: red">*</span></label
+                >
+                <span id="address-error" class="error-message"></span>
+                <input
+                  th:field="*{address}"
+                  class="input--style-4 address"
+                  required="required"
+                  type="text"
+                  name="address"
+                />
+              </div>
+
+              <div class="input-group">
+                <label class="label"
+                  >Mật khẩu<span style="color: red">*</span></label
+                >
+                <span id="decryptedPassword-error" class="error-message"></span>
+                <div class="input-group">
+                  <input
+                    th:field="*{decryptedPassword}"
+                    class="input--style-4 decryptedPassword"
+                    required="required"
+                    type="password"
+                    name="password"
+                    autocomplete="new-password"
+                  />
+                  <i
+                    class="fa fa-eye-slash toggle-password toggle-password-register"
+                  ></i>
+                </div>
+              </div>
+              <div class="input-group">
+                <label class="label"
+                  >Xác nhận mật khẩu<span style="color: red">*</span>
+                </label>
+                <span id="repassword-error" class="error-message"></span>
+                <input
+                  class="input--style-4"
+                  required="required"
+                  type="password"
+                  name="repassword"
+                  autocomplete="new-password"
+                />
+              </div>
+              <button type="submit" class="btn_signup">
+                Đăng Ký
+                <div class="arrow-wrapper">
+                  <div class="arrow"></div>
+                </div>
+              </button>
+              <p class="signin">
+                Bạn đã có tài khoản?
+                <a th:href="@{/login}" style="text-decoration: none"
+                  >Đăng nhập</a
+                >
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

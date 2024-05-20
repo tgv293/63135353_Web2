@@ -28,4 +28,10 @@ public interface NoteService {
     List<Note> getAllArchivedNotes(User user);
 
     List<Note> getAllUnarchivedByCreated(User user, LocalDate created);
+    
+    void deleteAllByUserId(Integer userId);
+    
+    List<Note> searchNotes(User user, String query);
+
+    List<Note> getReminders(User user);
 }

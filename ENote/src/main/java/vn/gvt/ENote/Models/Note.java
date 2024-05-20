@@ -3,14 +3,12 @@ package vn.gvt.ENote.Models;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

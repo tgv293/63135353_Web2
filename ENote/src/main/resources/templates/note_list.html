@@ -1,0 +1,84 @@
+<th:block th:if="${not #lists.isEmpty(notes)}" th:each="note : ${notes}">
+  <div
+    class="single-note-item"
+    th:classappend="${note.isDone()} ? 'border-success border-3' : ''"
+    th:data-note-id="${note.id}"
+  >
+    <div class="card card-body card_note">
+      <span
+        class="side-stick"
+        th:classappend="${note.isDone()} ? 'done' : 'undone'"
+      ></span>
+      <h5
+        class="note-title text-truncate w-75 mb-0"
+        th:text="${note.header}"
+      ></h5>
+
+      <div class="note-created">
+        <p
+          class="note-date text-muted"
+          th:text="${#temporals.format(note.created, 'dd-MM-yyyy')}"
+        ></p>
+      </div>
+
+      <div class="note-content">
+        <p class="note-inner-content text-muted" th:text="${note.body}"></p>
+      </div>
+
+      <div class="reminder-time" th:if="${note.reminderTime != null}">
+        <i class="fa-regular fa-clock"></i>
+        <span
+          th:text="${#temporals.format(note.reminderTime, 'dd/MM/yyyy HH:mm')}"
+        ></span>
+      </div>
+
+      <div class="d-flex align-items-center notefooter">
+        <a
+          th:href="@{'/archive/' + ${note.id} + '?from=viewNotes'}"
+          th:if="${!note.isArchived()}"
+          class="unarchive-link"
+          title="Lưu trữ ghi chú"
+        >
+          <span style="margin-right: 0.25rem">
+            <i class="fa-solid fa-download"></i>
+          </span>
+        </a>
+        <a
+          th:href="@{'/delete/' + ${note.id} + '?from=viewNotes'}"
+          class="delete-unarchive-link"
+          title="Xóa ghi chú"
+        >
+          <span>
+            <i class="fa-solid fa-trash"></i>
+          </span>
+        </a>
+        <div class="ml-auto stateblock">
+          <th:block th:switch="${note.state.stateAsString}">
+            <div
+              th:case="'Cao'"
+              class="panel-heading d-inline text-danger level"
+              th:text="${note.state.stateAsString}"
+            ></div>
+            <div
+              th:case="'Trung bình'"
+              class="panel-heading d-inline text-warning level"
+              th:text="${note.state.stateAsString}"
+            ></div>
+            <div
+              th:case="'Thấp'"
+              class="panel-heading d-inline text-success level"
+              th:text="${note.state.stateAsString}"
+            ></div>
+          </th:block>
+        </div>
+      </div>
+    </div>
+  </div>
+</th:block>
+
+<div th:if="${#lists.isEmpty(notes)}" class="text-center center-item">
+  <i class="fa-regular fa-lightbulb fa-10x mb-3" style="color: #c7bcc9"></i>
+  <p style="font-size: 1.2rem; font-weight: 400">
+    Bản ghi chú mà bạn thêm sẽ xuất hiện tại đây.
+  </p>
+</div>

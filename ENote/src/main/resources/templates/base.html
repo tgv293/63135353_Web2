@@ -18,12 +18,13 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <link
-	href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet" />
-
-<link
 	href="/assets/vendor/mdi-font/css/material-design-iconic-font.min.css"
 	rel="stylesheet" media="all" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}" />
 <link
@@ -68,20 +69,44 @@
 			<th:block sec:authorize="isAnonymous()">
 				<a class="navbar-brand" th:href="@{/}"><span
 					style="color: #18ffff"><i class="fa-solid fa-book"></i>
-						Enotes</span></a>
+						ENote</span></a>
 			</th:block>
 			<th:block sec:authorize="isAuthenticated()">
 				<a class="navbar-brand" th:href="@{/viewNotes}"><span
 					style="color: #18ffff"><i class="fa-solid fa-book"></i>
-						Enotes</span></a>
+						ENote</span></a>
 			</th:block>
 
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+
+			<div class="d-flex align-item-center">
+				<!-- Form tìm kiếm mới, sẽ hiển thị khi màn hình nhỏ hơn 992px -->
+				<form id="search-form" method="get"
+								class="d-flex align-items-center search-container nav-item d-lg-none"
+								th:action="@{'/' + ${currentPage}}"
+								th:if="${currentPage == 'viewNotes' or currentPage == 'viewArchivedNotes'}">
+								<input type="hidden" name="filterDone" th:value="${filterDone}">
+								<input type="hidden" name="filterToday"
+									th:value="${filterToday}"> <input type="hidden"
+									name="filterLastDays" th:value="${filterLastDays}">
+								<div style="width: 200px; position: relative;" class="ms-1 me-1">
+									<input type="text" id="search-input" name="searchQuery"
+										class="form-control search-input"
+										style="width: 100%; box-sizing: border-box; padding-right: 40px;"
+										placeholder="Tìm kiếm" th:value="${searchQuery}">
+									<div class="btn btn-outline-success search-button"
+										onclick="document.getElementById('search-form').submit();">
+										<i class="fa-solid fa-magnifying-glass"></i>
+									</div>
+								</div>
+							</form>
+				<!-- Nút navbar-toggle -->
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<th:block sec:authorize="isAnonymous()">
@@ -94,10 +119,10 @@
 								<i class="fa-regular fa-lightbulb custom_i"></i> Ghi chú
 						</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="viewArchivedNotes"><i class="fa-solid fa-box-archive custom_i"></i>
-								Lưu trữ</a></li>
+							href="viewArchivedNotes"><i
+								class="fa-solid fa-box-archive custom_i"></i> Lưu trữ</a></li>
 						<li class="nav-item"><a class="nav-link" href="new"><i
-								class="fa-solid fa-plus custom_i"></i> Thêm mới </a></li>		
+								class="fa-solid fa-plus custom_i"></i> Thêm mới </a></li>
 					</th:block>
 				</ul>
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -126,8 +151,30 @@
 					</th:block>
 
 					<th:block sec:authorize="isAuthenticated()">
-						<li class="nav-item"><a th:href="@{#}"
-							class="btn btn-light custom-button ms-1 me-1"
+						<li class="nav-item d-none d-lg-block">
+							<form id="search-form" method="get"
+								class="d-flex align-items-center search-container"
+								th:action="@{'/' + ${currentPage}}"
+								th:if="${currentPage == 'viewNotes' or currentPage == 'viewArchivedNotes'}">
+								<input type="hidden" name="filterDone" th:value="${filterDone}">
+								<input type="hidden" name="filterToday"
+									th:value="${filterToday}"> <input type="hidden"
+									name="filterLastDays" th:value="${filterLastDays}">
+								<div style="width: 200px; position: relative;" class="ms-1 me-1">
+									<input type="text" id="search-input" name="searchQuery"
+										class="form-control search-input"
+										style="width: 100%; box-sizing: border-box; padding-right: 40px;"
+										placeholder="Tìm kiếm" th:value="${searchQuery}">
+									<div class="btn btn-outline-success search-button"
+										onclick="document.getElementById('search-form').submit();">
+										<i class="fa-solid fa-magnifying-glass"></i>
+									</div>
+								</div>
+							</form>
+						</li>
+						<li class="nav-item"><a
+							th:href="@{/user-{id}(id=${user.id})}"
+							class="btn custom-button ms-1 me-1"
 							style="background-color: #d81b60; border-color: #07302c"> <span
 								style="color: white"> <i class="fa-solid fa-user"></i> <span
 									th:text="${firstName}">User</span>
@@ -135,8 +182,9 @@
 						</a></li>
 						<li class="nav-item"><a
 							class="btn btn-light custom-button ms-1 me-1"
-							th:href="@{/logout}"><i class="fa-solid fa-sign-out"></i>
-								Đăng xuất</a></li>
+							th:href="@{/logout}"> <i class="fa-solid fa-sign-out"></i>
+								Đăng xuất
+						</a></li>
 					</th:block>
 				</ul>
 			</div>
@@ -153,6 +201,7 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/assets/js/script.js"></script>
+	<script src="/assets/js/validation.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>

@@ -29,9 +29,11 @@ body {
 
 .note-has-grid .single-note-item,
 .note-has-grid .single-note-item .fa-download,
-.note-has-grid .single-note-item .fa-trash,
-.note-has-grid .single-note-item .fa-circle-info {
+.note-has-grid .single-note-item .fa-upload,
+.note-has-grid .single-note-item .fa-trash {
     cursor: pointer;
+	text-decoration: none;
+	color: black;
 }
 
 .center-item {
@@ -52,7 +54,7 @@ body {
 
 .note-title {
 	font-size: 1.5rem;
-	font-weight: 500;
+	font-weight: 600;
 }
 
 .level {
@@ -80,4 +82,105 @@ body {
 .stateblock {
 	position: absolute;
 	right: 0;
+}
+
+.reminder-time {
+    background-color: #ebebeb;
+    color: #202124;
+    padding: 6px; /* Đệm xung quanh văn bản */
+    border-radius: 1rem; /* Bo góc */
+    width: fit-content; /* Chiều rộng tự động */;
+    margin-bottom: 0.5rem;
+}
+
+.note-content {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.note-inner-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.custom-filter {
+	width: fit-content;
+	border: 1px solid transparent;
+	box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
+}
+
+.navbar.scrolled {
+	border: 1px solid transparent;
+	box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
+}
+
+.search-container {
+    position: relative;
+    
+}
+
+.search-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+@media (max-width: 767px) {
+    .container-addnote, .container-detailnote {
+		max-width: 80% !important;
+	}
+}
+
+@media (min-width: 1053px) and (max-width: 1239px) {
+    #lastModified, #noteStateSelect {
+        width: 70% !important; /* Adjust this value as needed */
+    }
+
+    .col-6 label[for="lastModified"],
+    .col-6 label[for="noteStateSelect"] {
+        width: 30% !important; /* Adjust this value as needed */
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1052px) {
+    #lastModified, #noteStateSelect {
+        width: 65% !important; /* Adjust this value as needed */
+    }
+
+    .col-6 label[for="lastModified"],
+    .col-6 label[for="noteStateSelect"] {
+        width: 35% !important; /* Adjust this value as needed */
+    }
+}
+
+@media (max-width: 991.5px) {
+    .col-6 {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    
+    #created,
+    #lastModified,
+    #archivedAt,
+    #noteStateSelect {
+        width: 50% !important; /* Adjust this value as needed */
+    }
+
+
+	.col-6 label[for="created"],
+	.col-6 label[for="lastModified"],
+	.col-6 label[for="archivedAt"],
+	.col-6 label[for="noteStateSelect"] {
+		width: 50% !important;
+		/* Adjust this value as needed */
+	}
+    
 }

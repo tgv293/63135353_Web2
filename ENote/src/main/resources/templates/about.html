@@ -1,87 +1,120 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org"
-	th:replace="~{base::Layout(~{::title}, ~{::section})}">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Giới Thiệu</title>
-<style>
-</style>
-</head>
-<body>
-	<section class="section_custom">
-		<div class="container d-flex flex-column justify-content-center"
-			style="min-height: calc(100vh - 241.9px);">
-			<h1 class="text-center"
-				style="font-family: 'Fleur De Leah'; color: #E6120E; font-size: calc(2rem + 1.5vw)">Giới Thiệu</h1>
-			<div class="row align-items-center mt-3">
-				<div class="about_img col-sm-4 text-center  align-items-center ">
-					<img src="/assets/img/about.jpg"
-						style="max-width: 100%; height: auto; min-height: 200px;"
-						class="img-responsive">
-				</div>
-				<div class="about_txt col-sm-8" style="font-weight: bold">
-					<p>Chào mừng bạn đến với dự án Quản lý Enotes. Dự án này được
-						phát triển bởi Giáp Văn Tài, sinh viên lớp 63.CNTT-CLC, Trường Đại
-						học Nha Trang. Dự án sử dụng nhiều công nghệ và ngôn ngữ lập trình
-						khác nhau như HTML, CSS, Javascript, Bootstrap, Spring Boot, JPA
-						và MySQL.</p>
-					<p>Trong dự án này, tôi đã sử dụng Spring Web, một module của
-						Spring Framework, để xây dựng và quản lý các yêu cầu HTTP giữa ứng
-						dụng Java và cơ sở dữ liệu quan hệ. Thymeleaf, một công nghệ View,
-						được sử dụng để tích hợp với Spring Framework, nó chuyển đổi các
-						tệp mẫu thành dữ liệu hoặc văn bản được hiển thị bởi ứng dụng.</p>
-					<p>Spring Security được sử dụng để bảo mật ứng dụng, nó tự động
-						bảo vệ tất cả các điểm cuối HTTP với xác thực "cơ bản". MySQL được
-						sử dụng để kết nối và quản lý cơ sở dữ liệu.</p>
-					<p>Cuối cùng, tất cả các thành phần này được tích hợp và quản
-						lý bởi Spring Boot, giúp tôi xây dựng và triển khai ứng dụng một
-						cách nhanh chóng và dễ dàng.</p>
-				</div>
-			</div>
-		</div>
+<html
+  lang="en"
+  xmlns:th="www.thymeleaf.org"
+  th:replace="~{base::Layout(~{::title}, ~{::section})}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giới Thiệu</title>
+    <style></style>
+  </head>
+  <body>
+    <section class="section_custom">
+      <div
+        class="container d-flex flex-column justify-content-center"
+        style="min-height: calc(100vh - 241.9px)"
+      >
+        <h1
+          class="text-center"
+          style="
+            font-family: 'Fleur De Leah';
+            color: #e6120e;
+            font-size: calc(2rem + 1.5vw);
+          "
+        >
+          Giới Thiệu
+        </h1>
+        <div class="row align-items-center mt-3">
+          <div class="about_img col-sm-4 text-center align-items-center">
+            <img
+              src="/assets/img/about.jpg"
+              style="max-width: 100%; height: auto; min-height: 200px"
+              class="img-responsive"
+            />
+          </div>
+          <div class="about_txt col-sm-8" style="font-weight: bold">
+            <p>
+              Chào mừng bạn đến với dự án Quản lý ENote. Dự án này được phát
+              triển bởi Giáp Văn Tài, sinh viên lớp 63.CNTT-CLC, Trường Đại học
+              Nha Trang. Dự án sử dụng nhiều công nghệ và ngôn ngữ lập trình
+              khác nhau như HTML, CSS, Javascript, Bootstrap, Spring Boot, JPA
+              và MySQL.
+            </p>
+            <p>
+              Trong dự án này, tôi đã sử dụng Spring Web, một module của Spring
+              Framework, để xây dựng và quản lý các yêu cầu HTTP giữa ứng dụng
+              Java và cơ sở dữ liệu quan hệ. Thymeleaf, một công nghệ View, được
+              sử dụng để tích hợp với Spring Framework, nó chuyển đổi các tệp
+              mẫu thành dữ liệu hoặc văn bản được hiển thị bởi ứng dụng.
+            </p>
+            <p>
+              Spring Security được sử dụng để bảo mật ứng dụng, nó tự động bảo
+              vệ tất cả các điểm cuối HTTP với xác thực "cơ bản". MySQL được sử
+              dụng để kết nối và quản lý cơ sở dữ liệu.
+            </p>
+            <p>
+              Cuối cùng, tất cả các thành phần này được tích hợp và quản lý bởi
+              Spring Boot, giúp tôi xây dựng và triển khai ứng dụng một cách
+              nhanh chóng và dễ dàng.
+            </p>
+          </div>
+        </div>
+      </div>
 
-		<div class="about_bt bottom"
-			style="background-color: #456e97; width: 100%; height: 180px">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 mt-4">
-						<h3 class="text-white">Enotes Management</h3>
-						<p style="color: yellow; font-size: 16px">
-							<i class="fa fa-map-marker text-danger"></i> 152 Lê Hồng Phong,
-							Nha Trang
-						</p>
-						<p style="color: yellow; font-size: 16px">
-							<i class="fa fa-envelope text-danger"></i>
-							tai.gv.63cntt@ntu.edu.vn
-						</p>
-						<p style="color: yellow; font-size: 16px">
-							<i class="fas fa-phone-volume text-danger"></i> +84 773753848
-						</p>
+      <div
+        class="about_bt bottom"
+        style="background-color: #456e97; width: 100%; height: 180px"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 mt-4">
+              <h3 class="text-white">ENote Management</h3>
+              <p style="color: yellow; font-size: 16px">
+                <i class="fa fa-map-marker text-danger"></i> 152 Lê Hồng Phong,
+                Nha Trang
+              </p>
+              <p style="color: yellow; font-size: 16px">
+                <i class="fa fa-envelope text-danger"></i>
+                tai.gv.63cntt@ntu.edu.vn
+              </p>
+              <p style="color: yellow; font-size: 16px">
+                <i class="fas fa-phone-volume text-danger"></i> +84 773753848
+              </p>
+            </div>
 
-					</div>
+            <div class="col-md-4 mt-4">
+              <h3 class="text-white">Liên Kết</h3>
+              <a
+                th:href="@{/}"
+                style="text-decoration: none; color: yellow; font-size: 16px"
+                >Trang chủ</a
+              >
+              <a
+                th:href="@{about}"
+                style="text-decoration: none; color: yellow; font-size: 16px"
+                >Giới thiệu</a
+              >
+              <a
+                th:href="@{contact}"
+                style="text-decoration: none; color: yellow; font-size: 16px"
+                >Liên hệ</a
+              >
+            </div>
 
-					<div class="col-md-4 mt-4">
-						<h3 class="text-white">Liên Kết</h3>
-						<a th:href="@{/}" style="text-decoration: none;"><p
-								style="color: yellow; font-size: 16px">Trang chủ</p></a> <a
-							th:href="@{about}" style="text-decoration: none;"><p
-								style="color: yellow; font-size: 16px">Giới thiệu</p></a> <a
-							th:href="@{contact}" style="text-decoration: none;"><p
-								style="color: yellow; font-size: 16px">Liên hệ</p></a>
-					</div>
-
-					<div class="col-md-4 mt-4">
-						<h3 class="text-white">Thời Gian Làm Việc</h3>
-						<p style="color: yellow; font-size: 16px">Thứ 2 - Thứ 7: 7 giờ
-							sáng - 5 giờ chiều</p>
-						<p style="color: yellow; font-size: 16px">Chủ nhật: 8 giờ sáng
-							- 4 giờ chiều</p>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</section>
-</body>
+            <div class="col-md-4 mt-4">
+              <h3 class="text-white">Thời Gian Làm Việc</h3>
+              <p style="color: yellow; font-size: 16px">
+                Thứ 2 - Thứ 7: 7 giờ sáng - 5 giờ chiều
+              </p>
+              <p style="color: yellow; font-size: 16px">
+                Chủ nhật: 8 giờ sáng - 4 giờ chiều
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

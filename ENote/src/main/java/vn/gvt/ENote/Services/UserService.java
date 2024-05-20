@@ -15,7 +15,9 @@ public interface UserService {
 
     Optional<User> get(int id);
 
-    void update(User user);
+    void update(Integer id, User user);
+    
+    void changePassword(User user, String password);
 
     List<User> getAllUsers();
 

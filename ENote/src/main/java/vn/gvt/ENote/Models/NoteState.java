@@ -1,6 +1,5 @@
 package vn.gvt.ENote.Models;
 
-
 public enum NoteState {
     HIGH("Cao"),
     MIDDLE("Trung bình"),

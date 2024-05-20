@@ -9,7 +9,7 @@ import vn.gvt.ENote.Models.User;
 
 public interface NoteManagement {
 
-    void saveNew(Note noteDto, User user);
+    void saveNew(Note note, User user);
 
     List<Note> getAllUnarchived(User user);
 
@@ -30,5 +30,11 @@ public interface NoteManagement {
     void archive(Integer id);
 
     void unarchive(Integer id);
+    
+    void deleteAllByUserId(Integer userId); 
+    
+    List<Note> searchNotes(User user, String query);
+    
+    List<Note> getReminders(User user);
 	
 }

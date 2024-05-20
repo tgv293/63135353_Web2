@@ -1,54 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org"
-	th:replace="~{base::Layout(~{::title}, ~{::section})}">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Note</title>
-</head>
-<body>
-	<section class="custom_section section_custom"
-		style="font-family: 'Montserrat'">
-		<div class="container" style="max-width: 50%;">
-			<div class="row">
-				<div class="card">
-					<div class="card-header text-center">
-						<h3 class="font-weight-light text-center text-lg-left mt-4 mb-4"
-							style="color: royalblue; font-weight: bold; text-transform: uppercase;">Ghi
-							chú mới</h3>
-					</div>
-					<div class="card-body">
-						<form th:object="${note}" method="post" th:action="@{/saveNote}">
-							<div class="form-group mt-1">
-								<input class="input--style-4 form-control rounded-2 border-0"
-									id="note-header-ta" rows="1" type="text" name="note-header"
-									th:field="*{header}" placeholder="Tiêu đề" required>
-							</div>
+<html
+  lang="en"
+  xmlns:th="www.thymeleaf.org"
+  th:replace="~{base::Layout(~{::title}, ~{::section})}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm Mới</title>
+  </head>
+  <body>
+    <section
+      class="custom_section section_custom"
+      style="font-family: 'Montserrat'"
+    >
+      <div class="container container-addnote" style="max-width: 50%">
+        <div class="row">
+          <div class="card">
+            <div class="card-header text-center">
+              <h3
+                class="font-weight-light text-center text-lg-left mt-4 mb-4"
+                style="
+                  color: royalblue;
+                  font-weight: bold;
+                  text-transform: uppercase;
+                "
+              >
+                Ghi chú mới
+              </h3>
+            </div>
+            <div class="card-body">
+              <form th:object="${note}" method="post" th:action="@{/saveNote}">
+                <div class="form-group mt-1">
+                  <span id="header-error" class="error-message"></span>
+                  <input
+                    class="input--style-4 rounded-2 form-control"
+                    id="note-header-ta"
+                    type="text"
+                    name="note-header"
+                    th:field="*{header}"
+                    placeholder="Tiêu đề"
+                    required
+                  />
+                </div>
 
-							<div class="form-group mt-3">
-								<div class="rs-select2 col-12">
-									<select name="state" id="noteStateSelect"
-										class="select input--style-4">
-										<option th:each="state : ${states}" th:value="${state}"
-											th:text="${state.stateAsString}"></option>
-									</select>
-									<div class="select-dropdown"></div>
-								</div>
-							</div>
+                <div class="form-group mt-3">
+                  <div class="rs-select2 col-12">
+                    <select
+                      name="state"
+                      id="noteStateSelect"
+                      class="select input--style-4"
+                    >
+                      <option
+                        th:each="state : ${states}"
+                        th:value="${state}"
+                        th:text="${state.stateAsString}"
+                      ></option>
+                    </select>
+                    <div class="select-dropdown"></div>
+                  </div>
+                </div>
 
-							<div class="form-group mt-3">
-								<textarea class="input--style-5 form-control rounded-2 border-0"
-									id="note-body-ta" rows="5" th:field="*{body}"
-									placeholder="Tạo ghi chú..."></textarea>
-							</div>
+                <div class="form-group mt-3">
+                  <span id="body-error" class="error-message"></span>
+                  <textarea
+                    class="input--style-5 form-control rounded-2"
+                    id="note-body-ta"
+                    rows="5"
+                    th:field="*{body}"
+                    placeholder="Tạo ghi chú..."
+                  ></textarea>
+                </div>
 
-							<button type="submit" class="btn success_button mt-3">Lưu</button>
-							<button type="button" onclick="window.location.href='/viewNotes'" class="btn cancel_button mt-3">Hủy</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</body>
+                <div class="form-group d-flex align-items-center mt-3">
+                  <label style="width: 15%" for="reminder">Nhắc hẹn:</label>
+                  <input
+                    type="datetime-local"
+                    id="reminder"
+                    name="reminder"
+                    th:field="*{reminderTime}"
+                    class="input--style-4 form-control rounded-2 border-0"
+                  />
+                </div>
+
+                <button type="submit" class="btn success_button mt-3 btn_save">
+                  Lưu
+                </button>
+                <button
+                  type="button"
+                  onclick="window.location.href='/viewNotes'"
+                  class="btn cancel_button mt-3"
+                >
+                  Hủy
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

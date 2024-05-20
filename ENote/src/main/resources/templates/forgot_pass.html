@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="www.thymeleaf.org"
+  th:replace="~{base::Layout(~{::title}, ~{::section})}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quên Mật Khẩu</title>
+  </head>
+  <body>
+    <section class="section_custom signup page-wrapper font-poppins">
+      <div class="wrapper wrapper--w680">
+        <div
+          class="container signup_card sucard-4 custom-width-content"
+          style="min-width: 200px"
+        >
+          <div class="card-body">
+            <h2 class="title">Quên Mật Khẩu</h2>
+            <div class="text-danger h5" th:if="${errorMessage}">
+              <p th:text="${errorMessage}"></p>
+            </div>
+
+            <div class="text-success h5" th:if="${successMessage}">
+              <p th:text="${successMessage}"></p>
+            </div>
+            <form th:action="@{/forgot-password}" method="post">
+              <div class="input-group">
+                <label class="label">Email</label>
+                <span id="email-error" class="error-message"></span>
+                <input
+                  class="input--style-4"
+                  required="required"
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                />
+              </div>
+              <button type="submit" class="btn_signup">
+                Xác Nhận
+                <div class="arrow-wrapper">
+                  <div class="arrow"></div>
+                </div>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

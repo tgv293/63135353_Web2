@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="www.thymeleaf.org"
+  th:replace="~{base::Layout(~{::title}, ~{::section})}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông Tin Người Dùng</title>
+  </head>
+  <body>
+    <section class="section_custom signup page-wrapper font-poppins">
+      <div class="wrapper wrapper--w680">
+        <div class="container signup_card sucard-4">
+          <div class="card-body">
+            <h2 class="title">Thông Tin Người Dùng</h2>
+            <th:block th:if="${session.msg}">
+              <p class="text-center text-danger" style="font-weight: bold">
+                [[${session.msg}]]
+              </p>
+              <th:block
+                th:text="${@userServiceImpl.removeSessionMessage()}"
+              ></th:block>
+            </th:block>
+            <form
+              th:object="${user}"
+              th:action="@{'/user-' + ${user.id}}"
+              method="post"
+            >
+              <div class="row row-space">
+                <div class="col-2">
+                  <div class="input-group">
+                    <label class="label">Họ</label>
+                    <span id="lastName-error" class="error-message"></span>
+                    <input
+                      th:field="*{lastName}"
+                      class="input--style-4"
+                      required="required"
+                      type="text"
+                      name="last_name"
+                    />
+                  </div>
+                </div>
+                <div class="col-2">
+                  <div class="input-group">
+                    <label class="label">Tên</label>
+                    <span id="firstName-error" class="error-message"></span>
+                    <input
+                      th:field="*{firstName}"
+                      class="input--style-4"
+                      required="required"
+                      type="text"
+                      name="first_name"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row row-space">
+                <div class="col-2">
+                  <div class="input-group">
+                    <label class="label">Email</label>
+                    <span id="email-error" class="error-message"></span>
+                    <input
+                      th:field="*{email}"
+                      class="input--style-4"
+                      required="required"
+                      type="email"
+                      name="email"
+                    />
+                  </div>
+                </div>
+                <div class="col-2">
+                  <div class="input-group">
+                    <label class="label col-12">Tuổi</label>
+                    <div class="rs-select2 col-12">
+                      <select
+                        th:field="*{age}"
+                        required="required"
+                        class="select input--style-4"
+                      >
+                        <option
+                          th:each="age : ${ages}"
+                          th:value="${age}"
+                          th:text="${age}"
+                        ></option>
+                      </select>
+                      <div class="select-dropdown"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group">
+                <label class="label">Địa chỉ</label>
+                <span id="address-error" class="error-message"></span>
+                <input
+                  th:field="*{address}"
+                  class="input--style-4"
+                  required="required"
+                  type="text"
+                  name="address"
+                />
+              </div>
+              <div class="row">
+                <div class="col-lg-12 mt-2 detail_note">
+                  <button type="submit" class="btn success_button btn_save">
+                    Lưu
+                  </button>
+                  <a th:href="@{'/changepass-user-' + ${user.id}}">
+                    <button
+                      type="button"
+                      id="changePassButton"
+                      class="btn archive_button"
+                    >
+                      Đổi mật khẩu
+                    </button>
+                  </a>
+                  <a th:href="@{'/delete/user-' + ${user.id}}">
+                    <button
+                      type="button"
+                      id="cancelButton"
+                      class="btn delete_button delete-user"
+                    >
+                      Xóa
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

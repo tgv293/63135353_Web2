@@ -99,6 +99,10 @@ section {
 	height: 100vh;
 }
 
+input[type="password"]::-ms-reveal {
+    display: none;
+}
+
 .custom_section {
 	background: url("../img/signup-bg.jpg");
 	height: 100%;
@@ -329,4 +333,79 @@ to {
 
 .detail_note a{
 	text-decoration: none;
+}
+
+input {
+    border: 2px solid transparent;
+    transition: all 1s;
+}
+
+input.valid {
+    border-color: green;
+}
+
+input.invalid {
+    border-color: red;
+}
+
+input.input-focus {
+    border-color: blue;
+}
+
+input.invalid:focus {
+    border-color: red;
+}
+
+.form-control {
+	border: 2px solid transparent;
+    transition: all 1s;
+	resize: none;
+}
+
+.form-control:focus {
+	border: 2px solid blue;
+}
+
+.error-message {
+    color: red;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+}
+
+.error-message.show {
+    opacity: 1;
+}
+
+.input-group {
+	display: flex;
+    justify-content: space-between;
+}
+
+.toggle-password {
+	position: absolute;
+	right: 13px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+.invalid {
+    border: 2px solid red;
+    transition: all 1s;
+}
+
+.valid {
+    border: 2px solid green;
+    transition: all 1s;
+}
+
+input.input-focus {
+    border: 2px solid blue;
+    transition: all 1s;
+}
+
+.invalid:focus {
+    border: 2px solid red;
+    transition: all 1s;
 }
