@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link th:href="@{/assets/dist/css/phong.css}" rel="stylesheet">
+<script th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+	rel="stylesheet">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div th:replace="~{fragments/slidebar :: slidebar}"></div>
+	<div class="topbar d-flex align-items-center">
+		<div class="box-search">
+			<i class="fa-solid fa-magnifying-glass icon"></i> <input type="text"
+				placeholder="Nhập phòng..." th:attr="onkeyup='timphong()'"
+				id="search-room">
+		</div>
+	</div>
+
+	<section class="home mt-5">
+		<div class="text py-2">Mượn Trả Thiết Bị</div>
+		<div id="toast" th:class="${typeToast}"></div>
+		<div class="container d-flex flex-wrap justify-content-around">
+			<div th:each="phong : ${dsPhong}" th:id="${phong.maPhong}"
+				class="room card mb-4">
+				<div
+					th:class="'card-body d-flex flex-column justify-content-between ' + ${phong.trangThai.maTinhTrang==1 ?'emptys':phong.trangThai.maTinhTrang==2 ?'buzy':phong.trangThai.maTinhTrang==3 ?'maintenance' :''}">
+					<h5 class="card-title" th:text="${phong.maPhong}"></h5>
+					<div>
+						<div th:each="ctpm : ${phong.dspm}"
+							th:if="${ctpm.thoiDiemTra == null}"
+							style="border-style: groove; border: 0; border-bottom: double;">
+							<a class="pmChuaTra card-text" style="text-decoration: none;"
+								th:if="${ctpm.maPhieuMuon != null}"
+								th:href="@{'/home/bill' + ${ctpm.maPhieuMuon} + '_' + ${phong.maPhong}}"
+								th:attr="phong=${phong.maPhong}, ngaymuon=${ctpm.thoiDiemMuon}, hantra=${ctpm.hanTra}, data-bs-content='Phiếu Mượn :' + ${ctpm.maPhieuMuon} + ' Ngày mượn:' + ${ctpm.thoiDiemMuon} + ' Hạn Trả: ' + ${ctpm.hanTra}"
+								data-bs-toggle="popover" data-bs-trigger="hover">
+								<div th:text="${ctpm.lop.getFullName()}"></div>
+							</a>
+						</div>
+					</div>
+					<div>
+						<p class="card-text"
+							th:each="cttb : ${dsTBChoPhepMuonCuaTatCaPhong[phong.maPhong]}"
+							th:text="${cttb.value} + '|' + ${cttb.key}"></p>
+					</div>
+					<a th:href="@{'/home/room/' + ${phong.maPhong} + '?linkPhong'}"
+						th:class="'btn btn-primary btnLapPhieu ' + (${phong.trangThai.maTinhTrang==1 ? '' : 'disable-link'})"
+						th:text="${phong.trangThai.maTinhTrang==3 ? 'Đang Bảo Trì' : 'Lập Phiếu'}"></a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Modal Them Phieu Muon-->
+	<div class="modal js-modal" th:classappend="${statusmodal}">
+		<div class="modal-container js-modal-contain" style="width: 60%">
+			<div class="modal-close js-modal-close">
+				<i class="fa-solid fa-xmark"></i>
+			</div>
+
+			<header class="modal-header">
+				<i class="ti-bag modal-heading-icon"></i>
+				<div>Thêm Phiếu Mượn</div>
+				<div>
+					<p>
+						Phòng - <span th:text="${roomclicked}"></span>
+					</p>
+				</div>
+			</header>
+			<div class="modal-body">
+				<form method="post">
+					<label class="modal-lable"> Lớp Học </label> <select
+						onchange="checklichsumuon()" class="form-select modal-ip"
+						name="lop" aria-label="Disabled select example">
+						<option th:each="tmp : ${listLop}" th:value="${tmp.maLop}"
+							th:text="'Lớp ' + ${tmp.maLop} + ' - ' + ${tmp.hotenGV} + ' (' + ${tmp.maGV} + ') ' + '- (' + ${tmp.siso} + ' học sinh)'"></option>
+					</select> <label class="modal-lable"> <i class="ti-shopping-cart"></i>Hạn
+						Trả
+					</label> <input name="hanTra" type="datetime-local" class="modal-ip"
+						th:value="${timeDefault}" th:attr="min=${timeNow}">
+					<button name="btnsave" type="submit" class="mt-4 btn-modal">THÊM</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Chi Tiet Phieu Muon -->
+	<div class="modal js-modal-2" th:classappend="${statusmodal2}">
+		<div class="modal-container js-modal-contain-2">
+			<div class="modal-close js-modal-close-2">
+				<i class="fa-solid fa-xmark"></i>
+			</div>
+
+			<header class="modal-header">
+				<i class="ti-bag modal-heading-icon"></i>
+				<div>Chi Tiết Phiếu Mượn</div>
+			</header>
+			<div class="modal-body">
+				<div class="row mb-3" style="height: 240px">
+					<div class="col-sm-6" style="border-style: outset;">
+						<h4 class="text-center">Thông tin</h4>
+						<p>
+							<b>Lớp:</b> <span th:if="${thongtinPhieuMuon != null}"
+								th:text="${thongtinPhieuMuon.lop.maLop}"></span>
+
+						</p>
+						<p>
+							<b>Phòng:</b> <span th:if="${thongtinPhieuMuon != null}"
+								th:text="${thongtinPhieuMuon.maPhong.maPhong}"></span>
+
+						</p>
+						<p>
+							Ngày mượn: <span th:if="${thongtinPhieuMuon != null}"
+								th:text="${#temporals.format(thongtinPhieuMuon.thoiDiemMuon, 'dd/MM/yyyy HH:mm')}"></span>
+						</p>
+						<p>
+							Hạn Trả: <span th:if="${thongtinPhieuMuon != null}"
+								th:text="${#temporals.format(thongtinPhieuMuon.hanTra, 'dd/MM/yyyy HH:mm')}"></span>
+						</p>
+					</div>
+					<div class="col-sm-6 border-end"
+						style="overflow: auto; border-style: outset; max-height: 240px;">
+						<h4 class="text-center">Danh Sách Mượn</h4>
+						<div th:if="${listNguoiMuon != null}">
+							<div th:each="nm : ${listNguoiMuon}"
+								style="margin-bottom: 10px; text-align: center;">
+								<div style="border-style: groove; margin-bottom: 10px;">
+									<span th:text="${nm.maNguoiMuon} + ' - ' + ${nm.tenNguoiMuon}"></span>
+								</div>
+
+								<div th:if="${thongtinPhieuMuon != null}">
+									<div th:each="item : ${thongtinPhieuMuon.listCTPhieuMuon}">
+										<div th:if="${nm.maNguoiMuon == item.nguoiMuon.maNguoiMuon}"
+											class="d-flex flex-row justify-content-between">
+											<p
+												th:text="${item.thietBi.loaiThietBi.tenLoai} + '-' + ${item.thietBi.tenThietBi}"></p>
+											<div class="status-bill">
+												<div class="d-flex align-items-center"
+													th:if="${item.trangThai.maTinhTrang == 4}">
+													<form
+														th:action="@{'/home/loss' + ${thongtinPhieuMuon.maPhieuMuon} + '_' + ${item.thietBi.maThietBi} + '_' + ${thongtinPhieuMuon.maPhong.maPhong}}"
+														method="post">
+														<input type="submit" value="Mất"
+															class="btn-danger text-decoration-none py-1 text-center  px-3 me-2">
+													</form>
+													<form
+														th:action="@{'/home/pay' + ${thongtinPhieuMuon.maPhieuMuon} + '_' + ${item.thietBi.maThietBi} + '_' + ${item.maCTPhieuMuon} + '_' + ${thongtinPhieuMuon.maPhong.maPhong}}"
+														method="post">
+														<input type="submit" value="Trả"
+															class="btn-primary text-decoration-none text-center py-1 px-3 ">
+													</form>
+												</div>
+												<strong th:if="${item.trangThai.maTinhTrang == 5}">Đã
+													Trả</strong> <strong th:if="${item.trangThai.maTinhTrang == 6}">Đã
+													Mất</strong>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<form method="post">
+					<div>
+						<b class="w-25">Người Mượn:</b> <input name="maNguoiMuon"
+							class="modal-ip w-75 inputID" required="required"
+							th:value="${listNguoiMuon != null && !listNguoiMuon.isEmpty() ? listNguoiMuon[0].maNguoiMuon : ''}"
+							placeholder="Nhập mã GVCN">
+					</div>
+
+					<div class="d-flex justify-content-around flex-wrap mb-4">
+						<div th:each="ps : ${listTypeTB}"
+							style="overflow: auto; max-height: 260px; padding: 0 8px;">
+							<b th:text="${ps.tenLoai}"></b>
+							<div th:each="pt : ${listTB}" class="form-check"
+								th:if="${ps.maLoai == pt.loaiThietBi.maLoai}">
+								<label class="form-check-label"
+									th:for="${'flexCheck' + pt.maThietBi}"
+									th:text="${pt.tenThietBi}"></label> <input
+									th:name="${pt.maThietBi}" class="form-check-input"
+									type="checkbox" th:value="${pt.maThietBi}"
+									th:id="${'flexCheck' + pt.maThietBi}">
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-primary"
+						style="width: 50%; margin-left: 25%; margin-top: 24px;"
+						name="savebill" type="submit">Ghi Mượn</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Nhap Thong Tin Người Mượn -->
+	<div class="modal js-modal-3" th:classappend="${statusmodal3}">
+		<div class="modal-container js-modal-contain-3">
+			<div class="modal-close js-modal-close-3">
+				<i class="fa-solid fa-xmark"></i>
+			</div>
+
+			<header class="modal-header">
+				<i class="ti-bag modal-heading-icon"></i>
+				<div>Thông Tin Người Mượn</div>
+			</header>
+			<div class="modal-body">
+				<form method="post">
+					<label class="modal-lable"> Mã Người Mượn </label> <input
+						name="maNguoiMuon" id="ip-manm" type="text"
+						class="modal-ip inputID" required="required"
+						th:onchange="checklichsumuon()"
+						placeholder="Vui lòng nhập mã GVCN" th:value="${NMuon}"
+						th:readonly="${NMuon != null}"> <label for="tenNguoiMuon"
+						class="modal-lable"> Tên Người Mượn </label> <input
+						name="tenNguoiMuon" type="text" class="modal-ip"
+						required="required" placeholder="Vui lòng nhập tên người mượn">
+
+					<label for="email" class="modal-lable"> Email </label> <input
+						name="email" type="text" class="modal-ip" required="required"
+						placeholder="Vui lòng nhập email">
+
+					<button class="btn btn-primary"
+						style="width: 50%; margin-left: 25%; margin-top: 24px;"
+						name="savebill" type="submit">Lưu</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script th:src="@{/assets/dist/js/script.js}"></script>
+	<script th:src="@{/assets/dist/js/home.js}"></script>
+	<script th:inline="javascript">
+	var thongbao = /*[[${thongbao}]]*/ 'default';
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    var modals = document.querySelectorAll('.js-modal, .js-modal-2, .js-modal-3');
+	    modals.forEach(function(modal) {
+	        if (event.target == modal) {
+	            modal.style.display = "none";
+	            history.replaceState(null, null, '/home');
+	        }
+	    });
+	}
+
+	// When the user clicks on the close button, close the modal
+	var closeButtons = document.querySelectorAll('.js-modal-close, .js-modal-close-2, .js-modal-close-3');
+	closeButtons.forEach(function(button) {
+	    button.addEventListener('click', function () {
+	        history.replaceState(null, null, '/home');
+	    });
+	});
+		
+	/*<![CDATA[*/
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var tb = document.getElementById('toast');
+        var action = /*[[${action}]]*/ 'default';
+        var typeToast = /*[[${typeToast}]]*/ 'info';
+        if (tb.classList.contains('success')) {
+            showtoast({
+                title : "Thành công!",
+                message : action + " thành công.",
+                type : "success",
+                duration : 3000
+            });
+        } else if (tb.classList.contains('error')) {
+            showtoast({
+                title : "Lỗi!",
+                message : action + " thất bại.",
+                type : "error",
+                duration : 3000
+            });
+        } else if (tb.classList.contains('info')){
+            showtoast({
+                title : "Cảnh Báo!",
+                message : action,
+                type : "warning",
+                duration : 3000
+            });
+        }
+    });
+    /*]]>*/
+
+    
+		//kiem tra lich su phieu muon chua tra cua người mượn
+		 const node = document.getElementById('ip-manm')
+		
+		 function checklichsumuon() {
+		     var st = 0;
+		     var dsPhieuMuon = "";
+		     for (let name of document.getElementsByClassName('pmChuaTra')) {
+		         if (node.value == name.getAttribute("pm")) {
+		             st++;
+		             dsPhieuMuon += "\n" + name.getAttribute("pm");
+		         }
+		     }
+		     if (st != 0) {
+		         if (confirm("Người mượn " + node.value + " có " + st + " phiếu mượn chưa trả" + dsPhieuMuon + "\n Bạn có muốn cho mượn tiếp không?") == false) {
+		             hideBuyTicket();
+		         } 
+		     }
+		 };
+
+        //chan viec save form khi an enter
+        node.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                checklichsumuon();
+            }
+        });
+        /*]]>*/
+    </script>
+</body>
+</html>

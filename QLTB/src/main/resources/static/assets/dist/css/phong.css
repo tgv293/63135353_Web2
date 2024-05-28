@@ -4,12 +4,7 @@
 	text-decoration: none; 
 }
 .card-body>a{
-	color:#616a44 !important;
-}
-
-
-.card-body a{
-	color:#7698cc ;
+	color:white;
 }
 
 .card-body.emptys {
@@ -53,7 +48,8 @@
 }
 .disable-link{
 	pointer-events: none;
-    background: gray;
+    background: gray !important;
+    color: #484f33!important;
     box-shadow:none;
 }
 .card-body{

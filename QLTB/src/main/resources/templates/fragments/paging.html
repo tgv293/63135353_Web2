@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .page-item.disabled .page-link{
+            background-color: #efefef
+        }
+        .pagination{
+            padding-left: 28px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div th:if="${pagedListHolder.pageCount > 1}">
+        <ul class="pagination">
+            <li th:class="${pagedListHolder.isFirstPage ? 'page-item disabled' : 'page-item'}">
+                <a class="page-link" th:href="${pagedListHolder.isFirstPage ? '#' : @{${pagedLink}(page=${pagedListHolder.page - 1})}}">&lt;</a>
+            </li>
+            <li th:if="${pagedListHolder.firstLinkedPage > 0}" class="page-item">
+                <a class="page-link" th:href="@{${pagedLink}(page=0)}">1</a>
+            </li>
+            <li th:if="${pagedListHolder.firstLinkedPage > 1}" class="page-item">
+                <span class="page-link pagingDots">...</span>
+            </li>
+            <li th:each="i : ${#numbers.sequence(pagedListHolder.firstLinkedPage, pagedListHolder.lastLinkedPage)}" th:class="${pagedListHolder.page == i ? 'page-item active' : 'page-item'}">
+                <a class="page-link" th:href="${pagedListHolder.page == i ? '#' : @{${pagedLink}(page=${i})}}" th:text="${i + 1}"></a>
+            </li>
+            <li th:if="${pagedListHolder.lastLinkedPage < pagedListHolder.pageCount - 2}" class="page-item">
+                <span class="page-link pagingDots">...</span>
+            </li>
+            <li th:if="${pagedListHolder.lastLinkedPage < pagedListHolder.pageCount - 1}" class="page-item">
+                <a class="page-link" th:href="@{${pagedLink}(page=${pagedListHolder.pageCount - 1})}" th:text="${pagedListHolder.pageCount}"></a>
+            </li>
+            <li th:class="${pagedListHolder.isLastPage ? 'page-item disabled' : 'page-item'}">
+                <a class="page-link" th:href="${pagedListHolder.isLastPage ? '#' : @{${pagedLink}(page=${pagedListHolder.page + 1})}}">&gt;</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -142,6 +142,7 @@ function showtoast({ title = "", message = "", type = "info", duration = 3000 })
                           <i class="fas fa-times"></i>
                       </div>
                   `;
+                  
 		main.appendChild(toast);
 	}
 

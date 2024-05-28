@@ -76,7 +76,7 @@ body.dark{
     top: 0;
     left: 0;
     height: 100%;
-    width: 250px;
+    width: 260px;
     padding: 10px 14px;
     background: var(--sidebar-color);
     transition: var(--tran-05);
@@ -576,14 +576,14 @@ body.dark .home .text{
 
 .btn:hover{
     background-color: #ddd;
-    color: #000;
+    color: rgb(192, 192, 192);
     cursor: pointer;
 } 
 
 .topbar{
 	position: fixed;
     top: 0;
-    left: 250px;
+    left: 260px;
     right: 0;
     height: 60px;
     background: var(--sidebar-color);

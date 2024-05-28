@@ -24,4 +24,6 @@ public interface UserService {
     void defaultSave(User user);
 
     Optional<User> getByEmail(String email);
+    
+    public void removeSessionMessage();
 }

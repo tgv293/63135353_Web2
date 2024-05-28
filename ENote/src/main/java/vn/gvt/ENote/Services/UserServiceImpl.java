@@ -160,6 +160,7 @@ public class UserServiceImpl implements UserService {
     /**
      * Xóa thông báo trong session.
      */
+    @Override
     public void removeSessionMessage() {
         HttpSession session = ((ServletRequestAttributes) (RequestContextHolder.getRequestAttributes())).getRequest()
                 .getSession();
