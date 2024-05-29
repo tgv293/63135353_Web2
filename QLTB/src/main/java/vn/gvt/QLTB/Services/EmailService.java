@@ -21,7 +21,7 @@ public class EmailService {
     @Autowired
     private EmailSender emailSender;
 
-    @Scheduled(cron = "0 31 11 * * *") // Tự động gửi mail lúc 11h10
+    @Scheduled(cron = "0 0 7,12,17 * * *") // Tự động gửi mail lúc 7h 12h 17h
     public void sendOverdueEmails() throws MessagingException {
         List<PhieuMuon> allPhieuMuon = phieuMuonRepository.findAll();
         LocalDateTime now = LocalDateTime.now();
