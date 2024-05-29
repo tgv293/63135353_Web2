@@ -23,7 +23,7 @@
 }
 
 .form-contain {
-	margin-left: 8.5%;
+	margin-left: 8.5% !important;
 	padding: 14px 0px;
 	border-style: ridge;
 }
@@ -40,7 +40,7 @@
 		<div id="toast" th:class="${message}"></div>
 		<div class="text">Quản Trị</div>
 		<div class="container mt-2">
-			<div class="form-contain row col-12"
+			<div class="form-contain row col-10"
 				style="color: var(--text-color);">
 				<form th:object="${NhanVien}" method="post">
 					<input type="hidden" th:field="*{maNV}" id="ip-maNV"
