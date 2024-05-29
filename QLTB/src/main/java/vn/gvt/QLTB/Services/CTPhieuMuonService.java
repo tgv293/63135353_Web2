@@ -5,7 +5,6 @@ import java.util.List;
 import vn.gvt.QLTB.Models.NguoiMuon;
 import vn.gvt.QLTB.Models.PhieuMuon;
 import vn.gvt.QLTB.Models.ThietBi;
-import vn.gvt.QLTB.Models.TrangThai;
 
 public interface CTPhieuMuonService {
 

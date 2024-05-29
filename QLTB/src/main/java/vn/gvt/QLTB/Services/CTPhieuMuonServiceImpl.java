@@ -1,14 +1,12 @@
 package vn.gvt.QLTB.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vn.gvt.QLTB.Models.CTPhieuMuon;
 import vn.gvt.QLTB.Models.PhieuMuon;
 import vn.gvt.QLTB.Models.ThietBi;
 import vn.gvt.QLTB.Models.NguoiMuon;
-import vn.gvt.QLTB.Models.TrangThai;
 import vn.gvt.QLTB.Repositories.CTPhieuMuonRepository;
 import vn.gvt.QLTB.Repositories.TrangThaiRepository;
 
@@ -19,9 +17,6 @@ public class CTPhieuMuonServiceImpl implements CTPhieuMuonService {
 
     @Autowired
     private CTPhieuMuonRepository ctPhieuMuonRepository;
-    
-    @Autowired
-    private PhieuMuonService phieuMuonService;
     
     @Autowired
     private TrangThaiRepository trangThaiRepository;

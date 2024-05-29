@@ -1,18 +1,12 @@
 package vn.gvt.QLTB.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.gvt.QLTB.Models.ThietBi;
 import vn.gvt.QLTB.Repositories.ThietBiRepository;
 import vn.gvt.QLTB.Repositories.TrangThaiRepository;
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @Service
 public class ThietBiServiceImpl implements ThietBiService {

@@ -1,144 +1,180 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<!-- Google Fonts -->
-<link href="https://fonts.gstatic.com" rel="preconnect">
-<link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon" />
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet">
-<link th:href="@{/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
-<link th:href="@{/assets/dist/css/login.css}" rel="stylesheet">
-<script th:src="@{https://kit.fontawesome.com/56d73d7086.js}"
-	crossorigin="anonymous"></script>
-</head>
-<body>
-	<div th:replace="~{fragments/header :: header}"></div>
-	<div th:replace="~{fragments/slidebar :: slidebar}"></div>
+  <head>
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+    <link th:href="@{/assets/dist/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/assets/dist/css/login.css}" rel="stylesheet" />
+    <script
+      th:src="@{https://kit.fontawesome.com/56d73d7086.js}"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div th:replace="~{fragments/slidebar :: slidebar}"></div>
 
-	<section class="home">
-		<div class="text">Thiết Bị</div>
-		<div id="toast" th:class="${message}"></div>
+    <section class="home">
+      <div class="text">Thiết Bị</div>
+      <div id="toast" th:class="${message}"></div>
 
-		<div class="container">
-			<button class="btn-add btn btn-primary" style="margin-left: 9%;"
-				onclick="showBuyTicket()">
-				<i class="fa-solid fa-plus"></i> THÊM THIẾT BỊ
-			</button>
+      <div class="container">
+        <button
+          class="btn-add btn btn-primary"
+          style="margin-left: 9%"
+          onclick="showBuyTicket()"
+        >
+          <i class="fa-solid fa-plus"></i> THÊM THIẾT BỊ
+        </button>
 
-			<div th:object="${pagedListHolder}">
-				<a th:href="@{{/device_list(p=${pagedListHolder.page + 1})}}"
-					th:var="pagedLink">
-					<div class="tag-paging pt-2" style="margin-right: 9%;">
-						<div
-							th:replace="fragments/paging :: paging(pagedListHolder=${pagedListHolder}, pagedLink=${pagedLink})">
-						</div>
-					</div>
-				</a>
-			</div>
+        <div th:object="${pagedListHolder}">
+          <a
+            th:href="@{{/device_list(p=${pagedListHolder.page + 1})}}"
+            th:var="pagedLink"
+          >
+            <div class="tag-paging pt-2" style="margin-right: 9%">
+              <div
+                th:replace="fragments/paging :: paging(pagedListHolder=${pagedListHolder}, pagedLink=${pagedLink})"
+              ></div>
+            </div>
+          </a>
+        </div>
 
-			<div class="d-flex justify-content-center align-items-center mt-4">
-				<div class="row col-lg-10">
-					<table class="table" id="tb1">
-						<thead>
-							<tr>
-								<th scope="col">STT</th>
-								<th scope="col" style="display: none;">Mã TB</th>
-								<th scope="col">Tên TB</th>
-								<th scope="col">Loại TB</th>
-								<th scope="col">Phòng</th>
-								<th scope="col">Tình Trạng</th>
-								<th scope="col">Xóa</th>
-							</tr>
-						</thead>
-						<tbody>
+        <div class="d-flex justify-content-center align-items-center mt-4">
+          <div class="row col-lg-10">
+            <table class="table" id="tb1">
+              <thead>
+                <tr>
+                  <th scope="col">STT</th>
+                  <th scope="col" style="display: none">Mã TB</th>
+                  <th scope="col">Tên TB</th>
+                  <th scope="col">Loại TB</th>
+                  <th scope="col">Phòng</th>
+                  <th scope="col">Tình Trạng</th>
+                  <th scope="col">Xóa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="pd, i : ${pagedListHolder.pageList}">
+                  <td th:text="${i.index + 1}"></td>
+                  <td th:text="${pd.maThietBi}" style="display: none"></td>
+                  <td th:text="${pd.tenThietBi}"></td>
+                  <td th:text="${pd.loaiThietBi.tenLoai}"></td>
+                  <td th:text="${pd.phong?.maPhong ?: 'No Room'}"></td>
+                  <td th:text="${pd.tinhTrangTB.tinhTrang}"></td>
+                  <td>
+                    <a
+                      th:href="@{'device_list/' + ${pd.maThietBi} + '?linkDelete'}"
+                      th:class="${pd.phong == null ? '' : 'disable-delete'}"
+                      onclick="return confirm('Xác nhận xóa?') ? true : false;"
+                      style="padding: 5px 10px"
+                    >
+                      <i class="fa-solid fa-trash-can"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
-							<tr th:each="pd, i : ${pagedListHolder.pageList}">
-								<td th:text="${i.index + 1}"></td>
-								<td th:text="${pd.maThietBi}" style="display: none;"></td>
-								<td th:text="${pd.tenThietBi}"></td>
-								<td th:text="${pd.loaiThietBi.tenLoai}"></td>
-								<td th:text="${pd.phong?.maPhong ?: 'No Room'}"></td>
-								<td th:text="${pd.tinhTrangTB.tinhTrang}"></td>
-								<td><a
-									th:href="@{'device_list/' + ${pd.maThietBi} + '?linkDelete'}"
-									th:class="${pd.phong == null ? '' : 'disable-delete'}"
-									onclick="return confirm('Xác nhận xóa?') ? true : false;"
-									style="padding: 5px 10px;"> <i
-										class="fa-solid fa-trash-can"></i>
-								</a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
+      <div th:replace="~{fragments/footer :: footer}"></div>
+    </section>
 
-		<div th:replace="~{fragments/footer :: footer}"></div>
-	</section>
+    <div class="modal js-modal">
+      <div class="modal-container js-modal-contain" style="width: 620px">
+        <div class="modal-close js-modal-close">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <header class="modal-header">
+          <i class="ti-bag modal-heading-icon"></i> THÊM THIẾT BỊ
+        </header>
+        <div class="modal-body">
+          <form
+            th:action="@{/device_list}"
+            th:object="${CTThietBi}"
+            method="post"
+          >
+            <input type="hidden" th:field="*{phong.maPhong}" />
+            <label for="device-name" class="modal-lable">
+              <i class="ti-tag"></i>
+              Tên Thiết Bị
+            </label>
+            <input
+              id="device-name"
+              name="tenThietBi"
+              type="text"
+              class="modal-ip mb-2"
+              required
+              th:field="*{tenThietBi}"
+              pattern=".{1,30}"
+              oninvalid="setCustomValidity('Tên thiết bị không được để trống và không quá 30 ký tự')"
+              onchange="try{setCustomValidity('')}catch(e){}"
+            />
+            <label for="device-type" class="modal-lable">
+              <i class="ti-shopping-cart"></i> Loại Thiết Bị
+            </label>
+            <select
+              id="device-type"
+              th:field="*{loaiThietBi.maLoai}"
+              class="form-select-lg form-select mb-2"
+            >
+              <option
+                th:each="loaiTB : ${listLoaiTB}"
+                th:value="${loaiTB.maLoai}"
+                th:text="${loaiTB.tenLoai}"
+              ></option>
+            </select>
+            <label for="device-quantity" class="modal-lable">
+              <i class="ti-shopping-cart"></i> Số Lượng
+            </label>
+            <input
+              id="device-quantity"
+              name="soLuong"
+              type="text"
+              class="modal-ip mb-5"
+              required
+              pattern="[1-9][0-9]{0,1}"
+              oninvalid="setCustomValidity('Số lượng nằm trong khoảng từ 1 đến 99')"
+              onchange="try{setCustomValidity('')}catch(e){}"
+            />
 
-	<div class="modal js-modal">
-		<div class="modal-container js-modal-contain" style="width: 620px;">
-			<div class="modal-close js-modal-close">
-				<i class="fa-solid fa-xmark"></i>
-			</div>
-			<header class="modal-header">
-				<i class="ti-bag modal-heading-icon"></i> THÊM THIẾT BỊ
-			</header>
-			<div class="modal-body">
-				<form th:action="@{/device_list}" th:object="${CTThietBi}"
-					method="post">
-					<input type="hidden" th:field="*{phong.maPhong}" /> <label
-						for="device-name" class="modal-lable"> <i class="ti-tag"></i>
-						Tên Thiết Bị
-					</label> <input id="device-name" name="tenThietBi" type="text"
-						class="modal-ip mb-2" required th:field="*{tenThietBi}"
-						pattern=".{1,30}"
-						oninvalid="setCustomValidity('Tên thiết bị không được để trống và không quá 30 ký tự')"
-						onchange="try{setCustomValidity('')}catch(e){}"> <label
-						for="device-type" class="modal-lable"> <i
-						class="ti-shopping-cart"></i> Loại Thiết Bị
-					</label> <select id="device-type" th:field="*{loaiThietBi.maLoai}"
-						class="form-select-lg form-select mb-2">
-						<option th:each="loaiTB : ${listLoaiTB}"
-							th:value="${loaiTB.maLoai}" th:text="${loaiTB.tenLoai}"></option>
-					</select> <label for="device-quantity" class="modal-lable"> <i
-						class="ti-shopping-cart"></i> Số Lượng
-					</label> <input id="device-quantity" name="soLuong" type="text"
-						class="modal-ip mb-5" required pattern="[1-9][0-9]{0,1}"
-						oninvalid="setCustomValidity('Số lượng nằm trong khoảng từ 1 đến 99')"
-						onchange="try{setCustomValidity('')}catch(e){}">
+            <button id="btnsave" name="btnadd" class="btn-modal">THÊM</button>
+          </form>
+          <footer class="modal-footer"></footer>
+        </div>
+      </div>
+    </div>
 
-					<button id="btnsave" name="btnadd" class="btn-modal">THÊM</button>
-				</form>
-				<footer class="modal-footer"> </footer>
-			</div>
-		</div>
-	</div>
-
-	<script th:src="@{/assets/dist/js/script.js}"></script>
-	<script th:inline="javascript">
-	// toast thông báo
-    document.addEventListener('DOMContentLoaded', (event) => {
-    var tb = document.getElementById('toast');
-    var action = /*[[${action}]]*/ 'default';
-    var message = /*[[${message}]]*/ 'info';
-    if (tb.classList.contains('success')) {
-        showtoast({
-            title : "Thành công!",
-            message : action + " thành công.",
-            type : "success",
-            duration : 3000
-        });
-    } else if (tb.classList.contains('error')) {
-        showtoast({
-            title : "Lỗi!",
-            message : action + " thất bại.",
-            type : "error",
-            duration : 3000
-        });
-    }
-});
+    <script th:src="@{/assets/dist/js/script.js}"></script>
+    <script th:inline="javascript">
+      // toast thông báo
+      document.addEventListener("DOMContentLoaded", (event) => {
+        var tb = document.getElementById("toast");
+        var action = /*[[${action}]]*/ "default";
+        var message = /*[[${message}]]*/ "info";
+        if (tb.classList.contains("success")) {
+          showtoast({
+            title: "Thành công!",
+            message: action + " thành công.",
+            type: "success",
+            duration: 3000,
+          });
+        } else if (tb.classList.contains("error")) {
+          showtoast({
+            title: "Lỗi!",
+            message: action + " thất bại.",
+            type: "error",
+            duration: 3000,
+          });
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

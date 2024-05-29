@@ -1,17 +1,11 @@
 package vn.gvt.QLTB.Controller;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,17 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import jakarta.transaction.Transactional;
-import vn.gvt.QLTB.Models.Lop;
 import vn.gvt.QLTB.Models.NguoiMuon;
 import vn.gvt.QLTB.Models.PhieuMuon;
 import vn.gvt.QLTB.Models.ThietBi;
-import vn.gvt.QLTB.Models.Phong;
 import vn.gvt.QLTB.Services.CTPhieuMuonService;
 import vn.gvt.QLTB.Services.LoaiThietBiService;
 import vn.gvt.QLTB.Services.LopService;
@@ -67,6 +55,7 @@ public class HomeController {
 		this.nhanVienService = nhanVienService;
 	}
 
+	// Lấy thời gian hiện tại
 	@ModelAttribute("timeNow")
 	public String getnow() {
 		LocalDateTime time = LocalDateTime.now();
@@ -75,6 +64,7 @@ public class HomeController {
 		return formatDateTime;
 	}
 
+	// Lấy thời gian mặc định cho trường hạn trả
 	@ModelAttribute("timeDefault")
 	public String getHanTra() {
 		LocalDateTime time = LocalDateTime.now();
@@ -89,6 +79,7 @@ public class HomeController {
 		return formatDateTime;
 	}
 
+	// Hiển thị trang chủ
 	@GetMapping("/home")
 	public String showphong(ModelMap model, HttpSession ss) {
 		model.addAttribute("navigation", "home");
@@ -106,6 +97,7 @@ public class HomeController {
 		return "room";
 	}
 
+	// Hiển thị thông tin phòng
 	@GetMapping(value = "/home/room/{id}", params = "linkPhong")
 	public String Phong(ModelMap model, @PathVariable("id") String id, HttpSession ss) {
 		model.addAttribute("permission", ss.getAttribute("permission"));
@@ -122,6 +114,7 @@ public class HomeController {
 		return "room";
 	}
 
+	// Lưu thông tin phiếu mượn
 	@RequestMapping(value = "/home/room/{id}", params = "btnsave", method = RequestMethod.POST)
 	public String savePM(@PathVariable("id") String id, HttpServletRequest sr, ModelMap model, HttpSession ss) {
 		model.addAttribute("permission", ss.getAttribute("permission"));
@@ -147,6 +140,7 @@ public class HomeController {
 		return "room";
 	}
 
+	// Lưu thông tin phiếu mượn và chi tiết phiếu mượn
 	@RequestMapping(value = "/home/room/{id}", params = "savebill", method = RequestMethod.POST)
 	public String savePMAndCT(@PathVariable("id") String id, HttpServletRequest rq, ModelMap model, HttpSession ss) {
 		model.addAttribute("permission", ss.getAttribute("permission"));
@@ -165,7 +159,6 @@ public class HomeController {
 				model.addAttribute("statusmodal3", "open");
 				tbiMuon.clear();
 				for (ThietBi tb : thietBiService.getListChoPhepMuon(id)) {
-
 					String maThietBiAsString = tb.getMaThietBi().toString();
 					if (rq.getParameter(maThietBiAsString) != null) {
 						tbiMuon.add(tb);
@@ -176,26 +169,21 @@ public class HomeController {
 				NguoiMuon nm = new NguoiMuon(maNguoiMuon, tenNguoiMuon, email);
 				nguoiMuonService.addNM(nm);
 			}
-
 		} else {
 			tbiMuon.clear();
 			for (ThietBi tb : thietBiService.getListChoPhepMuon(id)) {
-
 				String maThietBiAsString = tb.getMaThietBi().toString();
 				if (rq.getParameter(maThietBiAsString) != null) {
 					tbiMuon.add(tb);
 				}
 			}
-
 		}
 		Integer tmp = 0;
-
 		try {
 			phieuMuonService.save(myPM);
 			tmp = ctpmService.addPM_CT(myPM, tbiMuon, nguoiMuonService.getNMByID(maNguoiMuon));
 		} catch (Exception e) {
 		}
-
 		if (tmp != 0) {
 			model.addAttribute("typeToast", "success");
 			model.addAttribute("action", "Mượn Thiết Bị");
@@ -207,6 +195,7 @@ public class HomeController {
 		return "room";
 	}
 
+	// Hiển thị thông tin phiếu mượn
 	@RequestMapping(value = "/home/bill{id}_{idPhong}", method = RequestMethod.GET)
 	public String savePM(@PathVariable("id") Integer id, @PathVariable("idPhong") String idPhong, ModelMap model,
 			HttpSession ss) {
@@ -229,6 +218,7 @@ public class HomeController {
 		return "room";
 	}
 
+	// Lưu thông tin phiếu mượn và chi tiết phiếu mượn
 	@RequestMapping(value = "/home/bill{id}_{idPhong}", params = "savebill", method = RequestMethod.POST)
 	public String test1(@PathVariable("id") Integer id, @PathVariable("idPhong") String idPhong, HttpServletRequest rq,
 			ModelMap model, HttpSession ss) {
@@ -247,7 +237,6 @@ public class HomeController {
 				model.addAttribute("statusmodal3", "open");
 				tbiMuon.clear();
 				for (ThietBi tb : thietBiService.getListChoPhepMuon(idPhong)) {
-
 					String maThietBiAsString = tb.getMaThietBi().toString();
 					if (rq.getParameter(maThietBiAsString) != null) {
 						tbiMuon.add(tb);
@@ -258,23 +247,19 @@ public class HomeController {
 				NguoiMuon nm = new NguoiMuon(maNguoiMuon, tenNguoiMuon, email);
 				nguoiMuonService.addNM(nm);
 			}
-
 		} else {
 			tbiMuon.clear();
 			for (ThietBi tb : thietBiService.getListChoPhepMuon(idPhong)) {
-
 				String maThietBiAsString = tb.getMaThietBi().toString();
 				if (rq.getParameter(maThietBiAsString) != null) {
 					tbiMuon.add(tb);
 				}
 			}
-
 		}
 		Integer tmp = 0;
 		try {
 			tmp = ctpmService.addCTPM(phieuMuonService.getPhieuMuonByID(id), tbiMuon,
 					nguoiMuonService.getNMByID(maNguoiMuon));
-			System.out.println("tmp: " + tmp);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -287,15 +272,16 @@ public class HomeController {
 		}
 		model.addAttribute("dsPhong", phongService.getPhong());
 		return "room";
-
 	}
 
+	// Chuyển hướng yêu cầu GET đến trang thanh toán
 	@GetMapping(value = "/home/pay{idPM}_{idTB}_{idCTPM}_{idPhong}")
 	public String redirectGetRequestPay(@PathVariable("idPM") Integer idPM, @PathVariable("idTB") Integer idTB,
 			@PathVariable("idCTPM") Integer idCTPM, @PathVariable("idPhong") String idPhong) {
 		return "redirect:/home/bill" + idPM + "_" + idPhong;
 	}
 
+	// Thực hiện thanh toán và trả thiết bị
 	@PostMapping(value = "/home/pay{idPM}_{idTB}_{idCTPM}_{idPhong}")
 	public String traPhieuMuon(@PathVariable("idPM") Integer idPM, @PathVariable("idTB") Integer idTB,
 			@PathVariable("idCTPM") Integer idCTPM, @PathVariable("idPhong") String idPhong, ModelMap model,
@@ -310,16 +296,18 @@ public class HomeController {
 		return "redirect:/home/bill" + idPM + "_" + idPhong;
 	}
 
+	// Chuyển hướng yêu cầu GET đến trang báo mất thiết bị
 	@GetMapping(value = "/home/loss{idPM}_{idTB}_{idPhong}")
 	public String redirectGetRequestLoss(@PathVariable("idPM") Integer idPM, @PathVariable("idTB") Integer idTB,
 			@PathVariable("idPhong") String idPhong) {
 		return "redirect:/home/bill" + idPM + "_" + idPhong;
 	}
 
+	// Báo mất thiết bị
 	@PostMapping(value = "/home/loss{idPM}_{idTB}_{idPhong}")
 	public String baoMatTB(@PathVariable("idPM") Integer idPM, @PathVariable("idTB") Integer idTB, ModelMap model,
 			@PathVariable("idPhong") String idPhong, HttpSession ss) {
-		ss.setAttribute("action", "Báo Mât Thiết Bị");
+		ss.setAttribute("action", "Báo Mất Thiết Bị");
 		if (ctpmService.baoMatTB(idPM, idTB) != 0) {
 			ss.setAttribute("typeToast", "success");
 		} else {

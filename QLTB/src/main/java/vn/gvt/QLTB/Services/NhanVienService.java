@@ -12,4 +12,6 @@ public interface NhanVienService {
 	public Integer addNV(NhanVien nhanvien);
 	
 	public void resetPassword(String maNV);
+	
+	public NhanVien editNhanVien(NhanVien nv);
 }

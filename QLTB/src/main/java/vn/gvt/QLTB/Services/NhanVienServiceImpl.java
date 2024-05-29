@@ -36,6 +36,19 @@ public class NhanVienServiceImpl implements NhanVienService{
     }
 	
 	@Override
+	public NhanVien editNhanVien(NhanVien nv) {
+        NhanVien existingNv = nhanVienRepository.findById(nv.getMaNV()).orElse(null);
+        if (existingNv != null) {
+            existingNv.setHoTenNV(nv.getHoTenNV());
+            existingNv.setEmail(nv.getEmail());
+            existingNv.setCmnd(nv.getCmnd());
+            existingNv.setSdt(nv.getSdt());
+            return nhanVienRepository.save(existingNv);
+        }
+        return null;
+    }
+	
+	@Override
 	public void resetPassword(String maNV) {
         nhanVienRepository.spResetPass(maNV);
     }

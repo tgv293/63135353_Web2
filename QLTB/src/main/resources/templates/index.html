@@ -1,110 +1,151 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng Nhập</title>
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon" />
+    <link th:href="@{/assets/dist/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/assets/dist/css/login.css}" rel="stylesheet" />
 
-<head>
-<meta charset="UTF-8">
-<title>Đăng Nhập</title>
-<link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon" />
-<link th:href="@{/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
-<link th:href="@{/assets/dist/css/login.css}" rel="stylesheet">
+    <link
+      th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}"
+      rel="stylesheet"
+    />
+    <script
+      th:src="@{https://kit.fontawesome.com/56d73d7086.js}"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" th:href="@{https://www.google.com}" />
+    <link rel="preconnect" th:href="@{https://www.gstatic.com}" crossorigin />
+    <script
+      th:src="@{https://www.google.com/recaptcha/api.js}"
+      async
+      defer
+    ></script>
+  </head>
 
-<link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}"
-    rel="stylesheet">
-<script th:src="@{https://kit.fontawesome.com/56d73d7086.js}"
-    crossorigin="anonymous"></script>
-<link rel="preconnect" th:href="@{https://www.google.com}">
-<link rel="preconnect" th:href="@{https://www.gstatic.com}" crossorigin>
-<script th:src="@{https://www.google.com/recaptcha/api.js}" async defer></script>
-</head>
+  <body class="login_bg">
+    <div class="container">
+      <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+        <div class="card card0 border-0">
+          <div class="row d-flex">
+            <div class="col-lg-7">
+              <div class="card1">
+                <div class="row logo-content mt-4" style="margin-left: 38px">
+                  <img src="/images/logo.png" class="logo" />
+                  <div class="logo-text">
+                    <h5>THCS Nguyễn Hiền</h5>
+                    <h5>Thành phố Nha Trang, tỉnh Khánh Hòa</h5>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row px-3 img-bk justify-content-center mt-4 mb-5 border-line"
+              >
+                <img src="/images/login-pic.png" class="image" />
+              </div>
+            </div>
 
-<body class="login_bg">
-	<div class="container">
-		<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
-			<div class="card card0 border-0">
-				<div class="row d-flex">
-					<div class="col-lg-7">
-						<div class="card1">
-							<div class="row logo-content mt-4 " style="margin-left: 38px">
-								<img src="/images/logo.png" class="logo">
-								<div class="logo-text">
-									<h5>THCS Nguyễn Hiền</h5>
-									<h5>Thành phố Nha Trang, tỉnh Khánh Hòa</h5>
-								</div>
-							</div>
-						</div>
-						<div
-							class="row px-3 img-bk justify-content-center mt-4 mb-5 border-line">
-							<img src="/images/login-pic.png" class="image">
-						</div>
-					</div>
+            <div class="col-lg-5">
+              <div class="card2 card border-0 px-4 py-4">
+                <div class="row mb-1 px-3">
+                  <div class="logo-sign-in">
+                    <img src="/images/login_user.png" />
+                  </div>
+                </div>
+                <div
+                  class="d-flex align-items-center justify-content-center mb-4"
+                >
+                  <div class="line"></div>
+                  <small class="or text-center">Sign In</small>
+                  <div class="line"></div>
+                </div>
+                <form
+                  id="login-form"
+                  th:action="@{/}"
+                  method="post"
+                  th:object="${taiKhoan}"
+                >
+                  <div class="row px-3">
+                    <label class="mb-2" for="username">
+                      <strong class="mb-0 text-sm">Tên Đăng Nhập</strong>
+                    </label>
+                    <input
+                      type="text"
+                      th:field="*{id}"
+                      id="username"
+                      placeholder="Nhập Username"
+                      name="username"
+                      autocomplete="username"
+                    />
+                    <h6
+                      th:if="${#fields.hasErrors('id')}"
+                      th:errors="*{id}"
+                      class="text-sm errors"
+                    ></h6>
+                  </div>
+                  <div class="row px-3">
+                    <label class="mb-2" for="password">
+                      <strong class="mb-0 text-sm">Mật Khẩu</strong>
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      th:field="*{pass}"
+                      placeholder="Nhập Password"
+                      name="password"
+                      autocomplete="current-password"
+                    />
+                    <h6
+                      th:if="${#fields.hasErrors('pass')}"
+                      th:errors="*{pass}"
+                      class="text-sm errors"
+                    ></h6>
+                  </div>
 
-					<div class="col-lg-5">
-						<div class="card2 card border-0 px-4 py-4">
-							<div class="row mb-1 px-3">
-								<div class="logo-sign-in">
-									<img src="/images/login_user.png">
-								</div>
-							</div>
-							<div
-								class="d-flex align-items-center justify-content-center mb-4">
-								<div class="line"></div>
-								<small class="or text-center">Sign In</small>
-								<div class="line"></div>
-							</div>
-							<form id="login-form" th:action="@{/}" method="post"
-								th:object="${taiKhoan}">
-								<div class="row px-3">
-									<label class="mb-2" for="username"> <strong
-										class="mb-0 text-sm">Tên Đăng Nhập</strong>
-									</label> <input type="text" th:field="*{id}" id="username"
-										placeholder="Nhập Username" name="username"
-										autocomplete="username" />
-									<h6 th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
-										class="text-sm errors"></h6>
-								</div>
-								<div class="row px-3">
-									<label class="mb-2" for="password"> <strong
-										class="mb-0 text-sm">Mật Khẩu</strong>
-									</label> <input type="password" id="password" th:field="*{pass}"
-										placeholder="Nhập Password" name="password"
-										autocomplete="current-password" />
-									<h6 th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}"
-										class="text-sm errors"></h6>
-								</div>
+                  <div
+                    class="g-recaptcha d-flex justify-content-center"
+                    data-sitekey="6LcHAeYpAAAAAJZHIbzD3gQiJHbXCnQ_OwLIgg9a"
+                  ></div>
 
-								<div class="g-recaptcha d-flex justify-content-center"
-									data-sitekey="6LcHAeYpAAAAAJZHIbzD3gQiJHbXCnQ_OwLIgg9a"></div>
-
-								<div class="row px-3 mb-1">
-									<h6 class="text-sm errors" th:text="${tb}"></h6>
-								</div>
-								<div class="row mb-3 px-3 d-flex justify-content-center">
-									<button type="submit" class="btn-hover color-1 text-center">Login</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="bg-blue py-4">
-					<div class="row px-3">
-						<small class="ms-4 ms-sm-5 mb-2 w-auto"
-							style="font-size: 80%; font-weight: 400;">Copyright
-							&copy; 2024. All rights reserved.</small>
-						<div class="social-contact ms-4 ms-sm-auto w-auto">
-							<a href="https://gvt293.id.vn/"><i
-								class="fa-solid fa-globe me-4 "></i></a> <a
-								href="https://www.facebook.com/profile.php?id=100076166670450"><i
-								class="fa-brands fa-facebook me-4"></i></a> <a
-								href="tel:0258 3871 122"><i class="fa-solid fa-phone me-4"></i></a>
-							<a href="mailto:c2nhien.nt@khanhhoa.edu.vn"><i
-								class="fa-solid fa-envelope me-4"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-</body>
-
+                  <div class="row px-3 mb-1">
+                    <h6 class="text-sm errors" th:text="${tb}"></h6>
+                  </div>
+                  <div class="row mb-3 px-3 d-flex justify-content-center">
+                    <button type="submit" class="btn-hover color-1 text-center">
+                      Login
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="bg-blue py-4">
+            <div class="row px-3">
+              <small
+                class="ms-4 ms-sm-5 mb-2 w-auto"
+                style="font-size: 80%; font-weight: 400"
+                >Copyright &copy; 2024. All rights reserved.</small
+              >
+              <div class="social-contact ms-4 ms-sm-auto w-auto">
+                <a href="https://gvt293.id.vn/"
+                  ><i class="fa-solid fa-globe me-4"></i
+                ></a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=100076166670450"
+                  ><i class="fa-brands fa-facebook me-4"></i
+                ></a>
+                <a href="tel:0258 3871 122"
+                  ><i class="fa-solid fa-phone me-4"></i
+                ></a>
+                <a href="mailto:c2nhien.nt@khanhhoa.edu.vn"
+                  ><i class="fa-solid fa-envelope me-4"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

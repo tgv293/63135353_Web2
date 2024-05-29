@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import vn.gvt.QLTB.Models.TaiKhoan;
-import vn.gvt.QLTB.Repositories.TaiKhoanRepository;
 
 @Service
 public class LoginServiceImpl implements LoginService {

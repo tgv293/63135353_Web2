@@ -48,69 +48,74 @@ public class RoomController {
 		this.trangThaiService = trangThaiService;
 	}
 	
+	// Thêm phòng
 	@RequestMapping("/room/add")
-	public String a(ModelMap model, @ModelAttribute("Phong") Phong phong, @RequestParam("idroom") String idroom, HttpSession ss ) {
-	    Phong room= new Phong();
-	    room.setMaPhong(idroom);
-	    room.setTrangThai(trangThaiService.findByMaTinhTrang(1));
-	    if (phongService.addRoom(room) != null) {
-	        ss.setAttribute("message","success");
-	        ss.setAttribute("action","Thêm Phòng");
-	    }
-	    else {
-	        ss.setAttribute("message","error");
-	        ss.setAttribute("action","Thêm Phòng");
-	    }
-	    model.addAttribute("listPhong", phongService.getPhong());
-	    model.addAttribute("listLoaiTB", loaiTBService.getAllLoaiTB());
-	    return "redirect:/device_detail";
+	public String addRoom(ModelMap model, @ModelAttribute("Phong") Phong phong, @RequestParam("idroom") String idroom, HttpSession ss ) {
+		Phong room= new Phong();
+		room.setMaPhong(idroom);
+		room.setTrangThai(trangThaiService.findByMaTinhTrang(1));
+		if (phongService.addRoom(room) != null) {
+			ss.setAttribute("message","success");
+			ss.setAttribute("action","Thêm Phòng");
+		}
+		else {
+			ss.setAttribute("message","error");
+			ss.setAttribute("action","Thêm Phòng");
+		}
+		model.addAttribute("listPhong", phongService.getPhong());
+		model.addAttribute("listLoaiTB", loaiTBService.getAllLoaiTB());
+		return "redirect:/device_detail";
 	}
 	
+	// Gọi stored procedure bảo trì phòng
 	@RequestMapping("/room/maintenance_id={id}")
-    public String a(@PathVariable("id") String id, Model model, @ModelAttribute("Phong") Phong phong) {
-        phongService.callSpBaoTriPhong(id);
-        model.addAttribute("listPhong", phongService.getPhong());
-        return "redirect:/device_detail";
-    }
-	
-	@RequestMapping("/room/maintenance_id={id}_completed")
-    public String hoanTatBaoTri(@PathVariable("id") String id, Model model, @ModelAttribute("Phong") Phong phong) {
-        phongService.callSpHoanThanhBaoTriPhong(id);
-        model.addAttribute("listPhong", phongService.getPhong());
-        return "redirect:/device_detail";
-    }
-	
-	@RequestMapping(value = "/room/delete_id={id}")
-	public String delete_SP(ModelMap model, @ModelAttribute("Phong") Phong phong, @PathVariable("id") String id, HttpSession ss) {
-	    int tmp = phongService.deletePhong(id);
-	    ss.setAttribute("action", "Xóa Phòng");
-	    if (tmp != 0) {
-	        ss.setAttribute("message", "success");
-	    } else {
-	        ss.setAttribute("message", "error");
-	    }
-	    model.addAttribute("listPhong", phongService.getPhong());
-	    return "redirect:/device_detail";
+	public String callMaintenanceProcedure(@PathVariable("id") String id, Model model, @ModelAttribute("Phong") Phong phong) {
+		phongService.callSpBaoTriPhong(id);
+		model.addAttribute("listPhong", phongService.getPhong());
+		return "redirect:/device_detail";
 	}
 	
+	// Gọi stored procedure hoàn tất bảo trì phòng
+	@RequestMapping("/room/maintenance_id={id}_completed")
+	public String completeMaintenanceProcedure(@PathVariable("id") String id, Model model, @ModelAttribute("Phong") Phong phong) {
+		phongService.callSpHoanThanhBaoTriPhong(id);
+		model.addAttribute("listPhong", phongService.getPhong());
+		return "redirect:/device_detail";
+	}
+	
+	// Xóa phòng
+	@RequestMapping(value = "/room/delete_id={id}")
+	public String deleteRoom(ModelMap model, @ModelAttribute("Phong") Phong phong, @PathVariable("id") String id, HttpSession ss) {
+		int tmp = phongService.deletePhong(id);
+		ss.setAttribute("action", "Xóa Phòng");
+		if (tmp != 0) {
+			ss.setAttribute("message", "success");
+		} else {
+			ss.setAttribute("message", "error");
+		}
+		model.addAttribute("listPhong", phongService.getPhong());
+		return "redirect:/device_detail";
+	}
+	
+	// Tạo báo cáo
 	@GetMapping("/room/{id}/report")
 	public void generateReport(@PathVariable("id") String id, HttpServletResponse response) {
-	    try {
-	        Phong phongFromService = phongService.getPhongByID(id);
-	        List<ThietBi> dataSource = new ArrayList<>(phongFromService.getDstb());
-	        JRDataSource jrDataSource = new JRBeanCollectionDataSource(dataSource);
-	        InputStream input = new ClassPathResource("/report/thongkethietbitheophong.jrxml").getInputStream();
-	        JasperReport jasperReport = JasperCompileManager.compileReport(input);
-	        Map<String, Object> parameters = new HashMap<>();
-	        parameters.put("phong", id);
-	        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jrDataSource);
-	        response.setContentType(MediaType.APPLICATION_PDF_VALUE);
-	        JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
-	        response.getOutputStream().flush();
-	        response.getOutputStream().close();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		try {
+			Phong phongFromService = phongService.getPhongByID(id);
+			List<ThietBi> dataSource = new ArrayList<>(phongFromService.getDstb());
+			JRDataSource jrDataSource = new JRBeanCollectionDataSource(dataSource);
+			InputStream input = new ClassPathResource("/report/thongkethietbitheophong.jrxml").getInputStream();
+			JasperReport jasperReport = JasperCompileManager.compileReport(input);
+			Map<String, Object> parameters = new HashMap<>();
+			parameters.put("phong", id);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jrDataSource);
+			response.setContentType(MediaType.APPLICATION_PDF_VALUE);
+			JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

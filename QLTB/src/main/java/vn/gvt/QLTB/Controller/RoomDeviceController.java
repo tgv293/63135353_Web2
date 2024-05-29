@@ -36,74 +36,81 @@ public class RoomDeviceController {
 		this.thietBiService = thietBiService;
 	}
 	
+	// Lấy danh sách phòng
 	@ModelAttribute("listPhong")
 	public List<Phong> getPhong() {
-	    return phongService.getPhong();
+		return phongService.getPhong();
 	}
 	
+	// Lấy danh sách loại thiết bị chưa có thiết bị
 	@ModelAttribute("listTypeTB")
 	public List<LoaiThietBi> getTypeTB() {
-	    return loaiThietBiService.getDistinctByThietBiIsNull();
+		return loaiThietBiService.getDistinctByThietBiIsNull();
 	}
 	
+	// Trang chủ
 	@GetMapping(value = "/device_detail")
 	public String index(Model model, HttpServletRequest request, HttpSession session, @ModelAttribute("Phong") Phong phg) {
 		model.addAttribute("navigation", "device_detail");
-	    model.addAttribute("listPhong", phongService.getPhong());
-	    model.addAttribute("listTB", thietBiService.getThietBiWithNullPhong());
+		model.addAttribute("listPhong", phongService.getPhong());
+		model.addAttribute("listTB", thietBiService.getThietBiWithNullPhong());
 		model.addAttribute("permission", session.getAttribute("permission"));
 		model.addAttribute("info", session.getAttribute("info"));
 		model.addAttribute("acc", session.getAttribute("acc"));
-	    
-	    // Toast
+		
+		// Toast
 		model.addAttribute("action", session.getAttribute("action"));
 		model.addAttribute("message", session.getAttribute("message"));
 		session.removeAttribute("action");
 		session.removeAttribute("message");
-	    return "device_detail";
+		return "device_detail";
 	}
 	
+	// Thêm thiết bị vào phòng
 	@RequestMapping(value = "/device_detail", params = "btnadd", method = RequestMethod.POST)
 	public String addsp(ModelMap model, HttpServletRequest rq, @ModelAttribute("Phong") Phong phg, HttpSession ss) {
-	    for (ThietBi tb : thietBiService.getThietBiWithNullPhong()) {
-	    	String maThietBiAsString = tb.getMaThietBi().toString();
+		for (ThietBi tb : thietBiService.getThietBiWithNullPhong()) {
+			String maThietBiAsString = tb.getMaThietBi().toString();
 
-	        if (rq.getParameter(maThietBiAsString) != null) {
-	            int tmp = thietBiService.addTBToRoom(phg.getMaPhong(), tb.getMaThietBi());
-	            
-	            ss.setAttribute("action", "Thêm " + tb.getTenThietBi());
-	    	    if (tmp != 0) {
-	    	        ss.setAttribute("message", "success");
-	    	    } else {
-	    	        ss.setAttribute("message", "error");
-	    	    }
-	        }
-	    }
+			if (rq.getParameter(maThietBiAsString) != null) {
+				int tmp = thietBiService.addTBToRoom(phg.getMaPhong(), tb.getMaThietBi());
+				
+				ss.setAttribute("action", "Thêm " + tb.getTenThietBi());
+				if (tmp != 0) {
+					ss.setAttribute("message", "success");
+				} else {
+					ss.setAttribute("message", "error");
+				}
+			}
+		}
 
-	    model.addAttribute("listPhong", phongService.getPhong());
-	    model.addAttribute("listTB", thietBiService.getThietBiWithNullPhong());
-	    return "redirect:/device_detail";
+		model.addAttribute("listPhong", phongService.getPhong());
+		model.addAttribute("listTB", thietBiService.getThietBiWithNullPhong());
+		return "redirect:/device_detail";
 	}
 	
+	// Hoàn tất bảo trì thiết bị
 	@RequestMapping("/device_detail/repair_device_id={id}")
 	public String hoanTatBaoTri(@PathVariable("id") Integer id, ModelMap model, @ModelAttribute("CTThietBi") ThietBi CTThietBi) {
-	    thietBiService.callSpBaoTriThietBi(id);
-	    model.addAttribute("listPhong", phongService.getPhong());
-	    return "redirect:/device_detail";
+		thietBiService.callSpBaoTriThietBi(id);
+		model.addAttribute("listPhong", phongService.getPhong());
+		return "redirect:/device_detail";
 	}
 	
+	// Báo mất thiết bị
 	@RequestMapping("/device_detail/lost_device_id={id}")
 	public String baoMatThietBi(@PathVariable("id") Integer id, ModelMap model, @ModelAttribute("CTThietBi") ThietBi CTThietBi) {
-	    thietBiService.callSpBaoMatThietBi(id);
-	    model.addAttribute("listPhong", phongService.getPhong());
-	    return "redirect:/device_detail";
+		thietBiService.callSpBaoMatThietBi(id);
+		model.addAttribute("listPhong", phongService.getPhong());
+		return "redirect:/device_detail";
 	}
 	
+	// Hoàn thành bảo trì thiết bị
 	@RequestMapping("/device_detail/cpl_repair_device_id={id}")
 	public String hoanthanhBTThietBi(@PathVariable("id") Integer id, ModelMap model, @ModelAttribute("CTThietBi") ThietBi CTThietBi) {
-	    thietBiService.callSpHoanThanhBTThietBi(id);
-	    model.addAttribute("listPhong", phongService.getPhong());
-	    return "redirect:/device_detail";
+		thietBiService.callSpHoanThanhBTThietBi(id);
+		model.addAttribute("listPhong", phongService.getPhong());
+		return "redirect:/device_detail";
 	}
 
 }

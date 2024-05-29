@@ -1,55 +1,86 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<style>
-.page-item.disabled .page-link {
-    background-color: #efefef
-}
+  <head>
+    <style>
+      .page-item.disabled .page-link {
+        background-color: #efefef;
+      }
 
-.pagination {
-    padding-left: 28px;
-    margin-bottom: 0;
-}
-</style>
-</head>
-<body>
-    <div th:fragment="paging(pagedListHolder, pagedLink)"
-        th:if="${pagedListHolder.getPageCount() > 1}">
-        <ul class="pagination">
-            <li class="page-item"
-                th:classappend="${pagedListHolder.isFirstPage()} ? 'disabled'"><a
-                class="page-link"
-                th:href="${#strings.replace(pagedLink, '{page}', pagedListHolder.getPage() - 1)}"><</a>
-            </li>
-            <li class="page-item" th:if="${pagedListHolder.getFirstLinkedPage() > 0}">
-                <a class="page-link"
-                th:href="${#strings.replace(pagedLink, '{page}', '0')}">1</a>
-            </li>
-            <li class="page-item" th:if="${pagedListHolder.getFirstLinkedPage() > 1}">
-                <span class="page-link pagingDots">...</span>
-            </li>
-            <li class="page-item"
-                th:each="i : ${#numbers.sequence(pagedListHolder.getFirstLinkedPage(), pagedListHolder.getLastLinkedPage())}">
-                <a class="page-link"
-                th:href="${pagedListHolder.getPage() == i} ? null : ${#strings.replace(pagedLink, '{page}', i)}"
-                th:text="${i+1}"></a>
-            </li>
-            <li class="page-item"
-                th:if="${pagedListHolder.getLastLinkedPage() < pagedListHolder.getPageCount() - 2}">
-                <span class="page-link pagingDots">...</span>
-            </li>
-            <li class="page-item"
-                th:if="${pagedListHolder.getLastLinkedPage() < pagedListHolder.getPageCount() - 1}">
-                <a class="page-link"
-                th:href="${#strings.replace(pagedLink, '{page}', pagedListHolder.getPageCount() - 1)}"
-                th:text="${pagedListHolder.getPageCount()}"></a>
-            </li>
-            <li class="page-item"
-                th:classappend="${pagedListHolder.isLastPage()} ? 'disabled'"><a
-                class="page-link"
-                th:href="${#strings.replace(pagedLink, '{page}', pagedListHolder.getPage() + 1)}">></a>
-            </li>
-        </ul>
+      .pagination {
+        padding-left: 28px;
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      th:fragment="paging(pagedListHolder, pagedLink)"
+      th:if="${pagedListHolder.getPageCount() > 1}"
+    >
+      <ul class="pagination">
+        <li
+          class="page-item"
+          th:classappend="${pagedListHolder.isFirstPage()} ? 'disabled'"
+        >
+          <a
+            class="page-link"
+            th:href="${#strings.replace(pagedLink, '{page}', pagedListHolder.getPage() - 1)}"
+            ><</a
+          >
+        </li>
+        <li
+          class="page-item"
+          th:if="${pagedListHolder.getFirstLinkedPage() > 0}"
+        >
+          <a
+            class="page-link"
+            th:href="${#strings.replace(pagedLink, '{page}', '0')}"
+            >1</a
+          >
+        </li>
+        <li
+          class="page-item"
+          th:if="${pagedListHolder.getFirstLinkedPage() > 1}"
+        >
+          <span class="page-link pagingDots">...</span>
+        </li>
+        <li
+          class="page-item"
+          th:each="i : ${#numbers.sequence(pagedListHolder.getFirstLinkedPage(), pagedListHolder.getLastLinkedPage())}"
+        >
+          <a
+            class="page-link"
+            th:href="${pagedListHolder.getPage() == i} ? null : ${#strings.replace(pagedLink, '{page}', i)}"
+            th:text="${i+1}"
+          ></a>
+        </li>
+        <li
+          class="page-item"
+          th:if="${pagedListHolder.getLastLinkedPage() < pagedListHolder.getPageCount() - 2}"
+        >
+          <span class="page-link pagingDots">...</span>
+        </li>
+        <li
+          class="page-item"
+          th:if="${pagedListHolder.getLastLinkedPage() < pagedListHolder.getPageCount() - 1}"
+        >
+          <a
+            class="page-link"
+            th:href="${#strings.replace(pagedLink, '{page}', pagedListHolder.getPageCount() - 1)}"
+            th:text="${pagedListHolder.getPageCount()}"
+          ></a>
+        </li>
+        <li
+          class="page-item"
+          th:classappend="${pagedListHolder.isLastPage()} ? 'disabled'"
+        >
+          <a
+            class="page-link"
+            th:href="${#strings.replace(pagedLink, '{page}', pagedListHolder.getPage() + 1)}"
+            >></a
+          >
+        </li>
+      </ul>
     </div>
-</body>
+  </body>
 </html>

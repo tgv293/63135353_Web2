@@ -28,6 +28,7 @@ public class AdminController {
 		this.taiKhoanService = taiKhoanService;
 	}
 
+	// Handle GET request for "/administration"
 	@RequestMapping(value = "/administration", method = RequestMethod.GET)
 	public String index(ModelMap model, HttpSession ss, @ModelAttribute("NhanVien") NhanVien nv) {
 		ss.setAttribute("navigation", "administration");
@@ -35,86 +36,95 @@ public class AdminController {
 		model.addAttribute("permission", ss.getAttribute("permission"));
 		model.addAttribute("info", ss.getAttribute("info"));
 		model.addAttribute("acc", ss.getAttribute("acc"));
+
+		// Toast
+		model.addAttribute("action", ss.getAttribute("action"));
+		model.addAttribute("message", ss.getAttribute("message"));
+		ss.removeAttribute("action");
+		ss.removeAttribute("message");
 		return "admin";
 	}
 
+	// Handle POST request for "/administration" with "btnadd" parameter
 	@RequestMapping(value = "/administration", params = "btnadd", method = RequestMethod.POST)
 	public String add(ModelMap model, @ModelAttribute("NhanVien") NhanVien nv, HttpSession ss) {
 		ss.setAttribute("navigation", "administration");
 		model.addAttribute("permission", ss.getAttribute("permission"));
 		model.addAttribute("info", ss.getAttribute("info"));
 		model.addAttribute("acc", ss.getAttribute("acc"));
-	    if (taiKhoanService.checkTKByID(nv.getTaiKhoan().getId())) {
-	        model.addAttribute("message", "error");
-	        model.addAttribute("action", "Tài khoản đã được sủ dụng");
-
-	    } else {
-
-	        TaiKhoan tk = new TaiKhoan(nv.getTaiKhoan().getId());
-	        tk.setPass("1");
-	        tk.setTypeacc("user");
-	        nv.setTaiKhoan(tk);
-	        System.out.println(nv.getTaiKhoan().getId());
-	        System.out.println(nv);
-	        if (nhanVienService.addNV(nv) != 0) {
-	            model.addAttribute("message", "success");
-	            model.addAttribute("action", "Thêm nhân viên thành công");
-
-	        } else {
-	            model.addAttribute("message", "error");
-	            model.addAttribute("action", "Thêm nhân viên thất bại");
-
-	        }
-
-	    }
-
-	    model.addAttribute("listNV", nhanVienService.getListNV());
-	    return "admin";
+		if (taiKhoanService.checkTKByID(nv.getTaiKhoan().getId())) {
+			ss.setAttribute("message", "error");
+			ss.setAttribute("action", "Tài khoản đã được sủ dụng");
+		} else {
+			TaiKhoan tk = new TaiKhoan(nv.getTaiKhoan().getId());
+			tk.setPass("1");
+			tk.setTypeacc("user");
+			nv.setTaiKhoan(tk);
+			if (nhanVienService.addNV(nv) != 0) {
+				ss.setAttribute("message", "success");
+				ss.setAttribute("action", "Thêm nhân viên");
+			} else {
+				ss.setAttribute("message", "error");
+				ss.setAttribute("action", "Thêm nhân viên");
+			}
+		}
+		model.addAttribute("listNV", nhanVienService.getListNV());
+		return "redirect:/administration";
 	}
 
-	@RequestMapping(value = "/administration/resetpass_id={id}")
-	public String resetpass(@PathVariable("id") String id, ModelMap model, @ModelAttribute("NhanVien") NhanVien nv, HttpSession ss) {
-		nhanVienService.resetPassword(id);
+	// Handle POST request for "/administration" with "btn-save-edit" parameter
+	@RequestMapping(value = "/administration", params = "btn-save-edit", method = RequestMethod.POST)
+	public String edit(ModelMap model, @ModelAttribute("NhanVien") NhanVien nv, HttpSession ss) {
+		NhanVien updatedNv = nhanVienService.editNhanVien(nv);
+		if (updatedNv != null) {
+			ss.setAttribute("message", "success");
+			ss.setAttribute("action", "Sửa thông tin nhân viên");
+		} else {
+			ss.setAttribute("message", "error");
+			ss.setAttribute("action", "Sửa thông tin nhân viên");
+		}
+		ss.setAttribute("listNV", nhanVienService.getListNV());
+		return "redirect:/administration";
+	}
 
-		model.addAttribute("message", "success");
-		model.addAttribute("action", "Sửa mật khẩu thành công");
+	// Handle request for "/administration/resetpass_id={id}"
+	@RequestMapping(value = "/administration/resetpass_id={id}")
+	public String resetpass(@PathVariable("id") String id, ModelMap model, @ModelAttribute("NhanVien") NhanVien nv,
+			HttpSession ss) {
+		nhanVienService.resetPassword(id);
+		ss.setAttribute("message", "success");
+		ss.setAttribute("action", "Sửa mật khẩu");
 		model.addAttribute("listNV", nhanVienService.getListNV());
 		model.addAttribute("permission", ss.getAttribute("permission"));
 		model.addAttribute("info", ss.getAttribute("info"));
 		model.addAttribute("acc", ss.getAttribute("acc"));
-		return "admin";
+		return "redirect:/administration";
 	}
 
+	// Handle request for "/administration/changepass"
 	@RequestMapping(value = "/administration/changepass")
 	public String resetpass(HttpServletRequest rq, HttpSession ss, @RequestParam("currentpass") String currentpass,
 			@RequestParam("newpass") String newpass, @RequestParam("retypepass") String retypepass) {
-		if (taiKhoanService.checkLogin(ss.getAttribute("acc").toString(), currentpass.trim().toString()) == true) {
+		if (taiKhoanService.checkLogin(ss.getAttribute("acc").toString(), currentpass.trim().toString())) {
 			if (newpass.trim().toString().equals(retypepass.trim().toString())) {
-				Boolean tmp = taiKhoanService.changePassword(ss.getAttribute("acc").toString(), currentpass.trim().toString(),
-						newpass.trim().toString());
-				if (tmp == true) {
+				Boolean tmp = taiKhoanService.changePassword(ss.getAttribute("acc").toString(),
+						currentpass.trim().toString(), newpass.trim().toString());
+				if (tmp) {
 					return "redirect:/logout";
 				} else {
-					System.out.println("fail");
 					ss.setAttribute("typeToast", "error");
 					ss.setAttribute("action", "Đổi mật khẩu");
 					return "redirect:/home";
 				}
-
 			} else {
-				System.out.println("fail2");
 				ss.setAttribute("typeToast", "error");
 				ss.setAttribute("action", "Mật khẩu mới không khớp, ");
 				return "redirect:/home";
 			}
-
 		} else {
-			System.out.println("fail3");
 			ss.setAttribute("typeToast", "error");
 			ss.setAttribute("action", "Mật khẩu cũ bạn nhập không đúng, ");
 			return "redirect:/home";
-
 		}
 	}
-
 }

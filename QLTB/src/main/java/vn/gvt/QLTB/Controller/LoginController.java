@@ -9,16 +9,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.ParameterMode;
-import jakarta.persistence.StoredProcedureQuery;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.gvt.QLTB.Models.TaiKhoan;
 import vn.gvt.QLTB.Services.LoginService;
@@ -32,11 +26,12 @@ public class LoginController {
     private LoginService loginService;
     
     @Autowired
-	public LoginController(LoginService loginService, RecaptchaVerification RecaptchaVerification) {
-		this.loginService = loginService;
-		this.RecaptchaVerification = RecaptchaVerification;
-	}
+    public LoginController(LoginService loginService, RecaptchaVerification RecaptchaVerification) {
+        this.loginService = loginService;
+        this.RecaptchaVerification = RecaptchaVerification;
+    }
     
+    // Trang chủ
     @GetMapping("/")
     public String index(Model model, HttpSession session) {
         if (session.getAttribute("acc") != null) {
@@ -46,6 +41,7 @@ public class LoginController {
         return "index";
     }
 
+    // Xử lý đăng nhập
     @PostMapping("/")
     public String index2(@ModelAttribute("taiKhoan") TaiKhoan taiKhoan, Model model, BindingResult errors,
             @RequestParam("g-recaptcha-response") String gRepcaptchResponse, HttpSession session) throws IOException {
@@ -92,6 +88,7 @@ public class LoginController {
         }
     }
     
+    // Đăng xuất
     @GetMapping("/logout")
     public String Logout(HttpSession session, SessionStatus status) {
         status.setComplete();
