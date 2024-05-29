@@ -51,33 +51,38 @@ public class RoomDeviceController {
 		model.addAttribute("navigation", "device_detail");
 	    model.addAttribute("listPhong", phongService.getPhong());
 	    model.addAttribute("listTB", thietBiService.getThietBiWithNullPhong());
+		model.addAttribute("permission", session.getAttribute("permission"));
+		model.addAttribute("info", session.getAttribute("info"));
+		model.addAttribute("acc", session.getAttribute("acc"));
+	    
+	    // Toast
+		model.addAttribute("action", session.getAttribute("action"));
+		model.addAttribute("message", session.getAttribute("message"));
+		session.removeAttribute("action");
+		session.removeAttribute("message");
 	    return "device_detail";
 	}
 	
 	@RequestMapping(value = "/device_detail", params = "btnadd", method = RequestMethod.POST)
-	public String addsp(ModelMap model, HttpServletRequest rq, @ModelAttribute("Phong") Phong phg) {
-	    String p = "";
+	public String addsp(ModelMap model, HttpServletRequest rq, @ModelAttribute("Phong") Phong phg, HttpSession ss) {
 	    for (ThietBi tb : thietBiService.getThietBiWithNullPhong()) {
 	    	String maThietBiAsString = tb.getMaThietBi().toString();
+
 	        if (rq.getParameter(maThietBiAsString) != null) {
 	            int tmp = thietBiService.addTBToRoom(phg.getMaPhong(), tb.getMaThietBi());
-	            if (tmp != 0) {
-	                p += "showtoast({\r\n" + "	title : \"Thành công!\",\r\n" +
-	                        "	message :  '" + tb.getTenThietBi() +
-	                        " ! Thêm thiết bị thành công \"',\r\n" + "	type : \"success\",\r\n" +
-	                        "	duration : 3000\r\n" + "});";
-	            } else {
-	                p += "showtoast({\r\n" +
-	                        "	title : \"Thất bại!\",\r\n" + "	message :  '" + tb.getTenThietBi() +
-	                        " ! Thêm thiết bị thất bại \"',\r\n" + "	type : \"error\",\r\n" +
-	                        "	duration : 3000\r\n" + "});";
-	            }
+	            
+	            ss.setAttribute("action", "Thêm " + tb.getTenThietBi());
+	    	    if (tmp != 0) {
+	    	        ss.setAttribute("message", "success");
+	    	    } else {
+	    	        ss.setAttribute("message", "error");
+	    	    }
 	        }
 	    }
-	    model.addAttribute("thongbao", p);
+
 	    model.addAttribute("listPhong", phongService.getPhong());
 	    model.addAttribute("listTB", thietBiService.getThietBiWithNullPhong());
-	    return "device_detail";
+	    return "redirect:/device_detail";
 	}
 	
 	@RequestMapping("/device_detail/repair_device_id={id}")

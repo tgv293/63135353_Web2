@@ -92,8 +92,11 @@ public class HomeController {
 	@GetMapping("/home")
 	public String showphong(ModelMap model, HttpSession ss) {
 		model.addAttribute("navigation", "home");
-		model.addAttribute("thongbao", ss.getAttribute("changpassmessage"));
-		ss.removeAttribute("changpassmessage");
+		// Toast
+		model.addAttribute("action", ss.getAttribute("action"));
+		model.addAttribute("typeToast", ss.getAttribute("typeToast"));
+		ss.removeAttribute("action");
+		ss.removeAttribute("typeToast");
 		model.addAttribute("dsPhong", phongService.getPhong());
 		model.addAttribute("listLop", lopService.getListLop());
 		model.addAttribute("permission", ss.getAttribute("permission"));
@@ -104,20 +107,26 @@ public class HomeController {
 	}
 
 	@GetMapping(value = "/home/room/{id}", params = "linkPhong")
-	public String Phong(ModelMap model, @PathVariable("id") String id) {
+	public String Phong(ModelMap model, @PathVariable("id") String id, HttpSession ss) {
+		model.addAttribute("permission", ss.getAttribute("permission"));
+		model.addAttribute("info", ss.getAttribute("info"));
+		model.addAttribute("acc", ss.getAttribute("acc"));
 		model.addAttribute("navigation", "home");
 		model.addAttribute("dsPhong", phongService.getPhong());
 		model.addAttribute("statusmodal", "open");
 		model.addAttribute("listLop", lopService.getListLop());
-		System.out.println("listLop: " + lopService.getListLop());
 		model.addAttribute("roomclicked", id);
 		model.addAttribute("dsTBChoPhepMuonCuaTatCaPhong", phongService.getDsTBChoPhepMuonCuaTatCaPhong());
-
+		ss.removeAttribute("action");
+		ss.removeAttribute("typeToast");
 		return "room";
 	}
 
 	@RequestMapping(value = "/home/room/{id}", params = "btnsave", method = RequestMethod.POST)
 	public String savePM(@PathVariable("id") String id, HttpServletRequest sr, ModelMap model, HttpSession ss) {
+		model.addAttribute("permission", ss.getAttribute("permission"));
+		model.addAttribute("info", ss.getAttribute("info"));
+		model.addAttribute("acc", ss.getAttribute("acc"));
 		model.addAttribute("navigation", "home");
 		model.addAttribute("dsTBChoPhepMuonCuaTatCaPhong", phongService.getDsTBChoPhepMuonCuaTatCaPhong());
 		PhieuMuon phieumuon = new PhieuMuon();
@@ -140,6 +149,9 @@ public class HomeController {
 
 	@RequestMapping(value = "/home/room/{id}", params = "savebill", method = RequestMethod.POST)
 	public String savePMAndCT(@PathVariable("id") String id, HttpServletRequest rq, ModelMap model, HttpSession ss) {
+		model.addAttribute("permission", ss.getAttribute("permission"));
+		model.addAttribute("info", ss.getAttribute("info"));
+		model.addAttribute("acc", ss.getAttribute("acc"));
 		model.addAttribute("navigation", "home");
 		model.addAttribute("dsTBChoPhepMuonCuaTatCaPhong", phongService.getDsTBChoPhepMuonCuaTatCaPhong());
 		String maNguoiMuon = rq.getParameter("maNguoiMuon").toUpperCase();
@@ -198,6 +210,9 @@ public class HomeController {
 	@RequestMapping(value = "/home/bill{id}_{idPhong}", method = RequestMethod.GET)
 	public String savePM(@PathVariable("id") Integer id, @PathVariable("idPhong") String idPhong, ModelMap model,
 			HttpSession ss) {
+		model.addAttribute("permission", ss.getAttribute("permission"));
+		model.addAttribute("info", ss.getAttribute("info"));
+		model.addAttribute("acc", ss.getAttribute("acc"));
 		model.addAttribute("navigation", "home");
 		model.addAttribute("dsTBChoPhepMuonCuaTatCaPhong", phongService.getDsTBChoPhepMuonCuaTatCaPhong());
 		model.addAttribute("statusmodal2", "open");
@@ -209,42 +224,43 @@ public class HomeController {
 		// Toast
 		model.addAttribute("action", ss.getAttribute("action"));
 		model.addAttribute("typeToast", ss.getAttribute("typeToast"));
-		model.addAttribute("thongbao", ss.getAttribute("thongbao"));
 		ss.removeAttribute("action");
 		ss.removeAttribute("typeToast");
-		ss.removeAttribute("thongbao");
 		return "room";
 	}
-    
-    @RequestMapping(value = "/home/bill{id}_{idPhong}", params = "savebill", method = RequestMethod.POST)
-    public String test1(@PathVariable("id") Integer id, @PathVariable("idPhong") String idPhong, HttpServletRequest rq,
-                        ModelMap model, HttpSession ss) {
-    	model.addAttribute("navigation", "home");
+
+	@RequestMapping(value = "/home/bill{id}_{idPhong}", params = "savebill", method = RequestMethod.POST)
+	public String test1(@PathVariable("id") Integer id, @PathVariable("idPhong") String idPhong, HttpServletRequest rq,
+			ModelMap model, HttpSession ss) {
+		model.addAttribute("permission", ss.getAttribute("permission"));
+		model.addAttribute("info", ss.getAttribute("info"));
+		model.addAttribute("acc", ss.getAttribute("acc"));
+		model.addAttribute("navigation", "home");
 		model.addAttribute("dsTBChoPhepMuonCuaTatCaPhong", phongService.getDsTBChoPhepMuonCuaTatCaPhong());
 		String maNguoiMuon = rq.getParameter("maNguoiMuon").toUpperCase();
-        String tenNguoiMuon = rq.getParameter("tenNguoiMuon");
-        String email = rq.getParameter("email");
-        if (nguoiMuonService.getNMByID(maNguoiMuon) == null) {
-            if (tenNguoiMuon == null || email == null) {
-            	model.addAttribute("dsPhong", phongService.getPhong());
+		String tenNguoiMuon = rq.getParameter("tenNguoiMuon");
+		String email = rq.getParameter("email");
+		if (nguoiMuonService.getNMByID(maNguoiMuon) == null) {
+			if (tenNguoiMuon == null || email == null) {
+				model.addAttribute("dsPhong", phongService.getPhong());
 				model.addAttribute("NMuon", maNguoiMuon);
 				model.addAttribute("statusmodal3", "open");
-                tbiMuon.clear();
-                for (ThietBi tb : thietBiService.getListChoPhepMuon(idPhong)) {
+				tbiMuon.clear();
+				for (ThietBi tb : thietBiService.getListChoPhepMuon(idPhong)) {
 
-    				String maThietBiAsString = tb.getMaThietBi().toString();
-    				if (rq.getParameter(maThietBiAsString) != null) {
-    					tbiMuon.add(tb);
-    				}
-    			}
-                return "room";
-            } else {
-            	NguoiMuon nm = new NguoiMuon(maNguoiMuon, tenNguoiMuon, email);
+					String maThietBiAsString = tb.getMaThietBi().toString();
+					if (rq.getParameter(maThietBiAsString) != null) {
+						tbiMuon.add(tb);
+					}
+				}
+				return "room";
+			} else {
+				NguoiMuon nm = new NguoiMuon(maNguoiMuon, tenNguoiMuon, email);
 				nguoiMuonService.addNM(nm);
-            }
+			}
 
-        } else {
-        	tbiMuon.clear();
+		} else {
+			tbiMuon.clear();
 			for (ThietBi tb : thietBiService.getListChoPhepMuon(idPhong)) {
 
 				String maThietBiAsString = tb.getMaThietBi().toString();
@@ -253,71 +269,62 @@ public class HomeController {
 				}
 			}
 
-        }
-        Integer tmp = 0;
-        try {
-        	tmp = ctpmService.addCTPM(phieuMuonService.getPhieuMuonByID(id), tbiMuon, nguoiMuonService.getNMByID(maNguoiMuon));
-        	System.out.println("tmp: " + tmp);
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-        if (tmp != 0) {
+		}
+		Integer tmp = 0;
+		try {
+			tmp = ctpmService.addCTPM(phieuMuonService.getPhieuMuonByID(id), tbiMuon,
+					nguoiMuonService.getNMByID(maNguoiMuon));
+			System.out.println("tmp: " + tmp);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		if (tmp != 0) {
 			model.addAttribute("typeToast", "success");
 			model.addAttribute("action", "Mượn Thiết Bị");
 		} else {
 			model.addAttribute("typeToast", "error");
 			model.addAttribute("action", "Mượn Thiết Bị");
 		}
-        model.addAttribute("dsPhong", phongService.getPhong());
-        return "room";
+		model.addAttribute("dsPhong", phongService.getPhong());
+		return "room";
 
-    }
-    
-    @GetMapping(value = "/home/pay{idPM}_{idTB}_{idCTPM}_{idPhong}")
-    public String redirectGetRequestPay(@PathVariable("idPM") Integer idPM, 
-                                        @PathVariable("idTB") Integer idTB, 
-                                        @PathVariable("idCTPM") Integer idCTPM,
-                                        @PathVariable("idPhong") String idPhong) {
-        return "redirect:/home/bill" + idPM + "_" + idPhong;
-    }
+	}
 
-    @PostMapping(value = "/home/pay{idPM}_{idTB}_{idCTPM}_{idPhong}")
-    public String traPhieuMuon(@PathVariable("idPM") Integer idPM, 
-                               @PathVariable("idTB") Integer idTB, 
-                               @PathVariable("idCTPM") Integer idCTPM,
-                               @PathVariable("idPhong") String idPhong, 
-                               ModelMap model,
-                               HttpSession ss) {
+	@GetMapping(value = "/home/pay{idPM}_{idTB}_{idCTPM}_{idPhong}")
+	public String redirectGetRequestPay(@PathVariable("idPM") Integer idPM, @PathVariable("idTB") Integer idTB,
+			@PathVariable("idCTPM") Integer idCTPM, @PathVariable("idPhong") String idPhong) {
+		return "redirect:/home/bill" + idPM + "_" + idPhong;
+	}
 
-    	ss.setAttribute("action", "Trả Thiết Bị");
-        if (ctpmService.traTB(idPM, idTB, idCTPM) != 0) {
-            ss.setAttribute("typeToast", "success");
-        } else {
-            ss.setAttribute("typeToast", "error");
-        }
-        return "redirect:/home/bill" + idPM + "_" + idPhong;
-    }
-    
-    
-    @GetMapping(value = "/home/loss{idPM}_{idTB}_{idPhong}")
-    public String redirectGetRequestLoss(@PathVariable("idPM") Integer idPM, 
-                                        @PathVariable("idTB") Integer idTB, 
-                                        @PathVariable("idPhong") String idPhong) {
-        return "redirect:/home/bill" + idPM + "_" + idPhong;
-    }
+	@PostMapping(value = "/home/pay{idPM}_{idTB}_{idCTPM}_{idPhong}")
+	public String traPhieuMuon(@PathVariable("idPM") Integer idPM, @PathVariable("idTB") Integer idTB,
+			@PathVariable("idCTPM") Integer idCTPM, @PathVariable("idPhong") String idPhong, ModelMap model,
+			HttpSession ss) {
 
-    @PostMapping(value = "/home/loss{idPM}_{idTB}_{idPhong}")
-    public String baoMatTB(@PathVariable("idPM") Integer idPM, 
-                           @PathVariable("idTB") Integer idTB, 
-                           ModelMap model, 
-                           @PathVariable("idPhong") String idPhong,
-                           HttpSession ss) {
-        ss.setAttribute("action", "Báo Mât Thiết Bị");
-        if (ctpmService.baoMatTB(idPM, idTB) != 0) {
-            ss.setAttribute("typeToast", "success");
-        } else {
-            ss.setAttribute("typeToast", "error");
-        }
-        return "redirect:/home/bill{idPM}_{idPhong}";
-    }
+		ss.setAttribute("action", "Trả Thiết Bị");
+		if (ctpmService.traTB(idPM, idTB, idCTPM) != 0) {
+			ss.setAttribute("typeToast", "success");
+		} else {
+			ss.setAttribute("typeToast", "error");
+		}
+		return "redirect:/home/bill" + idPM + "_" + idPhong;
+	}
+
+	@GetMapping(value = "/home/loss{idPM}_{idTB}_{idPhong}")
+	public String redirectGetRequestLoss(@PathVariable("idPM") Integer idPM, @PathVariable("idTB") Integer idTB,
+			@PathVariable("idPhong") String idPhong) {
+		return "redirect:/home/bill" + idPM + "_" + idPhong;
+	}
+
+	@PostMapping(value = "/home/loss{idPM}_{idTB}_{idPhong}")
+	public String baoMatTB(@PathVariable("idPM") Integer idPM, @PathVariable("idTB") Integer idTB, ModelMap model,
+			@PathVariable("idPhong") String idPhong, HttpSession ss) {
+		ss.setAttribute("action", "Báo Mât Thiết Bị");
+		if (ctpmService.baoMatTB(idPM, idTB) != 0) {
+			ss.setAttribute("typeToast", "success");
+		} else {
+			ss.setAttribute("typeToast", "error");
+		}
+		return "redirect:/home/bill{idPM}_{idPhong}";
+	}
 }

@@ -5,6 +5,9 @@ import vn.gvt.QLTB.Models.ThietBi;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 public interface ThietBiService {
 
     public List<ThietBi> getListChoPhepMuon(String ID);
@@ -20,4 +23,15 @@ public interface ThietBiService {
     public void callSpBaoMatThietBi(Integer maTB);
     
     public void callSpHoanThanhBTThietBi(Integer maTB);
+    
+    public List<ThietBi> getListTB();
+    
+    public ThietBi add(ThietBi cttb);
+    
+    public int deleteTb(Integer id);
+    
+    public List<ThietBi> findByMaPhong(String maPhong);
+
+    public ThietBi update(ThietBi thietBi);
+
 }

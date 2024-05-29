@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon" />
 <link href="https://fonts.gstatic.com" rel="preconnect">
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -33,22 +34,22 @@
 }
 </style>
 <body>
-    <div th:replace="include/head :: head"></div>
-	<div th:replace="include/slidebar :: slidebar"></div>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div th:replace="~{fragments/slidebar :: slidebar}"></div>
 	<section class="home">
 		<div id="toast" th:class="${message}"></div>
 		<div class="text">Quản Trị</div>
 		<div class="container mt-2">
-			<div class="form-contain row col-10"
+			<div class="form-contain row col-12"
 				style="color: var(--text-color);">
 				<form th:object="${NhanVien}" method="post">
 					<input type="hidden" th:field="*{maNV}" id="ip-maNV"
 						class="ip-form" />
 					<div class="row">
 						<div class="col-6">
-							Họ tên <input type="text" th:field="*{tenNV}"
+							Họ tên <input type="text" th:field="*{hoTenNV}"
 								class="ip-form disable-ip" required="required" id="ip-tenNV"
-								placeholder="Vui Lòng Nhập Mã Loại" readonly="true" />
+								placeholder="Vui Lòng Nhập Họ Tên" readonly="true" />
 						</div>
 						<div class="col-6">
 							CMND <input type="text" th:field="*{cmnd}"
@@ -97,14 +98,14 @@
 						<tbody>
 							<tr th:each="pd, i : ${listNV}" th:id="${pd.maNV}">
 								<td th:text="${i.index+1}"></td>
-								<td th:text="${pd.tenNV}"></td>
+								<td th:text="${pd.hoTenNV}"></td>
 								<td th:text="${pd.cmnd}"></td>
 								<td th:text="${pd.sdt}"></td>
 								<td th:text="${pd.email}"></td>
 								<td th:text="${pd.taiKhoan.id}"></td>
 								<td><i class="editbtn fa-solid fa-pen-to-square"></i></td>
 								<td><a
-									th:href="@{'administration/resetpass_id=' + ${pd.maNV} + '.htm'}"><i
+									th:href="@{'/administration/resetpass_id=' + ${pd.maNV}}"><i
 										class="fas fa-repeat"></i></a></td>
 							</tr>
 						</tbody>
@@ -113,26 +114,29 @@
 			</div>
 		</div>
 	</section>
-	<div th:replace="include/foot :: foot"></div>
-	<script>
+	<script th:src="@{/assets/dist/js/script.js}"></script>
+	<script th:inline="javascript">
 	// toast thông báo
-	var tb = document.getElementById('toast');
-	if (tb.classList.contains('success')) {
-		showtoast({
-			title : "Thành công!",
-			message : "'${action}' ",
-			type : "success",
-			duration : 3000
-		});
-	} else if (tb.classList.contains('error')) {
-		showtoast({
-			title : "Lỗi!",
-			message : "${action}",
-			type : "error",
-			duration : 3000
-		});
-
-	}
+    document.addEventListener('DOMContentLoaded', (event) => {
+    var tb = document.getElementById('toast');
+    var action = /*[[${action}]]*/ 'default';
+    var message = /*[[${message}]]*/ 'info';
+    if (tb.classList.contains('success')) {
+        showtoast({
+            title : "Thành công!",
+            message : action + " thành công.",
+            type : "success",
+            duration : 3000
+        });
+    } else if (tb.classList.contains('error')) {
+        showtoast({
+            title : "Lỗi!",
+            message : action + " thất bại.",
+            type : "error",
+            duration : 3000
+        });
+    }
+    });
    function enableForm() {
 	 let ds=  document.getElementsByClassName("ip-form")
 	 for (let t of ds) {

@@ -9,4 +9,8 @@ public interface LopService {
     public Lop getLopByID(String maLop);
     
     public List<Lop> getListLop();
+    
+    public List<Lop> getAllListLop();
+    
+    public boolean add(Lop lop);
 }

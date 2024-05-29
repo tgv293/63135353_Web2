@@ -18,4 +18,8 @@ public interface PhongService {
     public Phong addRoom(Phong phong);
     
     public void callSpBaoTriPhong(String maPhong);
+    
+    public void callSpHoanThanhBaoTriPhong(String maPhong);
+    
+    public Integer deletePhong(String maPhong);
 }

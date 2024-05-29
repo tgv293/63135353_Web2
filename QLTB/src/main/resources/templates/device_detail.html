@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phòng - Thiết bị</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -75,8 +74,7 @@
 									th:href="@{'/room/maintenance_id=' + ${phong.maPhong} + '_completed'}"
 									style="background: #a42832"
 									class=" cate-link btn-danger text-decoration-none py-1 text-center  px-3 me-2">Kết
-									thúc bảo trì </a> 
-								<a th:if="${phong.trangThai.maTinhTrang == 1}"
+									thúc bảo trì </a> <a th:if="${phong.trangThai.maTinhTrang == 1}"
 									th:href="@{'/room/maintenance_id=' + ${phong.maPhong}}"
 									style="background: #915358"
 									class=" cate-link btn-danger text-decoration-none py-1 text-center  px-3 me-2">Bảo
@@ -84,8 +82,9 @@
 							</div>
 							<a class="cate-link"
 								th:href="@{'/room/delete_id=' + ${phong.maPhong}}"><i
-								class="fas fa-trash-alt"></i></a> <a class="cate-link"
-								th:href="@{'/room/device_detail=' + ${phong.maPhong} + '_pdf'}"
+								class="fas fa-trash-alt"></i></a> 
+							<a class="cate-link"
+								th:href="@{'/room/' + ${phong.maPhong} + '/report'}"
 								target="_blank"><i class="fa-solid fa-print"></i></a>
 						</div>
 						<div class="cate__table contain-table">
@@ -143,10 +142,12 @@
 							<b th:text="${ps.tenLoai}"></b>
 							<div th:each="pt : ${listTB}" class="form-check"
 								th:if="${ps.maLoai==pt.loaiThietBi.maLoai}">
-								<label class="form-check-label" for="flexCheckDefault"
+								<label class="form-check-label"
+									th:for="${'flexCheck' + pt.maThietBi}"
 									th:text="${pt.tenThietBi}"></label> <input
-									name="${pt.maThietBi}" class="form-check-input" type="checkbox"
-									value="" id="flexCheckDefault">
+									th:name="${pt.maThietBi}" class="form-check-input"
+									type="checkbox" th:value="${pt.maThietBi}"
+									th:id="${'flexCheck' + pt.maThietBi}">
 							</div>
 						</div>
 					</div>
@@ -180,7 +181,6 @@
 	<script th:src="@{/assets/dist/js/script.js}"></script>
 	<script th:inline="javascript">
 
-	var thongbao = /*[[${thongbao}]]*/ 'default';
 	const modalRoom = document.querySelector('.js-modal-2')
 	const modalRoomContain = document.querySelector('.js-modal-contain-2')
 	const closeRoom = document.querySelector('.js-modal-close-2')

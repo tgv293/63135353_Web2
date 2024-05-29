@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 import vn.gvt.QLTB.Models.PhieuMuon;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface PhieuMuonRepository extends JpaRepository<PhieuMuon, Integer> {
@@ -14,5 +15,11 @@ public interface PhieuMuonRepository extends JpaRepository<PhieuMuon, Integer> {
 	
 	@Query("FROM PhieuMuon where maPhieuMuon = :id")
     PhieuMuon findPhieuMuonByID(@Param("id") Integer ID);
+	
+	@Query("FROM PhieuMuon WHERE thoiDiemMuon > :fromDate AND thoiDiemMuon < :toDate")
+    List<PhieuMuon> findAllByThoidiemmuonBetween(@Param("fromDate") LocalDateTime fromDate, @Param("toDate") LocalDateTime toDate);
 
+	@Query("FROM PhieuMuon WHERE hanTra < current_timestamp() and thoiDiemTra is null")
+    List<PhieuMuon> findPhieuMuonsQuaHan();
+	
 }

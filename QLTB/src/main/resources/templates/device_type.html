@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{https://fonts.gstatic.com}" rel="preconnect"/>
+<link
+	th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" 	rel="stylesheet"/>
+<link th:href="@{/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/assets/dist/css/login.css}" rel="stylesheet">
+<script th:src="@{https://kit.fontawesome.com/56d73d7086.js}"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div th:replace="~{fragments/slidebar :: slidebar}"></div>
+	<section class="home">
+		<div class="text">Loại Thiết Bị</div>
+		<div id="toast" th:class="${message}"></div>
+
+		<div class="container">
+			<button class="btn-add btn btn-primary ms-lg-5" onclick="showForm()">
+				<i class="fa-solid fa-plus"></i> Thêm
+			</button>
+
+			<div class="d-flex justify-content-center align-items-center mt-4">
+				<div class="row col-lg-10">
+					<table class="table" id="tb1">
+						<thead>
+							<tr>
+								<th scope="col">STT</th>
+								<th scope="col" style="display: none;">Mã Loại</th>
+								<th scope="col">Tên Loại</th>
+								<th scope="col">Sửa</th>
+								<th scope="col">Xóa</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="pd, i : ${DsLoaiTB}">
+								<td th:text="${i.index + 1}"></td>
+								<td style="display: none;" th:text="${pd.maLoai}"></td>
+								<td th:text="${pd.tenLoai}"></td>
+								<td><i class="fa-solid fa-pen-to-square editbtn"
+									style="cursor: pointer; padding: 5px 10px;"></i></td>
+								<td><a
+									th:href="@{'/device_type/' + ${pd.maLoai} + '?linkDelete'}"
+									onclick="return confirm('Xác nhận xóa?') ? true : false;"
+									style="padding: 5px 10px;"> <i
+										class="fa-solid fa-trash-can"></i>
+								</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div th:replace="~{fragments/footer :: footer}"></div>
+	</section>
+	<!-- Modal -->
+	<div class="modal js-modal">
+		<div class="modal-container js-modal-contain">
+			<div class="modal-close js-modal-close">
+				<i class="fa-solid fa-xmark"></i>
+			</div>
+
+			<header class="modal-header">
+				<i class="ti-bag modal-heading-icon"></i> Thêm Loại TB
+			</header>
+			<div class="modal-body">
+				<form th:object="${LoaiTB}" method="post">
+					<input th:field="*{maLoai}" style="display: none;" class="modal-ip" id="ip-maloai" />
+					<label class="modal-lable"> <i class="ti-user"></i> Tên
+						Loại
+					</label> <input th:field="*{tenLoai}" type="text" class="modal-ip"
+						id="ip-tenloai" required="required"
+						placeholder="Vui Lòng Nhập Tên Loại" />
+					<button id="btnsave" class="btn-modal">THÊM</button>
+				</form>
+
+				<footer class="modal-footer"> </footer>
+			</div>
+
+		</div>
+	</div>
+
+	<script th:src="@{/assets/dist/js/script.js}"></script>
+	<script th:inline="javascript">
+
+	// toast thông báo
+    document.addEventListener('DOMContentLoaded', (event) => {
+    var tb = document.getElementById('toast');
+    var action = /*[[${action}]]*/ 'default';
+    var message = /*[[${message}]]*/ 'info';
+    if (tb.classList.contains('success')) {
+        showtoast({
+            title : "Thành công!",
+            message : action + " thành công.",
+            type : "success",
+            duration : 3000
+        });
+    } else if (tb.classList.contains('error')) {
+        showtoast({
+            title : "Lỗi!",
+            message : action + " thất bại.",
+            type : "error",
+            duration : 3000
+        });
+    }
+});
+	
+	
+    function showForm() {
+        document.getElementById("btnsave").setAttribute('name', 'btnadd')
+        var elements = document.getElementsByClassName("modal-ip");
+        document.getElementById("ip-maloai").removeAttribute('readonly')
+        Array.prototype.forEach.call(elements, function(el) {
+            el.value = null
+        });
+        modal.classList.add('open')
+    }
+
+    // load dữ liệu lên modal khi ấn edit
+    var editbtn = document.getElementsByClassName("editbtn");
+    var table = document.getElementById('tb1');
+
+    for (let index = 0; index < editbtn.length; index++) {
+        editbtn[index].onclick = function() {
+            const modal = document.querySelector('.js-modal')
+            modal.classList.add('open')
+            document.getElementById("btnsave").setAttribute('name', 'btn-save-edit')
+            document.getElementById("ip-maloai").value = table.rows[index+1].cells[1].innerHTML
+            document.getElementById("ip-maloai").setAttribute('readonly',true)
+            document.getElementById("ip-tenloai").value = table.rows[index+1].cells[2].innerHTML
+        };
+    }
+	
+		
+	</script>
+</body>
+</html>

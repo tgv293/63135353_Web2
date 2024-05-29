@@ -1,5 +1,7 @@
 package vn.gvt.QLTB.Services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,26 @@ public class NhanVienServiceImpl implements NhanVienService{
 	@Override
     public NhanVien getNhanVienByID(String id) {
         return nhanVienRepository.findById(id).orElse(null);
+    }
+
+	@Override
+    public List<NhanVien> getListNV() {
+        return nhanVienRepository.findAll();
+    }
+	
+	@Override
+	public Integer addNV(NhanVien nhanvien) {
+        try {
+            nhanVienRepository.save(nhanvien);
+            return 1;
+        } catch (Exception e) {
+            System.out.println(e);
+            return 0;
+        }
+    }
+	
+	@Override
+	public void resetPassword(String maNV) {
+        nhanVienRepository.spResetPass(maNV);
     }
 }

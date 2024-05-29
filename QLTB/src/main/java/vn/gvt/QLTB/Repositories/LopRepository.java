@@ -11,5 +11,5 @@ public interface LopRepository extends JpaRepository<Lop, String> {
     Lop findByMaLop(String maLop);
     
     @Query("select l from Lop l where l.maLop not in (select distinct p.lop.maLop from PhieuMuon p where p.thoiDiemTra is null)")
-    List<Lop> findLopTinChiNotInPhieuMuon();
+    List<Lop> findLopNotInPhieuMuon();
 }

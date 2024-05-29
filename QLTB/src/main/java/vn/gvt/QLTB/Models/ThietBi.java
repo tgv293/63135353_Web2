@@ -58,4 +58,12 @@ public class ThietBi {
     @ToString.Exclude
     @OneToMany(mappedBy = "thietBi", fetch = FetchType.EAGER)
     private Collection<CTPhieuMuon> listCTPhieuMuon;
+    
+    public ThietBi(ThietBi other) {
+        this.maThietBi = other.maThietBi;
+        this.tenThietBi = other.tenThietBi;
+        this.loaiThietBi = other.loaiThietBi;
+        this.phong = other.phong;
+        this.tinhTrangTB = other.tinhTrangTB;
+    }
 }

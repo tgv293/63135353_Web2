@@ -34,30 +34,30 @@
 					</a></li>
 					<li class="nav-link"><a
 						th:class="${navigation=='device_type'} ? 'active' : 'notactive'"
-						th:href="@{/device_type/index.htm}"> <i
+						th:href="@{/device_type}"> <i
 							class="fa-solid fa-people-roof icon"></i> <span
 							class="text nav-text">Loại Thiết Bị</span>
 					</a></li>
 					<li class="nav-link"><a
 						th:class="${navigation=='device_list'} ? 'active' : 'notactive'"
-						th:href="@{/device_list/index.htm}"> <i
+						th:href="@{/device_list}"> <i
 							class="fas fa-hdd icon"></i> <span class="text nav-text">Thiết
 								Bị</span>
 					</a></li>
 					<li class="nav-link"><a
-						th:class="${navigation=='creditclass'} ? 'active' : 'notactive'"
-						th:href="@{/credit_class/index.htm}"> <i
+						th:class="${navigation=='class'} ? 'active' : 'notactive'"
+						th:href="@{/class}"> <i
 							class="fas fa-atlas icon"></i> <span class="text nav-text">Lớp</span>
 					</a></li>
 					<li class="nav-link"><a
 						th:class="${navigation=='bill'} ? 'active' : 'notactive'"
-						th:href="@{/bill/index.htm}"> <i
+						th:href="@{/bill}"> <i
 							class='fa-solid fa-file-invoice icon'></i> <span
 							class="text nav-text">Thống Kê</span>
 					</a></li>
 					<li th:if="${permission=='admin'}" class="nav-link"><a
 						th:class="${navigation=='administration'} ? 'active' : 'notactive'"
-						th:href="@{/administration/admin.htm}"> <i
+						th:href="@{/administration}"> <i
 							class="fa-solid fa-user-gear icon"></i> <span
 							class="text nav-text">Quản Trị</span>
 					</a></li>
@@ -101,7 +101,7 @@
 
 			<header class="modal-header"> Đổi Mật Khẩu </header>
 			<div class="modal-body">
-				<form th:action="@{/administration/changepass.htm}" method="post">
+				<form th:action="@{/administration/changepass}" method="post">
 					<label class="modal-lable"> Mật Khẩu Hiện Tại </label> <input
 						name="currentpass" type="password" class="modal-ip"
 						placeholder="Nhập Mật Khẩu Hiện Tại" /> <label

@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta charset="UTF-8">
+<link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon" />
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">
-<link href="assets/dist/css/bill.css" rel="stylesheet">
+<link th:href="@{/resource/assets/dist/css/bill.css}" rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
 	rel="stylesheet">
+<link th:href="@{/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/assets/dist/css/login.css}" rel="stylesheet">
+<script th:src="@{https://kit.fontawesome.com/56d73d7086.js}"
+	crossorigin="anonymous"></script>
 </head>
 <body>
-	<div th:replace="fragments/slidebar :: slidebar"></div>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div th:replace="~{fragments/slidebar :: slidebar}"></div>
+
 	<section class="home">
 		<div class="text">Thống Kê Phiếu Mượn</div>
 		<div id="toast" th:class="${message}"></div>
@@ -28,6 +36,7 @@
 							<label class="form-check-label" for="flexRadioDefault1">
 								Tất cả </label>
 						</div>
+
 						<div class="form-check ps-5 mt-2">
 							<input class="form-check-input" type="radio" name="rdfilte"
 								id="quahan" value="quahan" th:checked="${statusRd =='quahan'}">
@@ -45,7 +54,7 @@
 						<div class="row mt-2">
 							<div class="input-lable w-25" id="inputGroup-sizing-default">Đến</div>
 							<input type="date" class="date-filter w-75" name="to"
-								th:value="${timeTo}" th:max="${timeNow}">
+								th:value="${timeTo}" max="${timeNow}">
 						</div>
 					</div>
 					<div class="col-2 col-sm-2 d-flex justify-content-center">
@@ -60,11 +69,18 @@
 						<button type="submit" name="print"
 							class="fa-solid fa-print btn-print"></button>
 					</form>
-					<div class="tag-paging">
-						<div
-							th:replace="pagination :: paging(${pagedListHolder}, ${pagedLink})"></div>
+					<div th:object="${pagedListHolder}">
+						<a th:href="@{{/bill(p=${pagedListHolder.page + 1})}}"
+							th:var="pagedLink">
+							<div class="tag-paging pt-2" style="margin-right: 9%;">
+								<div
+									th:replace="fragments/paging :: paging(pagedListHolder=${pagedListHolder}, pagedLink=${pagedLink})">
+								</div>
+							</div>
+						</a>
 					</div>
 				</div>
+
 				<div class="contain-table">
 					<table class="table" id="tb1"
 						style="vertical-align: middle; text-align: center;">
@@ -82,15 +98,15 @@
 						<tbody>
 							<tr th:each="pd, i : ${pagedListHolder.pageList}">
 								<td th:text="${pd.maPhieuMuon}"></td>
-								<td th:text="${pd.maPhg.maPhong}"></td>
+								<td th:text="${pd.maPhong.maPhong}"></td>
 								<td
-									th:text="${pd.lopTC.monhoc} + ' nhóm ' + ${pd.lopTC.nhom} + ' (' + ${pd.lopTC.nienkhoa} + ' hk:' + ${pd.lopTC.hocky} + ')'"></td>
+									th:text="'Lớp ' + ${pd.lop.maLop} + ' - GVCN: ' + ${pd.lop.hotenGV}"></td>
 								<td
-									th:text="${#dates.format(pd.thoiDiemMuon, 'dd/MM/yyyy HH:mm')}"></td>
-								<td th:text="${#dates.format(pd.hanTra, 'dd/MM/yyyy HH:mm')}"></td>
-								<td th:text="${pd.thoiDiemTra== null ? 'Chưa Trả' : 'Đã Trả'}"></td>
-								<td><a
-									th:href="@{'bill/detail_' + ${pd.maPhieuMuon} + '.htm'}"><i
+									th:text="${#temporals.format(pd.thoiDiemMuon, 'dd/MM/yyyy HH:mm')}"></td>
+								<td
+									th:text="${#temporals.format(pd.hanTra, 'dd/MM/yyyy HH:mm')}"></td>
+								<td th:text="${pd.thoiDiemTra == null ? 'Chưa Trả' : 'Đã Trả'}"></td>
+								<td><a th:href="@{'/bill/detail_' + ${pd.maPhieuMuon}}"><i
 										class="fas fa-info-circle icon"></i></a></td>
 							</tr>
 						</tbody>
@@ -98,57 +114,92 @@
 				</div>
 			</div>
 		</div>
+	</section>
 
-		<!-- Modal -->
-		<!-- Modal Chi Tiet Phieu Muon -->
-		<div class="modal js-modal" th:classappend="${statusModal}">
-			<div class="modal-container js-modal-contain">
-				<div class="modal-close js-modal-close">
-					<i class="fa-solid fa-xmark"></i>
-				</div>
+	<!-- Modal Chi Tiet Phieu Muon -->
+	<div class="modal js-modal" th:classappend="${statusModal}">
+		<div class="modal-container js-modal-contain">
+			<div class="modal-close js-modal-close">
+				<i class="fa-solid fa-xmark"></i>
+			</div>
 
-				<header class="modal-header">
-					<i class="ti-bag modal-heading-icon"></i>
-					<div>PHIẾU MƯỢN</div>
-				</header>
-				<div class="modal-body">
+			<header class="modal-header">
+				<i class="ti-bag modal-heading-icon"></i>
+				<div>PHIẾU MƯỢN</div>
+			</header>
+			<div class="modal-body">
+				<div class="row mb-3" style="height: 240px">
+					<div class="col-sm-6" style="border-style: outset;">
+						<h4 class="text-center">Thông tin</h4>
+						<p>
+							<b>Lớp:</b> <span th:if="${thongtinPhieuMuon != null}"
+								th:text="'Lớp ' + ${thongtinPhieuMuon.lop.maLop} + ' - GVCN: ' + ${thongtinPhieuMuon.lop.hotenGV}"></span>
+						</p>
+						<p>
+							<b>Phòng:</b> <span th:if="${thongtinPhieuMuon != null}"
+								th:text="${thongtinPhieuMuon.maPhong.maPhong}"></span>
+						</p>
+						<p>
+							Ngày mượn: <span th:if="${thongtinPhieuMuon != null}"
+								th:text="${#temporals.format(thongtinPhieuMuon.thoiDiemMuon, 'dd/MM/yyyy HH:mm')}"></span>
+						</p>
+						<p>
+							Hạn Trả: <span th:if="${thongtinPhieuMuon != null}"
+								th:text="${#temporals.format(thongtinPhieuMuon.hanTra, 'dd/MM/yyyy HH:mm')}"></span>
+						</p>
+					</div>
 
-					<div class="row mb-3" style="height: 240px">
-
-						<div class="col-sm-6" style="border-style: outset;">
-							<h4 class="text-center">Thông tin</h4>
-							<p>
-								<b>Lớp:</b> <span
-									th:text="${thongtinPhieuMuon.lopTC.monhoc} + ' nhóm ' + ${thongtinPhieuMuon.lopTC.nhom}"></span>
-							</p>
-							<p>
-								<b>Phòng:</b> <span th:text="${thongtinPhieuMuon.maPhg.maPhong}"></span>
-							</p>
-							<p>
-								Ngày mượn: <span
-									th:text="${#dates.format(thongtinPhieuMuon.thoiDiemMuon, 'dd/MM/yyyy HH:mm')}"></span>
-							</p>
-							<p>
-								Hạn Trả: <span
-									th:text="${#dates.format(thongtinPhieuMuon.hanTra, 'dd/MM/yyyy HH:mm')}"></span>
-							</p>
-
+					<div class="col-sm-6 border-end"
+						style="overflow: auto; border-style: outset; max-height: 240px;">
+						<h4 class="text-center">Danh Sách Mượn</h4>
+						<div th:each="nm : ${listNguoiMuon}"
+							style="margin-bottom: 10px; text-align: center;">
+							<div style="border-style: groove; margin-bottom: 10px;">
+								<span th:text="${nm.maNguoiMuon} + ' - ' + ${nm.tenNguoiMuon}"></span>
+							</div>
+							<div th:each="item : ${thongtinPhieuMuon.listCTPhieuMuon}"
+								th:if="${nm.maNguoiMuon== item.nguoiMuon.maNguoiMuon}"
+								class="d-flex flex-row justify-content-between">
+								<p
+									th:text="${item.thietBi.loaiThietBi.tenLoai} + '-' + ${item.thietBi.maThietBi}"></p>
+								<div class="status-bill">
+									<strong th:if="${item.trangThai.maTinhTrang ==4}">Chưa
+										Trả</strong> <strong th:if="${item.trangThai.maTinhTrang ==5}">Đã
+										Trả</strong> <strong th:if="${item.trangThai.maTinhTrang ==6}">Đã
+										Mất</strong>
+								</div>
+							</div>
 						</div>
-
-						<!-- Your other divs here -->
-
 					</div>
 				</div>
-
 			</div>
 		</div>
+	</div>
 
-	</section>
-	<!-- Include your footer here -->
+	<script th:src="@{/assets/dist/js/script.js}"></script>
 	<script th:inline="javascript">
-        /*<![CDATA[*/
-        // Your JavaScript code here
-        /*]]>*/
-    </script>
+	// toast thông báo
+    document.addEventListener('DOMContentLoaded', (event) => {
+    var tb = document.getElementById('toast');
+    var action = /*[[${action}]]*/ 'default';
+    var message = /*[[${message}]]*/ 'info';
+    if (tb.classList.contains('success')) {
+        showtoast({
+            title : "Thành công!",
+            message : action + " thành công.",
+            type : "success",
+            duration : 3000
+        });
+    } else if (tb.classList.contains('error')) {
+        showtoast({
+            title : "Lỗi!",
+            message : action + " thất bại.",
+            type : "error",
+            duration : 3000
+        });
+    }
+    });
+</script>
+
 </body>
 </html>

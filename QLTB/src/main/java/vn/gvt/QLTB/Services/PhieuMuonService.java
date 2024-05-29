@@ -11,4 +11,8 @@ public interface PhieuMuonService {
     public PhieuMuon getPhieuMuonByID(Integer ID);
     
     public PhieuMuon save(PhieuMuon phieuMuon);
+    
+    public List<PhieuMuon> getAllPM(String fromDate, String toDate);
+    
+    public List<PhieuMuon> getPMQuaHan();
 }

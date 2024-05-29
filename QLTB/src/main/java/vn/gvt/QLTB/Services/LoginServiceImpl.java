@@ -9,15 +9,15 @@ import vn.gvt.QLTB.Repositories.TaiKhoanRepository;
 @Service
 public class LoginServiceImpl implements LoginService {
     @Autowired
-    private TaiKhoanRepository taiKhoanRepository;
+    private TaiKhoanService taiKhoanService;
 
     @Override
     public Boolean checkLogin(String user, String pass) {
-        return taiKhoanRepository.checkLogin(user, pass);
+        return taiKhoanService.checkLogin(user, pass);
     }
 
     @Override
     public TaiKhoan getTKByID(String ID) {
-        return taiKhoanRepository.getTKByID(ID);
+        return taiKhoanService.getTKByID(ID);
     }
 }

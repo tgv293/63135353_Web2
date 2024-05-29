@@ -40,4 +40,8 @@ public class TaiKhoan {
 
 	@OneToOne(mappedBy = "taiKhoan")
 	private NhanVien nhanvien;
+	
+	public TaiKhoan(String id) {
+	    this.id = id;
+	}
 }

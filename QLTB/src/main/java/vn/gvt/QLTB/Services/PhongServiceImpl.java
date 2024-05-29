@@ -19,8 +19,14 @@ import vn.gvt.QLTB.Repositories.PhongRepository;
 @Service
 public class PhongServiceImpl implements PhongService{
 
-    @Autowired
     private PhongRepository phongRepository;
+    private ThietBiService thietBiService;
+    
+    @Autowired
+	public PhongServiceImpl(PhongRepository phongRepository, ThietBiService thietBiService) {
+		this.phongRepository = phongRepository;
+		this.thietBiService = thietBiService;
+	}
 
     @Override
     public List<Phong> getPhong() {
@@ -69,5 +75,25 @@ public class PhongServiceImpl implements PhongService{
     @Override
     public void callSpBaoTriPhong(String maPhong) {
         phongRepository.callSpBaoTriPhong(maPhong);
+    }
+    
+    @Override
+    public void callSpHoanThanhBaoTriPhong(String maPhong) {
+        phongRepository.callSpHoanThanhBaoTriPhong(maPhong);
+    }
+    
+    @Override
+    public Integer deletePhong(String maPhong) {
+        // Find all devices related to the room
+        List<ThietBi> thietBis = thietBiService.findByMaPhong(maPhong);
+
+        // Set maPhong to null for all related devices
+        for (ThietBi thietBi : thietBis) {
+            thietBi.setPhong(null);;
+            thietBiService.update(thietBi);
+        }
+
+        // Delete the room
+        return phongRepository.deleteByMaPhong(maPhong);
     }
 }

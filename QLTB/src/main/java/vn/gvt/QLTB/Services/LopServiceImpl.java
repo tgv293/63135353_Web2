@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -22,6 +23,23 @@ public class LopServiceImpl implements LopService {
     
     @Override
     public List<Lop> getListLop() {
-        return lopRepository.findLopTinChiNotInPhieuMuon();
+        return lopRepository.findLopNotInPhieuMuon();
+    }
+    
+    @Override
+    public List<Lop> getAllListLop() {
+        return lopRepository.findAll();
+    }
+    
+    @Override
+    @Transactional
+    public boolean add(Lop lop) {
+        try {
+            lopRepository.save(lop);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
     }
 }

@@ -11,6 +11,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/", "/logout", "/static/**", "/webjars/**",
-                		"/assets/**", "/fontawesome-v6.1/**", "/images/**");
+                		"/assets/**", "/fontawesome-v6.1/**", "/images/**", "/report/**");
     }
 }

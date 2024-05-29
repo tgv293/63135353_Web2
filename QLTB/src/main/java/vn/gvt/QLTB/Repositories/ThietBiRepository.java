@@ -34,7 +34,11 @@ public interface ThietBiRepository extends JpaRepository<ThietBi, Integer> {
     
     @Procedure("sp_hoantatbaotrithietbi")
     void callSpHoanThanhBTThietBi(Integer maTB);
+    
+    List<ThietBi> findByPhong_MaPhong(String maPhong);
 
-
-
+    @Transactional
+    @Modifying
+    @Query("delete from ThietBi s where s.maThietBi = :id")
+    int deleteByMaTBi(Integer id);
 }
