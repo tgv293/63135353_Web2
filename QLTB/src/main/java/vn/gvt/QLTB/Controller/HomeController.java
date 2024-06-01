@@ -185,14 +185,14 @@ public class HomeController {
 		} catch (Exception e) {
 		}
 		if (tmp != 0) {
-			model.addAttribute("typeToast", "success");
-			model.addAttribute("action", "Mượn Thiết Bị");
+			ss.setAttribute("typeToast", "success");
+			ss.setAttribute("action", "Mượn Thiết Bị");
 		} else {
-			model.addAttribute("typeToast", "error");
-			model.addAttribute("action", "Mượn Thiết Bị");
+			ss.setAttribute("typeToast", "error");
+			ss.setAttribute("action", "Mượn Thiết Bị");
 		}
 		model.addAttribute("dsPhong", phongService.getPhong());
-		return "room";
+		return "redirect:/home";
 	}
 
 	// Hiển thị thông tin phiếu mượn
@@ -264,14 +264,14 @@ public class HomeController {
 			// TODO: handle exception
 		}
 		if (tmp != 0) {
-			model.addAttribute("typeToast", "success");
-			model.addAttribute("action", "Mượn Thiết Bị");
+			ss.setAttribute("typeToast", "success");
+			ss.setAttribute("action", "Mượn Thiết Bị");
 		} else {
-			model.addAttribute("typeToast", "error");
-			model.addAttribute("action", "Mượn Thiết Bị");
+			ss.setAttribute("typeToast", "error");
+			ss.setAttribute("action", "Mượn Thiết Bị");
 		}
 		model.addAttribute("dsPhong", phongService.getPhong());
-		return "room";
+		return "redirect:/home";
 	}
 
 	// Chuyển hướng yêu cầu GET đến trang thanh toán
