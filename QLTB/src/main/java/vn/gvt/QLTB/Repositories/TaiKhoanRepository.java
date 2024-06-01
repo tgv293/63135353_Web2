@@ -17,10 +17,13 @@ public interface TaiKhoanRepository extends JpaRepository<TaiKhoan, String> {
         query.registerStoredProcedureParameter("Pass", String.class, ParameterMode.IN).setParameter("Pass", pass);
         query.registerStoredProcedureParameter("Result", Boolean.class, ParameterMode.OUT);
         Boolean check = (Boolean) query.getOutputParameterValue("Result");
+        System.out.println(check);
         return check;
     }
 
     default TaiKhoan getTKByID(EntityManager entityManager, String ID) {
+    	System.out.println(ID);
+    	System.out.println(entityManager.find(TaiKhoan.class, ID));
         return entityManager.find(TaiKhoan.class, ID);
     }
     

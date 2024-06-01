@@ -83,7 +83,7 @@
 			</staticText>
 			<image>
 				<reportElement x="480" y="30" width="60" height="49" uuid="523c9f59-ee21-4a97-865b-4a8d6b6937ee"/>
-				<imageExpression><![CDATA["D:/BTLT/63135353_Web2/QLTB/src/main/resources/static/images/logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["static/images/logo.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="341" y="90" width="199" height="30" uuid="ebb50537-ae1b-4c92-b8e5-ef9c0e1e2cb4"/>

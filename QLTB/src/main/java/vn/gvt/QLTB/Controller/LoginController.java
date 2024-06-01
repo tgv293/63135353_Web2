@@ -34,11 +34,15 @@ public class LoginController {
     // Trang chủ
     @GetMapping("/")
     public String index(Model model, HttpSession session) {
+    	
         if (session.getAttribute("acc") != null) {
             return "redirect:/home";
         }
-        model.addAttribute("taiKhoan", new TaiKhoan());
-        return "index";
+        else
+        {
+        	model.addAttribute("taiKhoan", new TaiKhoan());
+        	return "index";
+        }
     }
 
     // Xử lý đăng nhập
@@ -46,6 +50,8 @@ public class LoginController {
     public String index2(@ModelAttribute("taiKhoan") TaiKhoan taiKhoan, Model model, BindingResult errors,
             @RequestParam("g-recaptcha-response") String gRepcaptchResponse, HttpSession session) throws IOException {
         
+    	System.out.println("Post");
+    	
         boolean verity = RecaptchaVerification.verify(gRepcaptchResponse);
 
         if (taiKhoan.getId().trim().isBlank() || taiKhoan.getId().trim().isEmpty()) {

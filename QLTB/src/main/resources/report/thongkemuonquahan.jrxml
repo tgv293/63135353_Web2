@@ -49,7 +49,7 @@
 			</textField>
 			<image>
 				<reportElement x="480" y="30" width="60" height="49" uuid="641adc90-6f7d-4aaf-9877-0eab84b30042"/>
-				<imageExpression><![CDATA["D:/BTLT/63135353_Web2/QLTB/src/main/resources/static/images/logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["static/images/logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
