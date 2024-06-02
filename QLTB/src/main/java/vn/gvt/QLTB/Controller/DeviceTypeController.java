@@ -45,18 +45,27 @@ public class DeviceTypeController {
 	// Thêm loại thiết bị
 	@RequestMapping(value = "/device_type", params = "btnadd", method = RequestMethod.POST)
 	public String addsp(Model model, @ModelAttribute("LoaiTB") LoaiThietBi loaitb, HttpSession ss) {
-		Integer tmp = loaiThietBiService.add(loaitb);
-		ss.setAttribute("action", "Thêm");
+	    // Kiểm tra xem loại thiết bị đã tồn tại hay chưa
+	    if (loaiThietBiService.exists(loaitb)) {
+	        ss.setAttribute("action", "Thêm");
+	        ss.setAttribute("message", "error");
+	        List<LoaiThietBi> listLoaiTB = loaiThietBiService.getAllLoaiTB();
+	        ss.setAttribute("DsLoaiTB", listLoaiTB);
+	        return "redirect:/device_type";
+	    }
 
-		if (tmp != 0) {
-			ss.setAttribute("message", "success");
-		} else {
-			ss.setAttribute("message", "error");
-		}
-		List<LoaiThietBi> listLoaiTB = loaiThietBiService.getAllLoaiTB();
-		ss.setAttribute("DsLoaiTB", listLoaiTB);
+	    Integer tmp = loaiThietBiService.add(loaitb);
+	    ss.setAttribute("action", "Thêm");
 
-		return "redirect:/device_type";
+	    if (tmp != 0) {
+	        ss.setAttribute("message", "success");
+	    } else {
+	        ss.setAttribute("message", "error");
+	    }
+	    List<LoaiThietBi> listLoaiTB = loaiThietBiService.getAllLoaiTB();
+	    ss.setAttribute("DsLoaiTB", listLoaiTB);
+
+	    return "redirect:/device_type";
 	}
 	
 	// Xóa loại thiết bị
@@ -76,17 +85,26 @@ public class DeviceTypeController {
 	// Sửa loại thiết bị
 	@RequestMapping(value = "/device_type", params = "btn-save-edit", method = RequestMethod.POST)
 	public String edit_SP(Model model, @ModelAttribute("LoaiTB") LoaiThietBi loaitb, HttpSession session) {
-		Integer tmp = loaiThietBiService.editTb(loaitb);
-		session.setAttribute("action", "Sửa");
+	    // Kiểm tra xem loại thiết bị đã tồn tại hay chưa
+	    if (loaiThietBiService.exists(loaitb)) {
+	        session.setAttribute("action", "Sửa");
+	        session.setAttribute("message", "error");
+	        List<LoaiThietBi> listLoaiTB = loaiThietBiService.getAllLoaiTB();
+	        model.addAttribute("DsLoaiTB", listLoaiTB);
+	        return "redirect:/device_type";
+	    }
 
-		if (tmp != 0) {
-			session.setAttribute("message", "success");
-		} else {
-			session.setAttribute("message", "error");
-		}
-		List<LoaiThietBi> listLoaiTB = loaiThietBiService.getAllLoaiTB();
-		model.addAttribute("DsLoaiTB", listLoaiTB);
-		return "redirect:/device_type";
+	    Integer tmp = loaiThietBiService.editTb(loaitb);
+	    session.setAttribute("action", "Sửa");
+
+	    if (tmp != 0) {
+	        session.setAttribute("message", "success");
+	    } else {
+	        session.setAttribute("message", "error");
+	    }
+	    List<LoaiThietBi> listLoaiTB = loaiThietBiService.getAllLoaiTB();
+	    model.addAttribute("DsLoaiTB", listLoaiTB);
+	    return "redirect:/device_type";
 	}
 	
 }

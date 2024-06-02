@@ -19,4 +19,6 @@ public interface LoaiThietBiService {
     public Integer deleteTb(LoaiThietBi loaitb);
     
     public Integer editTb(LoaiThietBi loaitb);
+    
+    public boolean exists(LoaiThietBi loaiThietBi);
 }
