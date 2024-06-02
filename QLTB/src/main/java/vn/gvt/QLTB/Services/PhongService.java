@@ -22,4 +22,6 @@ public interface PhongService {
     public void callSpHoanThanhBaoTriPhong(String maPhong);
     
     public Integer deletePhong(String maPhong);
+    
+    boolean isRoomInUse(String maPhong);
 }

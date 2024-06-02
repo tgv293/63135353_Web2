@@ -89,11 +89,20 @@ public class PhongServiceImpl implements PhongService{
 
         // Set maPhong to null for all related devices
         for (ThietBi thietBi : thietBis) {
-            thietBi.setPhong(null);;
+            thietBi.setPhong(null);
             thietBiService.update(thietBi);
         }
 
         // Delete the room
         return phongRepository.deleteByMaPhong(maPhong);
+    }
+    
+    @Override
+    public boolean isRoomInUse(String maPhong) {
+        // Tìm phòng bằng mã phòng
+        Phong phong = phongRepository.findByMaPhong(maPhong);
+        System.out.println("Phòng" + phong);
+        // Kiểm tra xem phòng có tồn tại và có thiết bị đang được mượn hay không
+        return phong != null && phong.getDstb().stream().anyMatch(thietBi -> thietBi.getTinhTrangTB().getMaTinhTrang() == 2);
     }
 }

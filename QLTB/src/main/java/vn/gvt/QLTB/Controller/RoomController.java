@@ -86,15 +86,23 @@ public class RoomController {
 	// Xóa phòng
 	@RequestMapping(value = "/room/delete_id={id}")
 	public String deleteRoom(ModelMap model, @ModelAttribute("Phong") Phong phong, @PathVariable("id") String id, HttpSession ss) {
-		int tmp = phongService.deletePhong(id);
-		ss.setAttribute("action", "Xóa Phòng");
-		if (tmp != 0) {
-			ss.setAttribute("message", "success");
-		} else {
-			ss.setAttribute("message", "error");
-		}
-		model.addAttribute("listPhong", phongService.getPhong());
-		return "redirect:/device_detail";
+	    // Kiểm tra xem phòng có đang cho mượn hay có thiết bị còn đang cho mượn hay không
+	    if (phongService.isRoomInUse(id)) {
+	        ss.setAttribute("action", "Xóa Phòng");
+	        ss.setAttribute("message", "error");
+	        model.addAttribute("listPhong", phongService.getPhong());
+	        return "redirect:/device_detail";
+	    }
+
+	    int tmp = phongService.deletePhong(id);
+	    ss.setAttribute("action", "Xóa Phòng");
+	    if (tmp != 0) {
+	        ss.setAttribute("message", "success");
+	    } else {
+	        ss.setAttribute("message", "error");
+	    }
+	    model.addAttribute("listPhong", phongService.getPhong());
+	    return "redirect:/device_detail";
 	}
 	
 	// Tạo báo cáo
